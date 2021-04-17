@@ -1,1 +1,1 @@
-command: scrot -s
+command: maim -s -u #| xclip -selection clipboard -t image/png -i
