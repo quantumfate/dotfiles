@@ -1,0 +1,100 @@
+# This is an example (nonsense) configuration file for udiskie.
+
+program_options:
+  # Configure defaults for command line options
+
+  udisks_version:   2       # [int] Specify the version of udisks
+                            # to be used. Set to 0 to use automatic
+                            # discovery.
+
+  tray:             auto    # [bool] Enable the tray icon. "auto"
+                            # means auto-hide the tray icon when
+                            # there are no handled devices.
+
+  automount:        true   # [bool] Enable automatic mounting.
+
+  notify:           true    # [bool] Enable notifications.
+
+
+  file_manager:     xdg-open
+    # [string] Set program to open directories. It will be invoked
+    # with the folder path as its # command line first argument.
+
+  password_prompt: ["gnome-keyring-query", "get", "{.id_uuid}"]
+    # [string|list] Set command to retrieve passwords. If specified
+    # as a list it defines the ARGV array for the program call. If
+    # specified as a string, it will be expanded in a shell-like
+    # manner. Each string will be formatted using str.format with a
+    # Device object as the first argument. For a list of device
+    # attributes, see below. The two special string values
+    # "builtin:gui" and "builtin:tty" signify to use udiskie's
+    # builtin password prompt.
+
+
+mount_options:
+  # List of mount option rules. Only the first matching entry is
+  # used. Each item can match any combination of device attributes
+  # (see below). Additionally, it must define an 'options' list. An
+  # item without any device attributes serves as a catch-all rule.
+
+- id_type: vfat             # match file system type
+  options: ro               # list of mount options
+- id_uuid: 9d53-13ba        # match by device UUID
+  options: [noexec, nodev]  # mount options can be given as list
+
+
+ignore_device:
+  # Customize udiskie's ignore rules. This config entry has the
+  # same structure as *mount_options*, the only difference being
+  # that the action is defined by the 'ignore' field which is a
+  # boolean defaulting to true. The rules defined here are simply
+  # prepended to the builtin ignore rules, so that it is possible
+  # to completely overwrite the defaults by specifying a catch-all
+  # rule.
+
+- id_uuid:     abcd-ef01    # ignore this device
+- device_file: /dev/dm-5
+  ignore:      false        # never ignore this device
+
+notifications:
+  # Customize which notifications are shown for how long. Possible
+  # values are:
+  #   positive number         timeout in seconds
+  #   false                   disable
+  #   -1                      use the libnotify default timeout
+
+  timeout:          1.5     # set the default for all notifications
+
+  # Specify only if you want to overwrite the the default:
+  device_mounted:   5       # mount notification
+  device_unmounted: false   # unmount notification
+  device_added:     false   # device has appeared
+  device_removed:   false   # device has disappeared
+  device_unlocked:  -1      # encrypted device was unlocked
+  device_locked:    -1      # encrypted device was locked
+  job_failed:       -1      # mount/unlock/.. has failed
+
+notification_actions:
+  # Define which actions should be shown on notifications. Note that there
+  # are currently only a limited set of actions available for each
+  # notification. Events that are not explicitly specified show the default
+  # set of actions. Specify an empty list if you don't want to see any
+  # notification for the specified event:
+
+  device_mounted:   [browse]
+  device_added:     [mount]
+
+icon_names:
+  # Customize the icon set used by the tray widget. Each entry
+  # specifies a list of icon names. The first installed icon from
+  # that list will be used.
+
+  media:   [drive-removable-media, media-optical]
+  browse:  [document-open, folder-open]
+  mount:   [udiskie-mount]
+  unmount: [udiskie-unmount]
+  unlock:  [udiskie-unlock]
+  lock:    [udiskie-lock]
+  eject:   [udiskie-eject, media-eject]
+  detach:  [udiskie-detach]
+  quit:    [application-exit]
