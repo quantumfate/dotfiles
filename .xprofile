@@ -19,12 +19,13 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
+# Fix Screentearing
 nvidia-settings --assign CurrentMetaMode="DP-2: 2560x1440_144 +2560+0 {ForceFullCompositionPipeline=On}, DP-0: 2560x1440_144 +0+0 {ForceFullCompositionPipeline=On}"
 
 # Launch udiskie for automatically mounting removable drives
 udiskie &
 
-nvidia-settings --load-config-only
+# nvidia-settings --load-config-only
 
 
 # merge in defaults and keymaps
