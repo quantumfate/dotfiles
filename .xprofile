@@ -19,6 +19,11 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
+# Set global Variables
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
+export EDITOR="/usr/bin/nvim"
+
 # Fix Screentearing
 nvidia-settings --assign CurrentMetaMode="DP-2: 2560x1440_144 +2560+0 {ForceFullCompositionPipeline=On}, DP-0: 2560x1440_144 +0+0 {ForceFullCompositionPipeline=On}"
 

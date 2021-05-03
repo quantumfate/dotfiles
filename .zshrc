@@ -128,6 +128,7 @@ alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 alias nv=nvim
+alias sudo='sudo -E'                      # Preserve environment when editing files as root
 
 xhost +local:root > /dev/null 2>&1
 
