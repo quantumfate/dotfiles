@@ -2,6 +2,8 @@ if [ "$TERM" = "xterm-kitty" ]; then
   fastfetch
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
+
 typeset -U path cdpath fpath manpath
 fpath+=(/usr/share/zsh/site-functions /usr/share/zsh/$ZSH_VERSION/functions /usr/share/zsh/vendor-completions)
 
