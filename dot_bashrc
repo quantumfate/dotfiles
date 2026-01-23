@@ -1,0 +1,13 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+if [ -f "$HOME/.zsh/catppuccin-fzf/themes/catppuccin-fzf-macchiato.sh" ]; then
+  # https://github.com/catppuccin/fzf.git
+  source "$HOME/.zsh/catppuccin-fzf/themes/catppuccin-fzf-macchiato.sh"
+fi
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+PS1='[\u@\h \W]\$ '

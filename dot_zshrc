@@ -1,0 +1,254 @@
+if [ "$TERM" = "xterm-kitty" ]; then
+  fastfetch
+fi
+
+typeset -U path cdpath fpath manpath
+fpath+=(/usr/share/zsh/site-functions /usr/share/zsh/$ZSH_VERSION/functions /usr/share/zsh/vendor-completions)
+
+HELPDIR="/usr/share/zsh/$ZSH_VERSION/help"
+
+feh_scaled() {
+  local width=$(hyprctl -j monitors | jq -r '.[] | select(.focused) | .width')
+  local height=$(hyprctl -j monitors | jq -r '.[] | select(.focused) | .height')
+  command feh --geometry $((width*80/100))x$((height*80/100)) --scale-down "$@"
+}
+
+## Plugins
+# oh-my-zsh
+export ZSH="$HOME/.config/oh-my-zsh"
+ZSH_THEME="gozilla"
+plugins=(
+  git 
+  ls # https://github.com/zpm-zsh/ls
+)
+source $ZSH/oh-my-zsh.sh
+
+# https://github.com/zsh-users/zsh-autosuggestions
+if [ -f "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh" ]; then
+  source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+  ZSH_AUTOSUGGEST_STRATEGY=(history)
+fi
+
+# https://github.com/hlissner/zsh-autopair
+if [ -f "$HOME/.zsh/zsh-autopair/zsh-autopair.plugin.zsh" ]; then
+  source "$HOME/.zsh/zsh-autopair/zsh-autopair.plugin.zsh"
+fi
+
+# Tab completion
+autoload -Uz compinit
+compinit
+
+if [ -f "$HOME/.zsh/catppuccin-fzf/themes/catppuccin-fzf-macchiato.sh" ]; then
+# https://github.com/catppuccin/fzf.git
+  source "$HOME/.zsh/catppuccin-fzf/themes/catppuccin-fzf-macchiato.sh"
+fi
+
+if [ -f "$HOME/.zsh/fzf-tab/fzf-tab.plugin.zsh" ]; then
+  # https://github.com/Aloxaf/fzf-tab 
+  source "$HOME/.zsh/fzf-tab/fzf-tab.plugin.zsh"
+  source /usr/share/fzf/key-bindings.zsh
+  source /usr/share/fzf/completion.zsh
+fi
+
+if [ -f "$HOME/.zsh/fzf-tab-source/fzf-tab-source.plugin.zsh" ]; then
+  # https://github.com/Aloxaf/fzf-tab 
+  source "$HOME/.zsh/fzf-tab-source/fzf-tab-source.plugin.zsh"
+  export LESSOPEN="/usr/bin/lesspipe.sh %s"
+  chmod +x ~/.lessfilter
+fi
+
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:*' fzf-flags --bind=tab:down,shift-tab:up,enter:accept,right:accept
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
+zstyle ':fzf-tab:*' fzf-tab-group-order \
+  alias \
+  directory \
+  file \
+  command \
+  external command
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath' # remember to use single quote here!!!
+zstyle ':fzf-tab:complete:cd:*' fzf-tab-group-order \
+  directory \
+  alias
+
+## History
+# History options should be set in .zshrc and after oh-my-zsh sourcing.
+# See https://github.com/nix-community/home-manager/issues/177.
+HISTSIZE="10000"
+SAVEHIST="10000"
+
+HISTFILE="/home/quantum/.zsh_history"
+mkdir -p "$(dirname "$HISTFILE")"
+
+setopt HIST_FCNTL_LOCK
+
+# Enabled history options
+enabled_opts=(
+  HIST_IGNORE_DUPS HIST_IGNORE_SPACE SHARE_HISTORY
+)
+for opt in "${enabled_opts[@]}"; do
+  setopt "$opt"
+done
+unset opt enabled_opts
+
+# Disabled history options
+disabled_opts=(
+  APPEND_HISTORY EXTENDED_HISTORY HIST_EXPIRE_DUPS_FIRST HIST_FIND_NO_DUPS
+  HIST_IGNORE_ALL_DUPS HIST_SAVE_NO_DUPS
+)
+for opt in "${disabled_opts[@]}"; do
+  unsetopt "$opt"
+done
+unset opt disabled_opts
+
+## Misc
+# Edit command line in $EDITOR buffer
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
+# Autohook on cd
+# Then Define separate functions
+function auto_venv() {
+  # If already in a virtualenv, do nothing
+  if [[ -n "$VIRTUAL_ENV" && "$PWD" != *"${VIRTUAL_ENV:h}"* ]]; then
+    deactivate
+    return  
+  fi
+
+  [[ -n "$VIRTUAL_ENV" ]] && return
+
+  local dir="$PWD"
+  while [[ "$dir" != "/" ]]; do
+    if [[ -f "$dir/.venv/bin/activate" ]]; then
+      source "$dir/.venv/bin/activate"
+      return
+    fi
+    dir="${dir:h}"
+  done
+}
+function auto_nvm() {
+  [[ -f .nvmrc ]] && nvm use
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd auto_venv
+add-zsh-hook chpwd auto_nvm
+
+## Ranger
+source /home/quantum/.config/ranger/rangercd.sh
+if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
+
+if test -n "$KITTY_INSTALLATION_DIR"; then
+  export KITTY_SHELL_INTEGRATION="no-rc"
+  autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+  kitty-integration
+  unfunction kitty-integration
+fi
+
+## Binds
+bindkey ' ' magic-space
+
+## Useful aliases
+alias -- feh=feh_scaled
+alias -- ranger=ranger-cd
+
+# Hyprland
+alias hyprclients="hyprctl -j clients | jq -r '.[]' | jless"
+
+# Replace ls with eza
+#alias ls='eza -al --color=always --group-directories-first --icons' # preferred listing
+#alias la='eza -a --color=always --group-directories-first --icons'  # all files and dirs
+#alias ll='eza -l --color=always --group-directories-first --icons'  # long format
+#alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
+#alias l.="eza -a | grep -e '^\.'"                                     # show only dotfiles
+
+# Common use
+alias grubup="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias fixpacman="sudo rm /var/lib/pacman/db.lck"
+alias tarnow='tar -acf '
+alias untar='tar -zxvf '
+alias wget='wget -c '
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias hw='hwinfo --short'                                   # Hardware Info
+alias big="expac -H M '%m\t%n' | sort -h | nl"              # Sort installed packages according to size in MB
+alias gitpkg='pacman -Q | grep -i "\-git" | wc -l'          # List amount of -git packages
+alias update='sudo pacman -Syu'
+
+# Get fastest mirrors
+alias mirror="sudo cachyos-rate-mirrors"
+
+# Help people new to Arch
+alias apt='man pacman'
+alias apt-get='man pacman'
+alias please='sudo'
+alias tb='nc termbin.com 9999'
+
+# Cleanup orphaned packages
+alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
+
+# Get the error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
+
+# Recent installed packages
+alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+# Must be at the end
+if [ -f "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  if [ -f "$HOME/.zsh/catppuccin-zsh-syntax-highlighting/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh" ]; then
+    # https://github.com/catppuccin/zsh-syntax-highlighting
+    source "$HOME/.zsh/catppuccin-zsh-syntax-highlighting/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh"
+  fi
+  # https://github.com/zsh-users/zsh-syntax-highlighting
+  source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets cursor)
+  ZSH_HIGHLIGHT_STYLES[cursor]='fg=blue'
+fi
+
+## Suffix aliases
+
+alias -s md="bat"
+alias -s mov="open"
+alias -s png="feh_scaled"
+alias -s mp4="open"
+alias -s go="$EDITOR"
+alias -s js="$EDITOR"
+alias -s ts="$EDITOR"
+alias -s rb="$EDITOR"
+alias -s txt="$EDITOR"
+alias -s cpp="$EDITOR"
+alias -s c="$EDITOR"
+alias -s hpp="$EDITOR"
+alias -s h="$EDITOR"
+alias -s yaml="bat -l yaml"
+alias -s json="jless"
+
+## Global aliases
+alias -g NE='2>/dev/null' # stderror
+alias -g DN='> /dev/null' # stdout
+alias -g NUL='>/dev/null 2>&1' # stdout & stderror
+
+## Widgets
+
+clear-keep-buffer() {
+  zle clear-screen
+}
+zle -N clear-keep-buffer
+bindkey '^Xl' clear-keep-buffer
