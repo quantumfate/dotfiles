@@ -59,6 +59,11 @@ if [ -f "$HOME/.zsh/fzf-tab-source/fzf-tab-source.plugin.zsh" ]; then
   chmod +x ~/.lessfilter
 fi
 
+if [ -f "$HOME/.zsh/zsh-chezmoi/chezmoi.plugin.zsh" ]; then
+  # https://github.com/mass8326/zsh-chezmoi
+  source "$HOME/.zsh/zsh-chezmoi/chezmoi.plugin.zsh"
+fi
+
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
