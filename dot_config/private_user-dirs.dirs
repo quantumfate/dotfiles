@@ -1,0 +1,8 @@
+XDG_DESKTOP_DIR="/home/quantum/Desktop"
+XDG_DOCUMENTS_DIR="/home/quantum/Documents"
+XDG_DOWNLOAD_DIR="/home/quantum/Downloads"
+XDG_MUSIC_DIR="/home/quantum/Music"
+XDG_PICTURES_DIR="/home/quantum/Pictures"
+XDG_PUBLICSHARE_DIR="/home/quantum/Public"
+XDG_TEMPLATES_DIR="/home/quantum/Templates"
+XDG_VIDEOS_DIR="/home/quantum/Videos"

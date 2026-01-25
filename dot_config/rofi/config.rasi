@@ -1,0 +1,21 @@
+configuration {
+cycle: true;
+disable-history: true;
+display-drun: " Apps ";
+display-run: " Run ";
+display-window: " Window ";
+drun-display-format: "{icon} {name}";
+font: "DejaVuSansM Nerd Font 16";
+hide-scrollbar: true;
+icon-theme: "Papirus-Dark";
+lines: 5;
+location: 0;
+modes: [ "run","drun","window" ];
+show-icons: true;
+sidebar-mode: true;
+sorting-method: "fzf";
+terminal: "$TERM";
+xoffset: 0;
+yoffset: 0;
+}
+@theme "custom"

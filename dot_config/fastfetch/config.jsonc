@@ -1,0 +1,81 @@
+{
+  "display": {
+    "separator": " "
+  },
+  "logo": {
+    "height": 12,
+    "padding": {
+      "top": 1
+    },
+    "source": "/home/quantum/.config/fastfetch/yukino.png",
+    "type": "kitty"
+  },
+  "modules": [
+    {
+      "key": "╭────────────╮",
+      "type": "custom"
+    },
+    {
+      "format": "{user-name}",
+      "key": "│ {#31}  user    {#keys}│",
+      "type": "title"
+    },
+    {
+      "format": "{host-name}",
+      "key": "│ {#32}󰇅  hname   {#keys}│",
+      "type": "title"
+    },
+    {
+      "key": "│ {#33}󰅐  uptime  {#keys}│",
+      "type": "uptime"
+    },
+    {
+      "key": "│ {#35}  kernel  {#keys}│",
+      "type": "kernel"
+    },
+    {
+      "key": "│ {#36}󰇄  desktop {#keys}│",
+      "type": "de"
+    },
+    {
+      "key": "│ {#31}  term    {#keys}│",
+      "type": "terminal"
+    },
+    {
+      "key": "│ {#32}  shell   {#keys}│",
+      "type": "shell"
+    },
+    {
+      "key": "│ {#33}󰍛  cpu     {#keys}│",
+      "showPeCoreCount": true,
+      "type": "cpu"
+    },
+    {
+      "folders": "/",
+      "key": "│ {#34}󰉉  disk    {#keys}│",
+      "type": "disk"
+    },
+    {
+      "key": "│ {#35}  memory  {#keys}│",
+      "type": "memory"
+    },
+    {
+      "format": "{ipv4} ({ifname})",
+      "key": "│ {#36}󰩟  network {#keys}│",
+      "type": "localip"
+    },
+    {
+      "key": "├────────────┤",
+      "type": "custom"
+    },
+    {
+      "key": "│ {#39}  colors  {#keys}│",
+      "symbol": "circle",
+      "type": "colors"
+    },
+    {
+      "key": "╰────────────╯",
+      "type": "custom"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "fixed-center": true,
+    "height": 25,
+    "include": "/home/quantum/.config/waybar/modules",
+    "ipc": true,
+    "layer": "top",
+    "margin-left": 0,
+    "margin-right": 0,
+    "margin-top": 0,
+    "modules-center": [
+      "hyprland/window"
+    ],
+    "modules-left": [
+      "hyprland/workspaces",
+      "cpu",
+      "memory",
+      "disk",
+      "network"
+    ],
+    "modules-right": [
+      "pulseaudio",
+      "clock",
+      "tray",
+      "custom/mako",
+      "custom/lock",
+      "custom/reboot",
+      "custom/power"
+    ],
+    "output": [
+      "DP-1"
+    ],
+    "position": "top",
+    "spacing": 0
+  }
+]

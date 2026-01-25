@@ -1,0 +1,28 @@
+{
+  "log-level": "info",
+  "notification-prefix": "elecwhat - ",
+
+  "quit-on-close": false,
+  "show-at-startup": false,
+
+  "dbus": true,
+
+  "menu-bar": true,
+  "menu-bar-auto-hide": true,
+
+  "keys": {
+    "C ArrowDown": {
+      "whatsappAction": "GO_TO_NEXT_CHAT"
+    }
+  },
+  "esc-toggle-window": false,
+
+  "css": [
+    "file://~/.config/elecwhat/catppuccin.css"
+  ],
+  "user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:147.0) Gecko/20100101 Firefox/147.0",
+  "spellcheck": true,
+  "spellcheck-languages": ["de", "en-US", "fr"],
+
+  "open-dev-tools": false
+}

@@ -1,0 +1,20 @@
+[includeIf "gitdir:~/Projects/github/"]
+	path = "~/.config/git/githubconf"
+
+[includeIf "gitdir:~/Projects/gitlab/"]
+	path = "~/.config/git/gitlabconf"
+
+[includeIf "gitdir:~/.config/hypr/"]
+	path = "~/.config/git/githubconf"
+
+[includeIf "gitdir:~/.local/share/chezmoi/"]
+	path = "~/.config/git/githubconf"
+
+[init]
+	defaultBranch = "main"
+
+[pull]
+	rebase = false
+
+[user]
+	name = "Leon Connor Holm"

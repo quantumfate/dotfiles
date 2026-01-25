@@ -1,0 +1,125 @@
+@import "themes/catppuccin-macchiato.css";
+
+* {
+  font-family: DejaVuSansM Nerd Font, FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+#waybar {
+  background-color: rgba(24, 25, 38,0.85);
+}
+
+.modules-left {
+  margin: 0 0 0 11px;
+}
+
+.modules-right {
+  margin: 0 11px 0 0;
+}
+
+#cpu,
+#disk,
+#memory,
+#network,
+#language,
+#pulseaudio,
+#clock,
+#tray,
+#custom-mako,
+#battery {
+  background-color: transparent;
+  color: @teal;
+  /* border: 2px solid rgba(17,17,27,0.600000) */;
+  padding: 0 15px;
+  margin-right: 10px;
+}
+
+#cpu {
+  color: @mauve;
+}
+
+#disk {
+  color: @maroon;
+}
+
+#memory {
+  color: @pink;
+}
+
+#network {
+  color: @peach;
+}
+
+#workspaces {
+  background-color: transparent;
+  border: transparent;
+  padding: 0 5px;
+  margin-right: 10px;
+}
+
+#workspaces button {
+  box-shadow: none;
+  text-shadow: none;
+  padding: 0 4px;
+  color: @maroon;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#workspaces button.active,
+#workspaces button:hover {
+  color: @teal;
+}
+
+#workspaces button:hover {
+  background: transparent;
+  border-color: @base;
+}
+
+#window {
+  background-color: transparent;
+  padding: 0 10px;
+  color: @mauve;
+}
+
+window#waybar.empty #window {
+  border: none;
+  background-color: transparent;
+}
+
+#custom-lock,
+#custom-reboot,
+#custom-power {
+  background-color: transparent;
+  /*
+  border-bottom: 2px solid rgba(17,17,27,0.600000);
+  border-top: 2px solid rgba(17,17,27,0.600000);
+  */
+}
+
+#custom-lock {
+  /*border-left: 2px solid rgba(17,17,27,0.600000);*/
+  padding-left: 14px;
+  padding-right: 10px;
+}
+
+#custom-reboot {
+  padding: 0 10px;
+}
+
+#custom-power {
+  /*border-right: 2px solid rgba(17,17,27,0.600000);*/
+  padding-right: 14px;
+  padding-left: 10px;
+} 
+
+tooltip {
+  margin-top: 2px;
+  background: rgba(30,30,46,0.800000);
+  border: 2px solid rgba(17,17,27,0.600000);
+}
+tooltip label {
+  color: @text;
+}
+
