@@ -3,8 +3,10 @@ packages:
     arch:
       - 'git'
       - 'zen-twilight'
-# themes
-      - papirus-folders
+      - 'neovim'
+
+      # themes
+      - papirus-icon-theme
       - papirus-folders-catppuccin-git
       - catppuccin-cursors-frappe
       - catppuccin-cursors-latte
@@ -14,3 +16,7 @@ packages:
       - catppuccin-latte-grub-theme-git
       - catppuccin-macchiato-grub-theme-git
       - catppuccin-mocha-grub-theme-git
+      - catppuccin-sddm-theme-frappe
+      - catppuccin-sddm-theme-latte
+      - catppuccin-sddm-theme-macchiato
+      - catppuccin-sddm-theme-mocha

@@ -94,6 +94,13 @@
     include = ["*/themes/*"]
     refreshPeriod = "168h"
 
+[".config/mako/themes"]
+    type = "archive"
+    url = "https://github.com/catppuccin/mako/archive/refs/heads/main.tar.gz"
+    stripComponents = 2
+    include = ["*/themes/**"]
+    refreshPeriod = "168h"
+
 [".config/ranger/colorschemes/catppuccin_latte.py"]
     type = "file"
     url = "https://github.com/dfrico/catppuccin-ranger/releases/latest/download/catppuccin_latte.py"

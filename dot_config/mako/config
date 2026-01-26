@@ -18,6 +18,7 @@ output=DP-1
 padding=10
 text-color=#cad3f5
 width=450
+progress-color=over #363a4f
 
 [app-name="Hyprland"]
 anchor=top-left
@@ -89,7 +90,7 @@ padding=0,0,0,30
 invisible=1
 
 [urgency=high]
-border-color=#ed8796
+border-color=#f5a97f
 default-timeout=0
 
 [urgency=low]
