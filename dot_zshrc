@@ -53,7 +53,7 @@ if [ -f "$HOME/.zsh/fzf-tab/fzf-tab.plugin.zsh" ]; then
 fi
 
 if [ -f "$HOME/.zsh/fzf-tab-source/fzf-tab-source.plugin.zsh" ]; then
-  # https://github.com/Aloxaf/fzf-tab 
+  # https://github.com/Freed-Wu/fzf-tab-source 
   source "$HOME/.zsh/fzf-tab-source/fzf-tab-source.plugin.zsh"
   export LESSOPEN="/usr/bin/lesspipe.sh %s"
   chmod +x ~/.lessfilter

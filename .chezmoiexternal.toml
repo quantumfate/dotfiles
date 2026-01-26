@@ -1,7 +1,39 @@
+[".config/oh-my-zsh"]
+    type = "git-repo"
+    url = "https://github.com/ohmyzsh/ohmyzsh"
+    refreshPeriod = "24h"
 
-["~/.config/oh-my-zsh"]
-    type = "archive"
-    url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
+[".config/oh-my-zsh/custom/plugins/"]
+    type = "git-repo"
+    url = "https://github.com/zpm-zsh/ls"
+    refreshPeriod = "24h"
+
+[".zsh/zsh-autosuggestions/"]
+    type = "git-repo"
+    url = "https://github.com/zsh-users/zsh-autosuggestions"
+    refreshPeriod = "24h"
+
+[".zsh/zsh-autopair/"]
+    type = "git-repo"
+    url = "https://github.com/hlissner/zsh-autopair"
+    refreshPeriod = "24h"
+
+[".zsh/catppuccin-fzf/"]
+    type = "git-repo"
+    url = "https://github.com/catppuccin/fzf"
+    refreshPeriod = "24h"
+
+[".zsh/fzf-tab/"]
+    type = "git-repo"
+    url = "https://github.com/Aloxaf/fzf-tab"
+    refreshPeriod = "24h"
+
+[".zsh/fzf-tab-source/"]
+    type = "git-repo"
+    url = "https://github.com/Freed-Wu/fzf-tab-source"
+    refreshPeriod = "24h"
+
+[".zsh/zsh-chezmoi/"]
+    type = "git-repo"
+    url = "https://github.com/mass8326/zsh-chezmoi"
+    refreshPeriod = "24h"
