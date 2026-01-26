@@ -1,6 +1,6 @@
 @theme "catppuccin-default"
 
-@import "catppuccin-mocha"
+@import "catppuccin-macchiato"
 
 #inputbar {
 border-radius: 0;

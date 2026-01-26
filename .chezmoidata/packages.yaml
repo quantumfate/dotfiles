@@ -1,0 +1,16 @@
+packages:
+  linux:
+    arch:
+      - 'git'
+      - 'zen-twilight'
+# themes
+      - papirus-folders
+      - papirus-folders-catppuccin-git
+      - catppuccin-cursors-frappe
+      - catppuccin-cursors-latte
+      - catppuccin-cursors-macchiato
+      - catppuccin-cursors-mocha
+      - catppuccin-frappe-grub-theme-git
+      - catppuccin-latte-grub-theme-git
+      - catppuccin-macchiato-grub-theme-git
+      - catppuccin-mocha-grub-theme-git

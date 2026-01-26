@@ -58,3 +58,51 @@
     stripComponents = 2
     include = ["*/themes/*"]
     refreshPeriod = "168h"
+
+[".config/qt5ct/themes"]
+    type = "archive"
+    url = "https://github.com/catppuccin/qt5ct/archive/refs/heads/main.tar.gz"
+    stripComponents = 2
+    include = ["*/themes/*"]
+    refreshPeriod = "168h"
+
+[".config/qt6ct/themes"]
+    type = "archive"
+    url = "https://github.com/catppuccin/qt5ct/archive/refs/heads/main.tar.gz"
+    stripComponents = 2
+    include = ["*/themes/*"]
+    refreshPeriod = "168h"
+
+[".config/Kvantum"]
+    type = "archive"
+    url = "https://github.com/catppuccin/kvantum/archive/refs/heads/main.tar.gz"
+    stripComponents = 2
+    include = ["*/themes/*"]
+    refreshPeriod = "168h"
+
+[".local/share/rofi/themes"]
+    type = "archive"
+    url = "https://github.com/catppuccin/rofi/archive/refs/heads/main.tar.gz"
+    stripComponents = 2
+    include = ["*/themes/*"]
+    refreshPeriod = "168h"
+
+[".config/ranger/colorschemes/catppuccin_latte.py"]
+    type = "file"
+    url = "https://github.com/dfrico/catppuccin-ranger/releases/latest/download/catppuccin_latte.py"
+    refreshPeriod = "168h"
+
+[".config/ranger/colorschemes/catppuccin_frappe.py"]
+    type = "file"
+    url = "https://github.com/dfrico/catppuccin-ranger/releases/latest/download/catppuccin_frappe.py"
+    refreshPeriod = "168h"
+
+[".config/ranger/colorschemes/catppuccin_macchiato.py"]
+    type = "file"
+    url = "https://github.com/dfrico/catppuccin-ranger/releases/latest/download/catppuccin_macchiato.py"
+    refreshPeriod = "168h"
+
+[".config/ranger/colorschemes/catppuccin_mocha.py"]
+    type = "file"
+    url = "https://github.com/dfrico/catppuccin-ranger/releases/latest/download/catppuccin_mocha.py"
+    refreshPeriod = "168h"
