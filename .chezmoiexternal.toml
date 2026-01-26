@@ -37,3 +37,24 @@
     type = "git-repo"
     url = "https://github.com/mass8326/zsh-chezmoi"
     refreshPeriod = "24h"
+
+[".config/btop/themes"]
+    type = "archive"
+    url = "https://github.com/catppuccin/btop/archive/refs/heads/main.tar.gz"
+    stripComponents = 2
+    include = ["*/themes/*"]
+    refreshPeriod = "168h"
+
+[".config/foot/themes"]
+    type = "archive"
+    url = "https://github.com/catppuccin/foot/archive/refs/heads/main.tar.gz"
+    stripComponents = 2
+    include = ["*/themes/*"]
+    refreshPeriod = "168h"
+
+[".config/kitty/themes"]
+    type = "archive"
+    url = "https://github.com/catppuccin/kitty/archive/refs/heads/main.tar.gz"
+    stripComponents = 2
+    include = ["*/themes/*"]
+    refreshPeriod = "168h"
