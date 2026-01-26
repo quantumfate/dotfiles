@@ -2,10 +2,20 @@
 
 set -e
 
+{{ if eq .chezmoi.hostname "quantum-desktop" }}
 declare -A ssh_keys=(
-  ["gitlab"]="Work:gitlab"
-  ["github"]="Work:github"
+  ["gitlab"]="Work:gitlab-desktop"
+  ["github"]="Work:github-desktop"
 )
+{{ else if eq .chezmoi.hostname "quantum-laptop" }}
+declare -A ssh_keys=(
+  ["gitlab"]="Work:gitlab-laptop"
+  ["github"]="Work:github-laptop"
+)
+{{ else }}
+echo "Undetected hostname {{ .chezmoi.hostname }}"
+exit 1
+{{ end }}
 
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
