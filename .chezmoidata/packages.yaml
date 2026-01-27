@@ -1,13 +1,221 @@
 packages:
   linux:
     arch:
-      - 'git'
-      - 'zen-twilight'
-      - 'neovim'
+      # Core utilities
+      - git
+      - neovim
+      - vim
+      - nano
+      - tmux
+      - chezmoi
+      - fastfetch
+      - btop
+      - glances
+      - ranger
+      - lf
+      - tree-sitter-cli
+      - jq
+      - jless
+      
+      # Shell & Terminal
+      - alacritty
+      - kitty
+      - foot
+      - bash-completion
+      - fish
+      - fzf
+      
+      # System tools
+      - age
+      - pv
+      - duf
+      - ripgreo
+      - lsd
+      - jless
+      - glow
+      - grc
+      - lazygit
+      - rsync
+      - wget
+      - openssh
+      
+      # File systems & disk tools
+      - btrfs-progs
+      - btrfs-assistant
+      - snapper
+      - e2fsprogs
+      - exfatprogs
+      - f2fs-tools
+      - jfsutils
+      - nilfs-utils
+      - xfsprogs
+      - dosfstools
+      - smartmontools
+      - hdparm
+      
+      # Compression & archives
+      - unzip
+      - unrar
+      
+      # Applications
+      - zen-twilight-bin
+      - elecwhat-bin
+      - firefox
+      - brave-bin
+      - obsidian
+      - spotify
+      - vesktop
+      - dolphin
+      - vlc-plugins-all
+      - keepassxc-qt6
+      - qalculate-qt
+      
+      # Proton
+      - proton-authenticator-bin
+      - proton-pass-bin
+      - proton-mail-bin
+      - proton-drive-sync-bin
+      - proton-vpn-gtk-app
+      
+      # Hyprland ecosystem
+      - hyprland
+      - hypridle
+      - hyprlock
+      - hyprpaper
+      - hyprpicker
+      - hyprpolkitagent
+      - hyprqt6engine
+      - hyprshot
+      - hyprshutdown-git
+      - hyprpanel-bin
+      - grim-hyprland-git
+      - aquamarine-git
+      - hyprgraphics-git
+      - hyprlang-git
+      - hyprtoolkit-git
+      - hyprutils-git
+      - hyperwayland-scanner-git
+      
+      # Wayland tools
+      - sway
+      - swaybg
+      - swaylock-effects-git
+      - swaylock-fancy-git
+      - niri
+      - waybar
+      - rofi
+      - bemenu
+      - bemenu-wayland
+      - wmenu
+      - mako
+      - wlogout
+      - wl-clipboard
+      - wtype
+      - xdotool
+      - cliphist
+      - slurp
+      - wob
+      - uwsm
+      - xwayland-satellite
+      
+      # Audio
+      - pipewire-alsa
+      - pipewire-pulse
+      - wireplumber
+      - playerctl
+      - pamixer
+      - pavucontrol
+      - wiremix
+      - alsa-utils
+      - alsa-plugins
+      - alsa-firmware
+      
+      # Graphics & display
+      - mesa-utils
+      - brightnessctl
+      - feh
+      - chafa
+      
+      # XDG portals
+      - xdg-desktop-portal
+      - xdg-desktop-portal-hyprland
+      - xdg-desktop-portal-wlr
+      - xdg-desktop-portal-gnome
+      - xdg-user-dirs
+      
+      # Development
+      - base-devel
+      - python
+      - python-pillow
+      - python-packaging
+      - python-defusedxml
+      - perl
+      - ruby-colorls
+      - lua51
+      - luarocks
+      - hererocks
+      - pandoc-cli
+      - tectonic
+      - texlive-bin
+      - meld
+      
+      # Package management
+      - yay
+      - paru
+      - octopi
+      - pacman-contrib
+      - pkgfile
+      - rebuild-detector
+      - reflector
+      
+      # System & boot
+      - grub
+      - grub-btrfs-support
+      - grub-hook
+      - efibootmgr
+      - efitools
+      - os-prober
+      
+      # Kernel & drivers
+      - linux-firmware
+      - amd-ucode
+      - nvidia-utils
+      - nvidia-settings
+      - lib32-nvidia-utils
+      - opencl-nvidia
+      - lib32-opencl-nvidia
+      - libva-nvidia-driver
 
-      # themes
-      - papirus-icon-theme
+      # Network
+      - networkmanager
+      - networkmanager-openvpn
+      - iwd
+      - modemmanager
+      - netctl
+      - dnsmasq
+      - nfs-utils
+      - ufw
+      - bind
+      - nss-mdns
+      - ntp
+      - dhclient
+      - wpa_supplicant
+      - xl2tpd
+      - wireless-regdb
+      
+      # Bluetooth
+      - bluez
+      - bluez-utils
+      - bluez-libs
+      - bluez-hid2hci
+      
+      # Themes & appearance
+      - lxappearance
+      - qt5ct
+      - kvantum
+      - kvantum-theme-nordic-git
       - papirus-folders-catppuccin-git
+      - catppuccin-gtk-theme-macchiato
       - catppuccin-cursors-frappe
       - catppuccin-cursors-latte
       - catppuccin-cursors-macchiato
@@ -20,4 +228,147 @@ packages:
       - catppuccin-sddm-theme-latte
       - catppuccin-sddm-theme-macchiato
       - catppuccin-sddm-theme-mocha
+      - juno-palenight-gtk-theme-git
+      - juno-palenight-standard-buttons-gtk-theme-git
+      - capitaine-cursors
+      - sddm
+      - sddm-catppuccin-git
+      - ly
+      - polkit-kde-agent
+      
+      # Spotify customization
       - spicetify-cli
+      
+      # Fonts
+      - ttf-arimo-nerd
+      - ttf-bitstream-vera
+      - ttf-cascadia-code-nerd
+      - ttf-dejavu
+      - ttf-dejavu-nerd
+      - ttf-fantasque-nerd
+      - ttf-fira-sans
+      - ttf-firacode-nerd
+      - ttf-hack
+      - ttf-hack-nerd
+      - ttf-inconsolata-nerd
+      - ttf-iosevka-nerd
+      - ttf-jetbrains-mono-nerd
+      - ttf-liberation
+      - ttf-meslo-nerd
+      - ttf-opensans
+      - noto-fonts
+      - noto-fonts-cjk
+      - noto-fonts-emoji
+      - noto-color-emoji-fontconfig
+      - cantarell-fonts
+      - awesome-terminal-fonts
+      - otf-font-awesome
+      - woff2-font-awesome
+      
+      # Libraries & codecs
+      - gst-libav
+      - gst-plugin-pipewire
+      - gst-plugins-bad
+      - gst-plugins-ugly
+      - ffmpegthumbnailer
+      - libdvdcss
+      - libgsf
+      - libopenraw
+      - libwnck3
+      - poppler-glib
+      - ghostscript
+      - vulkan-icd-loader
+      - lib32-vulkan-icd-loader
+      - egl-wayland
+      - qt5-wayland
+      - wayland-protocols
+            
+      # System utilities
+      - base
+      - sudo
+      - man-db
+      - man-pages
+      - texinfo
+      - less
+      - lesspipe
+      - which
+      - dmidecode
+      - hwinfo
+      - hwdetect
+      - lsb-release
+      - lsscsi
+      - usbutils
+      - usb_modeswitch
+      - pciutils
+      - sg3_utils
+      - sysfsutils
+      - ethtool
+      - inetutils
+      - diffutils
+      - logrotate
+      - haveged
+      - rtkit
+      - power-profiles-daemon
+      - upower
+      - cpupower
+      - chwd
+      - mkinitcpio
+      - s-nail
+      - socat
+      - plocate
+      - scdoc
+      
+      # Security & encryption
+      - cryptsetup
+      - device-mapper
+      - lvm2
+      - mdadm
+      - dmraid
+      
+      # Backup & recovery
+      - fsarchiver
+      
+      # X11 (compatibility)
+      - xorg-server
+      - xorg-xinit
+      - xorg-xwayland
+      - xorg-xrandr
+      - xorg-xinput
+      - xorg-xkill
+      - xorg-xdpyinfo
+      - xf86-input-libinput
+      
+      # Games & launchers
+      - ankama-launcher
+
+    cachyos:
+      # Kernel & drivers
+      - linux-cachyos
+      - linux-cachyos-headers
+      - linux-cachyos-lts
+      - linux-cachyos-lts-headers
+      - linux-cachyos-nvidia-open
+      - linux-cachyos-lts-nvidia-open
+
+      # Cachyos Specific
+      - cachyos-hello
+      - cachyos-hooks
+      - cachyos-keyring
+      - cachyos-mirrorlist
+      - cachyos-v3-mirrorlist
+      - cachyos-v4-mirrorlist
+      - cachyos-settings
+      - cachyos-rate-mirrors
+      - cachyos-packageinstaller
+      - cachyos-kernel-manager
+      - cachyos-wallpapers
+      - cachyos-grub-theme
+      - cachyos-alacritty-config
+      - cachyos-fish-config
+      - cachyos-zsh-config
+      - cachyos-micro-settings
+      - cachyos-niri-settings
+      - cachyos-nord-gtk-theme-git
+
+
+
