@@ -128,3 +128,7 @@
     include = ["*/catppuccin/**"]
     refreshPeriod = "168h"
 
+[".config/hypr"]
+    type = "git-repo"
+    url = "git@github.com:quantumfate/hypr.git"
+    refreshPeriod = "24h"
