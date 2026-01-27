@@ -89,6 +89,7 @@ packages:
       - niri
 
       # Wayland tools
+      - kanshi
       - waybar
       - wofi
       - rofi
