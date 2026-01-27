@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+export PATH="$HOME/.local/bin:$PATH"
 
 if pass-cli vault list >/dev/null 2>&1; then
   echo "Already logged in to Proton Pass"
