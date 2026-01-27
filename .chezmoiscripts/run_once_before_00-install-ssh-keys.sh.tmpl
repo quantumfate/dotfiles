@@ -20,6 +20,8 @@ exit 1
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 
+export PATH="$HOME/.local/bin:$PATH"
+
 for target in "${!ssh_keys[@]}"; do
   IFS=":" read -r vault_name item_title <<<"${ssh_keys[$target]}"
   private_key_file="$HOME/.ssh/$target"
