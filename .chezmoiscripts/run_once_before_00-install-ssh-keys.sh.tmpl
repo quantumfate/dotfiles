@@ -17,6 +17,33 @@ echo "Undetected hostname {{ .chezmoi.hostname }}"
 exit 1
 {{ end }}
 
+cat <<EOF> ~/.ssh/config
+Host *
+  ForwardAgent no
+  ServerAliveInterval 0
+  ServerAliveCountMax 3
+  Compression no
+  AddKeysToAgent no
+  HashKnownHosts no
+  UserKnownHostsFile ~/.ssh/known_hosts
+  ControlMaster no
+  ControlPath ~/.ssh/master-%r@%n:%p
+  ControlPersist no
+
+  Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github
+    IdentitiesOnly yes
+    AddKeysToAgent yes
+  Host gitlab.com
+    HostName gitlab.com
+    User git
+    IdentityFile ~/.ssh/gitlab
+    IdentitiesOnly yes
+    AddKeysToAgent yes
+EOF
+
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 

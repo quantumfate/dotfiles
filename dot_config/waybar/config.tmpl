@@ -27,9 +27,16 @@
       "custom/reboot",
       "custom/power"
     ],
+{{- if eq .chezmoi.hostname "quantum-desktop" }}
     "output": [
       "DP-1"
     ],
+{{- else if eq .chezmoi.hostname "quantum-laptop" }}
+    "output": [
+      "eDP-1"
+    ],
+{{- else }}
+{{- end}}
     "position": "top",
     "spacing": 0
   }
