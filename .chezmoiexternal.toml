@@ -59,14 +59,14 @@
     include = ["*/themes/*"]
     refreshPeriod = "168h"
 
-[".config/qt5ct/themes"]
+[".config/qt5ct/colors"]
     type = "archive"
     url = "https://github.com/catppuccin/qt5ct/archive/refs/heads/main.tar.gz"
     stripComponents = 2
     include = ["*/themes/*"]
     refreshPeriod = "168h"
 
-[".config/qt6ct/themes"]
+[".config/qt6ct/colors"]
     type = "archive"
     url = "https://github.com/catppuccin/qt5ct/archive/refs/heads/main.tar.gz"
     stripComponents = 2
@@ -120,3 +120,11 @@
     type = "file"
     url = "https://github.com/dfrico/catppuccin-ranger/releases/latest/download/catppuccin_mocha.py"
     refreshPeriod = "168h"
+
+[".config/spicetify/Themes/catppuccin"]
+    type = "archive"
+    url = "https://github.com/catppuccin/spicetify/archive/refs/heads/main.tar.gz"
+    stripComponents = 2
+    include = ["*/catppuccin/**"]
+    refreshPeriod = "168h"
+

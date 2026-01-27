@@ -20,3 +20,4 @@ packages:
       - catppuccin-sddm-theme-latte
       - catppuccin-sddm-theme-macchiato
       - catppuccin-sddm-theme-mocha
+      - spicetify-cli
