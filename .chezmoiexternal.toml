@@ -3,7 +3,7 @@
     url = "https://github.com/ohmyzsh/ohmyzsh"
     refreshPeriod = "24h"
 
-[".config/oh-my-zsh/custom/plugins/"]
+[".config/oh-my-zsh/custom/plugins/ls"]
     type = "git-repo"
     url = "https://github.com/zpm-zsh/ls"
     refreshPeriod = "24h"
@@ -36,6 +36,16 @@
 [".zsh/zsh-chezmoi/"]
     type = "git-repo"
     url = "https://github.com/mass8326/zsh-chezmoi"
+    refreshPeriod = "24h"
+
+[".zsh/catppuccin-zsh-syntax-highlighting/"]
+    type = "git-repo"
+    url = "https://github.com/catppuccin/zsh-syntax-highlighting"
+    refreshPeriod = "24h"
+
+[".zsh/zsh-syntax-highlighting/"]
+    type = "git-repo"
+    url = "https://github.com/zsh-users/zsh-syntax-highlighting"
     refreshPeriod = "24h"
 
 [".config/btop/themes"]
@@ -127,8 +137,3 @@
     stripComponents = 2
     include = ["*/catppuccin/**"]
     refreshPeriod = "168h"
-
-[".config/hypr"]
-    type = "git-repo"
-    url = "git@github.com:quantumfate/hypr.git"
-    refreshPeriod = "24h"

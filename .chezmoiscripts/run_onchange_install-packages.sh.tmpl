@@ -1,7 +1,8 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
 
-{{ range .packages.linux.arch -}}
-yay -S --noconfirm --needed {{ . | quote }}
-{{ end -}}
+#{{ range .packages.linux.arch -}}
+#package_list=comm -13 <(pacman -Qe | awk '{print $1}' | sort) <(sed 's/ /\n/g' <({{ . | quote }}) | sort) | sort | tr '\n' ' ' | xargs
+#{{ end -}}
+#yay -S --noconfirm $package_list
 {{ end -}}

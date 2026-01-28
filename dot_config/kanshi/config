@@ -4,5 +4,5 @@ profile desktop {
 }
 
 profile laptop {
-  output eDP-1 mode 1920x1080@59.97 position 0,0
+  output eDP-1 mode 1920x1080@60 position 0,0
 }
