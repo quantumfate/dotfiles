@@ -23,6 +23,7 @@ packages:
       # Shell & Terminal
       - kitty
       - foot
+      - zsh
       - zsh-autocomplete
       - zsh-autopair-git
       
