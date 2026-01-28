@@ -1,4 +1,8 @@
 #!/bin/bash
+
+mkdir -p ~/Projects/gitlab/
+mkdir -p ~/Projects/github/
+
 gitlab_projects="$HOME/Projects/gitlab"
 echo "Updating own repositories."
 echo "Hyprland:"
