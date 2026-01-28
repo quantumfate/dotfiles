@@ -5,4 +5,5 @@ profile desktop {
 
 profile laptop {
   output eDP-1 mode 1920x1080@60 position 0,0
+  exec hyprctl keyword monitor eDP-1, preferred, 0x0, 1  
 }
