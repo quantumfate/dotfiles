@@ -76,7 +76,6 @@ packages:
       - hyprqt6engine
       - hyprshot
       - hyprshutdown-git
-      - hyprpanel-bin
       - grim-hyprland-git
       
       # Sway 
@@ -87,6 +86,9 @@ packages:
 
       # Niri
       - niri
+
+      # Mango
+      - mangowc
 
       # Wayland tools
       - kanshi
