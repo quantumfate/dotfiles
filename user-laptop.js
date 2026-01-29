@@ -333,10 +333,10 @@ user_pref("reader.parse-on-load.enabled", false); // disable reader mode
 //user_pref("browser.urlbar.openintab", true); // stay on current site and open new tab when typing in URL bar
 
 /** DELETE IF NOT LINUX LAPTOP ***/
-//user_pref("network.trr.mode", 2); // enable TRR (with System fallback)
-//user_pref("network.trr.max-fails", 5); // lower max attempts to use DoH
-//user_pref("geo.provider.use_geoclue", false); // [LINUX]
-//user_pref("pdfjs.defaultZoomValue", "page-width"); // PDF zoom level
+user_pref("network.trr.mode", 2); // enable TRR (with System fallback)
+user_pref("network.trr.max-fails", 10); // lower max attempts to use DoH
+user_pref("geo.provider.use_geoclue", false); // [LINUX]
+user_pref("pdfjs.defaultZoomValue", "page-width"); // PDF zoom level
 
 
 
