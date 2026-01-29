@@ -23,7 +23,7 @@ for profile_dir in "$ZEN_DIR"/*; do
 
   dir_name=$(basename "$profile_dir")
 
-  if [[ "$dir_name" == *.Default\ Profile ]] || [[ "$dir_name" == "Profile Groups" ]]; then
+  if [[ "$dir_name" == *.Default\ Profile ]] || [[ "$dir_name" == "Profile Groups" ]] || [[ "$dir_name" == "firefox-mpris" ]]; then
     continue
   fi
 
