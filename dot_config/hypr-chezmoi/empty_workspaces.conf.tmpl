@@ -1,0 +1,28 @@
+{{ if eq .chezmoi.hostname "quantum-desktop" }}
+host_monitor=DP-1
+{{ else if eq .chezmoi.hostname "quantum-laptop" }}
+host_monitor=eDP-1
+{{ else }}
+host_monitor=DP-1
+{{ end }}
+
+workspace=1,monitor:$host_moitor, default:true
+workspace=2,monitor:$host_moitor
+workspace=3,monitor:$host_moitor
+workspace=4,monitor:$host_moitor
+workspace=5,monitor:$host_moitor
+workspace=6,monitor:$host_moitor
+workspace=7,monitor:$host_moitor
+workspace=8,monitor:$host_moitor
+workspace=9,monitor:$host_moitor
+workspace=10,monitor:$host_monitor
+
+workspace=s[true]m[$host_monitor]n[e:feh], name:feh
+workspace=s[true]m[$host_monitor]n[e:gaming], name:gaming, on-created-empty:steam
+workspace=s[true]m[$host_monitor]n[e:keepassxc], name:keepassxc, on-created-empty:keepassxc
+workspace=s[true]m[$host_monitor]n[e:proton], name:proton
+workspace=s[true]m[$host_monitor]n[e:dofus], name:dofus, on-created-empty:hyprctl --batch "dispatch exec zen-twilight -P Dofus"
+workspace=s[true]m[$host_monitor]n[e:vesktop], name:vesktop, on-created-empty:vesktop
+workspace=s[true]m[$host_monitor]n[e:spotify], name:spotiy, on-created-empty:spotify
+workspace=s[true]m[$host_monitor]n[e:obs], name:obs, on-created-empty:/home/quantum/.config/hypr/scripts/wrapper/on_created_empty.sh obs
+

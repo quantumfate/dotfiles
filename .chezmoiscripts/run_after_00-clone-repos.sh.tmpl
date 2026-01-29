@@ -6,15 +6,7 @@ mkdir -p ~/Projects/github/
 gitlab_projects="$HOME/Projects/gitlab"
 echo "Updating own repositories."
 
-{{ if eq .chezmoi.hostname "quantum-desktop" }}
-echo "Hyprland on desktop:"
-[ ! -d ~/.config/hypr ] && git clone git@github.com:quantumfate/hypr.git ~/.config/hypr || bash -c "cd $HOME/.config/hypr && git pull && git checkout main && hyprctl reload"
-{{ else if eq .chezmoi.hostname "quantum-laptop" }}
-echo "Hyprland on laptop:"
-[ ! -d ~/.config/hypr ] && git clone git@github.com:quantumfate/hypr.git ~/.config/hypr || bash -c "cd $HOME/.config/hypr && git pull && git checkout laptop && hyprctl reload"
-{{ else }}
-echo "Undetected hostname {{ .chezmoi.hostname }}, not cloning hyprland."
-{{ end }}
+[ ! -d ~/.config/hypr ] && git clone git@github.com:quantumfate/hypr.git ~/.config/hypr || bash -c "cd $HOME/.config/hypr && git pull && hyprctl reload >/dev/null"
 # echo "Neovim:"
 # [ ! -d ~/.config/nvim ] && git clone git@github.com:quantumfate/nvim.git ~/.config/nvim || bash -c "$HOME/.config/nvim && git pull"
 echo "Scripts:"
