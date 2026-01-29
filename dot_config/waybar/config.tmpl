@@ -8,6 +8,7 @@
     "margin-left": 0,
     "margin-right": 0,
     "margin-top": 0,
+{{- if eq .chezmoi.hostname "quantum-desktop" }}
     "modules-center": [
       "hyprland/window"
     ],
@@ -27,6 +28,48 @@
       "custom/reboot",
       "custom/power"
     ],
+{{- else if eq .chezmoi.hostname "quantum-laptop" }}
+    "modules-center": [
+      "hyprland/window"
+    ],
+    "modules-left": [
+      "hyprland/workspaces",
+      "cpu",
+      "memory",
+      "disk",
+      "network"
+    ],
+    "modules-right": [
+      "pulseaudio",
+      "clock",
+      "tray",
+      "custom/mako",
+      "battery"
+      "custom/lock",
+      "custom/reboot",
+      "custom/power"
+    ],
+{{- else }}
+    "modules-center": [
+      "hyprland/window"
+    ],
+    "modules-left": [
+      "hyprland/workspaces",
+      "cpu",
+      "memory",
+      "disk",
+      "network"
+    ],
+    "modules-right": [
+      "pulseaudio",
+      "clock",
+      "tray",
+      "custom/mako",
+      "custom/lock",
+      "custom/reboot",
+      "custom/power"
+    ],
+{{- end}}
 {{- if eq .chezmoi.hostname "quantum-desktop" }}
     "output": [
       "DP-1"
