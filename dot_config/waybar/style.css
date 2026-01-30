@@ -51,6 +51,21 @@
   color: @peach;
 }
 
+#pulseaudio {
+  color: @mauve;
+}
+
+#clock {
+  color: @maroon;
+}
+
+#battery {
+  color: @pink;
+}
+
+#custom-mako {
+  color: @peach;
+}
 #workspaces {
   background-color: transparent;
   border: transparent;
@@ -69,7 +84,7 @@
 
 #workspaces button.active,
 #workspaces button:hover {
-  color: @teal;
+  color: @green;
 }
 
 #workspaces button:hover {
