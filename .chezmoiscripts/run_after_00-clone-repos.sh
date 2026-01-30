@@ -23,7 +23,7 @@ declare -A repos=(
   ["hypr:up"]="quantumfate:ssh:github:$github_dir/hypr:no_callback"
   ["dofus-scripts:down"]="quantumfate:ssh:gitlab:$script_dir/dofus-scripts:no_callback"
   ["dofus-scripts:up"]="quantumfate:ssh:gitlab:$script_dir/dofus-scripts:no_callback"
-  ["nvim:up"]="quantumfate:ssh:$github_dir/nvim:no_callback"
+  ["nvim:up"]="quantumfate:ssh:github:$github_dir/nvim:no_callback"
 )
 
 # Create necessary directories
