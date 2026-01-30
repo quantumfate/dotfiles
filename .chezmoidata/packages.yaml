@@ -1,4 +1,4 @@
-packages:
+commonPackages:
   linux:
     arch:
       # Core utilities
@@ -19,6 +19,8 @@ packages:
       - tmux
       - neovim
       - lesspipe
+      - fd
+      - ripgrep
       
       # Shell & Terminal
       - kitty
@@ -232,3 +234,13 @@ packages:
       - xorg-xinput
       - xorg-xkill
       - xf86-input-libinput
+
+desktopPackages:
+  linux:
+    arch:
+      - steam
+
+
+laptopPackages:
+  linux:
+    arch:

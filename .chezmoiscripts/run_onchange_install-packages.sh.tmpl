@@ -1,6 +1,12 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
-package_list=$(comm -13 <(pacman -Q | awk '{print $1}' | sort) <(echo "{{ .packages.linux.arch | join " " }}" | tr ' ' '\n' | sort) | sort | xargs)
+{{- if eq .chezmoi.hostname "quantum-desktop" }}
+package_list=$(comm -13 <(pacman -Q | awk '{print $1}' | sort) <(echo "{{ .commonPackages.linux.arch | join " " }} {{ .desktopPackages.linux.arch | join " "  }}" | tr ' ' '\n' | sort) | sort | xargs)
+{{- else if eq .chezmoi.hostname "quantum-laptop" }}
+package_list=$(comm -13 <(pacman -Q | awk '{print $1}' | sort) <(echo "{{ .commonPackages.linux.arch | join " " }} {{ .laptopPackages.linux.arch | join " "  }}" | tr ' ' '\n' | sort) | sort | xargs)
+{{- else }}
+package_list=$(comm -13 <(pacman -Q | awk '{print $1}' | sort) <(echo "{{ .commonPackages.linux.arch | join " " }}" | tr ' ' '\n' | sort) | sort | xargs)
+{{- end }}
 yay -Sy
 yay -S $package_list
 {{ end -}}
