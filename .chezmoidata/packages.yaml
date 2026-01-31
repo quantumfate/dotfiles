@@ -165,7 +165,7 @@ commonPackages:
       - bluez-utils
       
       # Themes & appearance
-      - lxappearance
+      - nwg-look
       - qt5ct
       - kvantum
       - kvantum-theme-nordic-git
