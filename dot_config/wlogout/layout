@@ -1,0 +1,36 @@
+{
+    "label" : "lock",
+    "action" : "hyprlock -c ~/.config/hypr-chezmoi/hyprlock.conf",
+    "text" : "Lock",
+    "keybind" : "l"
+}
+{
+    "label" : "hibernate",
+    "action" : "systemctl hibernate",
+    "text" : "Hibernate",
+    "keybind" : "h"
+}
+{
+    "label" : "logout",
+    "action" : "~/.config/hypr/scripts/wrapper/hyprshutdown-wrapper.sh --logout",
+    "text" : "Logout",
+    "keybind" : "e"
+}
+{
+    "label" : "shutdown",
+    "action" : "~/.config/hypr/scripts/wrapper/hyprshutdown-wrapper.sh --shutdown",
+    "text" : "Shutdown",
+    "keybind" : "s"
+}
+{
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "Suspend",
+    "keybind" : "u"
+}
+{
+    "label" : "reboot",
+    "action" : "~/.config/hypr/scripts/wrapper/hyprshutdown-wrapper.sh --reboot",
+    "text" : "Reboot",
+    "keybind" : "r"
+}

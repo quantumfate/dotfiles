@@ -129,6 +129,12 @@ window#waybar.empty #window {
   padding-left: 10px;
 } 
 
+#custom-wlogout {
+  /*border-right: 2px solid rgba(17,17,27,0.600000);*/
+  color: @teal;
+  padding-right: 14px;
+  padding-left: 10px;
+}
 tooltip {
   margin-top: 2px;
   background: rgba(30,30,46,0.800000);

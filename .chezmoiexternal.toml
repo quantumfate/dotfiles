@@ -137,3 +137,18 @@
     stripComponents = 2
     include = ["*/catppuccin/**"]
     refreshPeriod = "168h"
+
+[".config/wlogout/catppuccin/icons"]
+    type = "archive"
+    url = "https://github.com/catppuccin/wlogout/archive/refs/heads/main.tar.gz"
+    stripComponents = 2
+    include = ["*/icons/**"] 
+    refreshPeriod = "168h"
+
+[".config/wlogout/catppuccin/themes"]
+    type = "archive"
+    url = "https://github.com/catppuccin/wlogout/archive/refs/heads/main.tar.gz"
+    stripComponents = 2
+    include = ["*/themes/**"] 
+    refreshPeriod = "168h"
+

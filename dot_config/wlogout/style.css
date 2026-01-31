@@ -1,0 +1,25 @@
+@import url("/home/quantum/.config/wlogout/catppuccin/themes/macchiato/mauve.css");
+
+#lock {
+    background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/lock.svg");
+}
+
+#logout {
+    background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/logout.svg");
+}
+
+#suspend {
+    background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/suspend.svg");
+}
+
+#hibernate {
+    background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/hibernate.svg");
+}
+
+#shutdown {
+    background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/shutdown.svg");
+}
+
+#reboot {
+    background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/reboot.svg");
+}

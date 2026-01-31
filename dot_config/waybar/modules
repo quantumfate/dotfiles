@@ -146,5 +146,11 @@
         "on-click": "hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'",
         "tooltip": true,
         "tooltip-format": "Power off the system."
+    },
+    "custom/wlogout": {
+        "format": " 󰣇 ",
+        "on-click": "wlogout -l ~/.config/wlogout/layout",
+        "tooltip": true,
+        "tooltip-format": "Open the wlogout menu."
     }
 }
