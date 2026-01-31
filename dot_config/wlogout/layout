@@ -12,13 +12,13 @@
 }
 {
     "label" : "logout",
-    "action" : "~/.config/hypr/scripts/wrapper/hyprshutdown-wrapper.sh --logout",
+    "action" : "hyprctl dispatch exec ~/.config/hypr/wallpapers/hyprshutdown-wrapper.sh --logout",
     "text" : "Logout",
     "keybind" : "e"
 }
 {
     "label" : "shutdown",
-    "action" : "~/.config/hypr/scripts/wrapper/hyprshutdown-wrapper.sh --shutdown",
+    "action" : "hyprctl dispatch exec ~/.config/hypr/wallpapers/hyprshutdown-wrapper.sh --shutdown",
     "text" : "Shutdown",
     "keybind" : "s"
 }
@@ -30,7 +30,7 @@
 }
 {
     "label" : "reboot",
-    "action" : "~/.config/hypr/scripts/wrapper/hyprshutdown-wrapper.sh --reboot",
+    "action" : "hyprctl dispatch exec ~/.config/hypr/wallpapers/hyprshutdown-wrapper.sh --reboot",
     "text" : "Reboot",
     "keybind" : "r"
 }
