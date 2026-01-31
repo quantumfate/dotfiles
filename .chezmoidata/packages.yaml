@@ -239,6 +239,7 @@ desktopPackages:
   linux:
     arch:
       - steam
+      - ckb-next
 
 
 laptopPackages:
