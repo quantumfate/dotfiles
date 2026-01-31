@@ -12,8 +12,6 @@ commonPackages:
       - glow
       - grc
       - lazygit
-      - ranger
-      - lf
       - tree-sitter-cli
       - plocate
       - tmux
@@ -21,6 +19,13 @@ commonPackages:
       - lesspipe
       - fd
       - ripgrep
+
+      # TUIs
+      - wiremix
+      - lf
+      - ranger
+      - parui
+      - bluetui
       
       # Shell & Terminal
       - kitty
@@ -116,7 +121,6 @@ commonPackages:
       - playerctl
       - pamixer
       - pavucontrol
-      - wiremix
       - alsa-firmware
       - alsa-plugins
       
