@@ -48,6 +48,13 @@ format=<b>%a</b>\n<b>%s</b>\n%b
 text-alignment=center
 width=200
 
+[app-name="Team Nidas"]
+anchor=top-left
+default-timeout=3000
+format=<b>%a</b>\n<b>%s</b>\n%b
+text-alignment=center
+width=200
+
 [app-name=Spotify]
 anchor=bottom-left
 default-timeout=3000
