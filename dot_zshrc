@@ -1,7 +1,8 @@
 if [ "$TERM" = "xterm-kitty" ] && [ "$CHEZMOI" != "1" ]; then
   fastfetch
 fi
-
+export LESS="-R"  # or
+export MANPAGER="less -R"
 export PATH="$HOME/.local/bin:$PATH"
 
 typeset -U path cdpath fpath manpath
