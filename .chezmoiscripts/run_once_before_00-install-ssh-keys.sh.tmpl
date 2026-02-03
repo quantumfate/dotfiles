@@ -2,6 +2,7 @@
 
 set -e
 
+export PATH="$HOME/.local/bin:$PATH"
 pass-cli vault list >/dev/null 2>&1 || pass-cli login --interactive
 
 {{ if eq .chezmoi.hostname "quantum-desktop" }}
@@ -22,7 +23,6 @@ exit 1
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 
-export PATH="$HOME/.local/bin:$PATH"
 
 for target in "${!ssh_keys[@]}"; do
   IFS=":" read -r vault_name item_title <<<"${ssh_keys[$target]}"
