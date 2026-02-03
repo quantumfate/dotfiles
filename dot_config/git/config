@@ -7,6 +7,9 @@
 [includeIf "gitdir:~/.config/hypr/"]
 	path = "~/.config/git/githubconf"
 
+[includeIf "gitdir:~/.config/nvim/"]
+	path = "~/.config/git/githubconf"
+
 [includeIf "gitdir:~/.local/share/chezmoi/"]
 	path = "~/.config/git/githubconf"
 

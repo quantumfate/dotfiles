@@ -224,7 +224,13 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 // visit https://github.com/yokoffing/Betterfox/wiki/Optional-Hardening
 // Enter your personal overrides below this line:
 
-
+// VPN Extension Compatibility Fixes
+user_pref("network.dns.disablePrefetch", false);
+user_pref("network.dns.disablePrefetchFromHTTPS", false);
+user_pref("browser.urlbar.speculativeConnect.enabled", true);
+user_pref("network.http.speculative-parallel-limit", 6);
+user_pref("browser.cache.disk.enable", true);
+user_pref("security.OCSP.enabled", 1);
 
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
