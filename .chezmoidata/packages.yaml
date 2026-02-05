@@ -19,6 +19,7 @@ commonPackages:
       - lesspipe
       - fd
       - ripgrep
+      - tree
 
       # TUIs
       - wiremix
@@ -66,6 +67,7 @@ commonPackages:
       - qalculate-qt
       - vlc-plugins-all
       - ankama-launcher
+      - vscodium-bin
       
       # Proton
       - proton-authenticator-bin
@@ -147,6 +149,8 @@ commonPackages:
       - tectonic
       - texlive-bin
       - meld
+      - npm
+      - go
       
       # Package management
       - yay

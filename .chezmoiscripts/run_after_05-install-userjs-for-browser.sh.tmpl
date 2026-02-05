@@ -13,11 +13,13 @@ ZEN_PID=$!
 sleep 2
 kill $ZEN_PID 2>/dev/null || true
 
+{{- if eq .chezmoi.hostname "quantum-desktop" }}
 echo "Generating Zen-Twilight Dofus profile..."
 zen-twilight --headless -P Dofus >/dev/null 2>&1 &
 ZEN_DOFUS_PID=$!
 sleep 2
 kill $ZEN_DOFUS_PID 2>/dev/null || true
+{{- end }}
 
 # Wait for processes to fully terminate
 wait 2>/dev/null || true
