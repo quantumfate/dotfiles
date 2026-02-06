@@ -1,0 +1,5 @@
+source=~/.config/hypr-chezmoi/workspaces.conf
+{{- if eq .chezmoi.hostname "quantum-desktop" }}
+source=~/.local/share/own-scripts/dofus-scripts/dofus-binds.conf
+source=~/.config/hypr-chezmoi/gaming.conf
+{{- end }}

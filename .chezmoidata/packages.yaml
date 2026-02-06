@@ -67,7 +67,6 @@ commonPackages:
       - keepassxc
       - qalculate-qt
       - vlc-plugins-all
-      - ankama-launcher
       - vscodium-bin
 
       # Proton
@@ -258,6 +257,7 @@ desktopPackages:
     arch:
       - steam
       - ckb-next
+      - ankama-launcher
 
 laptopPackages:
   linux:
