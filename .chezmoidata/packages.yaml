@@ -1,3 +1,4 @@
+---
 commonPackages:
   linux:
     arch:
@@ -27,14 +28,14 @@ commonPackages:
       - ranger
       - parui
       - bluetui
-      
+
       # Shell & Terminal
       - kitty
       - foot
       - zsh
       - zsh-autocomplete
       - zsh-autopair-git
-      
+
       # System tools
       - cpupower
       - hdparm
@@ -46,16 +47,16 @@ commonPackages:
       - s-nail
       - socat
       - scdoc
-      
+
       # File systems & disk tools
       - btrfs-assistant
       - snapper
       - fsarchiver
-      
+
       # Compression & archives
       - unzip
       - unrar
-      
+
       # Applications
       - zen-twilight-bin
       - elecwhat-bin
@@ -63,19 +64,19 @@ commonPackages:
       - obsidian
       - spotify
       - vesktop
-      - keepassxc-qt6
+      - keepassxc
       - qalculate-qt
       - vlc-plugins-all
       - ankama-launcher
       - vscodium-bin
-      
+
       # Proton
       - proton-authenticator-bin
       - proton-pass-bin
       - proton-mail-bin
       - proton-drive-sync-bin
       - proton-vpn-gtk-app
-      
+
       # Hyprland ecosystem
       - hyprland
       - hypridle
@@ -88,8 +89,8 @@ commonPackages:
       - hyprqt6engine
       - hyprshutdown-git
       - grim-hyprland-git
-      
-      # Sway 
+
+      # Sway
       - sway
       - swaybg
       - swaylock-effects-git
@@ -118,24 +119,24 @@ commonPackages:
       - wob
       - uwsm
       - xwayland-satellite
-      
+
       # Audio
       - playerctl
       - pamixer
       - pavucontrol
       - alsa-firmware
       - alsa-plugins
-      
+
       # Graphics & display
       - brightnessctl
       - feh
       - chafa
-      
+
       # XDG portals
       - xdg-desktop-portal-gnome
       - xdg-desktop-portal-hyprland
       - xdg-desktop-portal-wlr
-      
+
       # Development
       - base-devel
       - python-pillow
@@ -151,27 +152,36 @@ commonPackages:
       - meld
       - npm
       - go
-      
+      - rustup
+      - cargo
+      - pip
+      - tree-sitter-cli
+      - mermaid-cli
+      - js-util-bin
+      - typescript-language-server
+      - lua-language-server
+      - rust-analyzer
+
       # Package management
       - yay
       - octopi
       - pacman-contrib
-      
+
       # System & boot
       - grub-btrfs-support
       - grub-hook
       - efitools
-      
+
       # Network
       - networkmanager-openvpn
       - netctl
       - dhclient
       - ufw
-      
+
       # Bluetooth
       - bluez-hid2hci
       - bluez-utils
-      
+
       # Themes & appearance
       - nwg-look
       - qt5ct
@@ -196,10 +206,10 @@ commonPackages:
       - sddm
       - sddm-catppuccin-git
       - ly
-      
+
       # Spotify customization
       - spicetify-cli
-      
+
       # Fonts
       - ttf-arimo-nerd
       - ttf-cascadia-code-nerd
@@ -215,7 +225,7 @@ commonPackages:
       - awesome-terminal-fonts
       - otf-font-awesome
       - woff2-font-awesome
-      
+
       # Libraries & codecs
       - gst-libav
       - gst-plugin-pipewire
@@ -229,13 +239,13 @@ commonPackages:
       - ghostscript
       - qt5-wayland
       - wayland-protocols
-      
+
       # System utilities
       - man-db
       - man-pages
       - texinfo
       - iptables-nft
-      
+
       # X11 (compatibility)
       - xorg-server
       - xorg-xinit
@@ -248,7 +258,6 @@ desktopPackages:
     arch:
       - steam
       - ckb-next
-
 
 laptopPackages:
   linux:
