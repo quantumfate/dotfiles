@@ -21,6 +21,7 @@ commonPackages:
       - fd
       - ripgrep
       - tree
+      - cmatrix
 
       # TUIs
       - wiremix
