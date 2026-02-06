@@ -7,6 +7,5 @@ package_list=$(comm -13 <(pacman -Q | awk '{print $1}' | sort) <(echo "{{ .commo
 {{- else }}
 package_list=$(comm -13 <(pacman -Q | awk '{print $1}' | sort) <(echo "{{ .commonPackages.linux.arch | join " " }}" | tr ' ' '\n' | sort) | sort | xargs)
 {{- end }}
-yay -Sy
 yay -S $package_list
 {{ end -}}
