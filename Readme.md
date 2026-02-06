@@ -8,10 +8,10 @@ This repository only serves me.
 
 Inspired by [ThePrimeagen/keyboards](https://github.com/ThePrimeagen/keyboards/tree/master).
 
-#### Base Layer
-
 - Legend: lower SHIFT (Programmer Dvorak-style number row: 9 7 5 3 1 0 2 4 6 8)
 - AltGr = Level 3 (dead keys: ´ ¨ ¸ ˇ ˙ ^ ` ˜ ˛ ˝)
+
+#### Base Layer
 
 ```ascii
 ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬──────────┐
