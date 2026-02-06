@@ -160,6 +160,7 @@ commonPackages:
       - typescript-language-server
       - lua-language-server
       - rust-analyzer
+      - git-filter-repo
 
       # Package management
       - yay
