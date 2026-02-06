@@ -7,18 +7,18 @@ xkb_symbols "basic" {
     name[Group1]= "Dvorak (Custom Symbols)";
 
     // Number row - symbols by default, numbers with Shift
-    key <AE01> { [ plus,          9,           plus,          1           ] };
-    key <AE02> { [ bracketleft,   7,           bracketleft,   2           ] };
-    key <AE03> { [ braceleft,     5,           braceleft,     3           ] };
-    key <AE04> { [ parenleft,     3,           parenleft,     4           ] };
-    key <AE05> { [ ampersand,     1,           ampersand,     5           ] };
-    key <AE06> { [ equal,         0,           dead_circumflex, dead_circumflex ] };
-    key <AE07> { [ parenright,    2,           parenright,    7           ] };
-    key <AE08> { [ braceright,    4,           braceright,    8           ] };
-    key <AE09> { [ bracketright,  6,           dead_grave,    dead_breve  ] };
-    key <AE10> { [ asterisk,      8,           asterisk,      0           ] };
-    key <AE11> { [ exclam,        percent,     exclam,        percent     ] };
-    key <AE12> { [ grave,         bar,         dead_tilde,    NoSymbol    ] };
+    key <AE01> { [ plus,          percent,     plus,          1           ] };
+    key <AE02> { [ bracketleft,   9,           bracketleft,   2           ] };
+    key <AE03> { [ braceleft,     7,           braceleft,     3           ] };
+    key <AE04> { [ parenleft,     5,           parenleft,     4           ] };
+    key <AE05> { [ ampersand,     3,           ampersand,     5           ] };
+    key <AE06> { [ equal,         1,           dead_circumflex, dead_circumflex ] };
+    key <AE07> { [ parenright,    0,           parenright,    7           ] };
+    key <AE08> { [ braceright,    2,           braceright,    8           ] };
+    key <AE09> { [ bracketright,  4,           dead_grave,    dead_breve  ] };
+    key <AE10> { [ asterisk,      6,           asterisk,      0           ] };
+    key <AE11> { [ exclam,        8,           exclam,        percent     ] };
+    key <AE12> { [ grave,         numbersign,  dead_tilde,    NoSymbol    ] };
 
     // Top row (Dvorak)
     key <AD01> { [ semicolon,     colon,       dead_acute,    dead_diaeresis ] };
@@ -61,7 +61,7 @@ xkb_symbols "basic" {
 
     // Other keys
     key <TLDE> { [ dollar,        asciitilde,  dead_grave,    dead_tilde  ] };
-    key <BKSL> { [ backslash,     numbersign   ] };
+    key <BKSL> { [ backslash,     bar   ] };
     key <LSGT> { [ backslash,     bar,         bar,           brokenbar   ] };
 
     // Modifier keys
