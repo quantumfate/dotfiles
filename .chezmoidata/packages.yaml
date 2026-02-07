@@ -154,7 +154,7 @@ commonPackages:
       - go
       - rustup
       - cargo
-      - pip
+      - python-pip
       - tree-sitter-cli
       - mermaid-cli
       - js-util-bin
