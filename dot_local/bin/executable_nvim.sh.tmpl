@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+{{ $item := (protonPassJSON "pass://Work/Claude-Code").item.content }}
+{{ $secretField := index $item.extra_fields 0 }}
+export AVANTE_ANTHROPIC_API_KEY={{ $secretField.content.Hidden }}
+export AVANTE_CLAUDE_CODE_OAUTH_TOKEN={{ $secretField.content.Hidden }}
+
+exec nvim -u "$HOME/.config/nvim/init.lua" "$@"

@@ -48,20 +48,20 @@ declare -A repos=(
 
 # Create necessary directories
 mkdir -p ~/Projects/{gitlab,github}
-mkdir -p $script_dir
+mkdir -p "$script_dir"
 
 echo "Updating repositories..."
 
 for repo_info in "${!repos[@]}"; do
   IFS=':' read -r owner protocol repository destination callback <<<"${repos[$repo_info]}"
   IFS=':' read -r repo_name repo_type <<<"${repo_info}"
-  
+
   if [[ "$protocol" == "ssh" ]]; then
     git_url="git@$repository.com:$owner/$repo_name.git"
   else
     git_url="https://$repository.com/$owner/$repo_name"
   fi
-  
+
   if [ ! -d "$destination" ]; then
     echo "  Cloning $repo_name..."
     git clone -q "$git_url" "$destination"
@@ -78,7 +78,7 @@ for repo_info in "${!repos[@]}"; do
       fi
       continue
     fi
-    
+
     if [[ $repo_type == "down" ]]; then
       cd "$destination"
       output=$(git pull 2>&1)
