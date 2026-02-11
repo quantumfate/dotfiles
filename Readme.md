@@ -1,46 +1,59 @@
 # My Dotfiles managed with [Chezmoi](https://www.chezmoi.io)
 
-This repository only serves me.
+I'm ready to go on a new machine with one simple command.
 
 ## Features
 
-- Colorscheme: [Catppuccin](https://catppuccin.com/),
-  - Flavour: Macchiato
-  - accent: Mauve
-- Terminal Emulator: [Kitty](https://sw.kovidgoyal.net/kitty/)
-- Application Launcher: [Rofi](https://github.com/davatorium/rofi)
-- Editor: [Neovim](https://github.com/neovim/neovim) with [my config](https://github.com/quantumfate/nvim)
 - Monitor Management: [Kanshi](https://sr.ht/~emersion/kanshi/)
-- Bar: [Waybar](https://github.com/Alexays/Waybar)
-- PDF Viewer: [Zathura](https://github.com/pwmt/zathura)
-- Notifications: [Mako](https://github.com/emersion/mako)
 
-### Destop Environments
+### Theming/Ricing
+
+- Colorscheme: [Catppuccin](https://catppuccin.com/) Macchiato Mauve
+- qt5ct
+- GTK automated with nwg-look
+
+### Desktop Experience
+
+- Application Launcher: [Rofi](https://github.com/davatorium/rofi)
+- Notifications: [Mako](https://github.com/emersion/mako)
+- Bar: [Waybar](https://github.com/Alexays/Waybar)
+
+#### Desktop Environments
 
 - [Hyprland](https://hypr.land/) with my [config](https://github.com/quantumfate/hypr)
 
-#### Planned
+##### Planned
 
 - [Niri](https://github.com/YaLTeR/niri)
 - [MangoWC](https://github.com/DreamMaoMao/mangowc)
 - [Sway](https://github.com/swaywm/sway)
 
-### Browser
+### Development
+
+- Terminal Emulator: [Kitty](https://sw.kovidgoyal.net/kitty/)
+- Editor: [Neovim](https://github.com/neovim/neovim) with [my config](https://github.com/quantumfate/nvim)
+
+### Office
+
+- Note Taking: [Obsidian](https://obsidian.md/) Zettelkasten method
+- PDF Viewer: [Zathura](https://github.com/pwmt/zathura)
+
+### Web
 
 - [Firefox](https://github.com/mozilla-firefox/firefox) and [Zen](https://github.com/zen-browser/desktop)
 
 #### Hardening
 
 - [yokoffing/betterfox](https://github.com/yokoffing/BetterFox),
-  - [user.js](./user.js) injected with [this script](./.chezmoiscripts/run_after_05-install-userjs-for-browser.sh.tmpl)
+- [user.js](./user.js) injected with [this script](./.chezmoiscripts/run_after_05-install-userjs-for-browser.sh.tmpl)
 - [uBlock Origin](https://ublockorigin.com/)
-  - [yokoffing/filterlits](https://github.com/yokoffing/filterlists)
+- [yokoffing/filterlits](https://github.com/yokoffing/filterlists)
 - [Clear URLs](https://github.com/ClearURLs/Addon)
 
 ### Custom Dvorak layout
 
 [My layout](./dot_local/share/xkb/symbols/dvorak-custom) is inspired by [ThePrimeagen/keyboards](https://github.com/ThePrimeagen/keyboards/tree/master)
-and installed vie [this script](./.chezmoiscripts/run_after_15-install-layout.sh).
+and installed via [this script](./.chezmoiscripts/run_after_15-install-layout.sh).
 
 - Legend: lower SHIFT (Programmer Dvorak-style number row: 9 7 5 3 1 0 2 4 6 8)
 - AltGr = Level 3 (dead keys: ´ ¨ ¸ ˇ ˙ ^ ` ˜ ˛ ˝)
