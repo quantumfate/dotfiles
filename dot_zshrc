@@ -4,6 +4,7 @@ fi
 export LESS="-R"  # or
 export MANPAGER="less -R"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 typeset -U path cdpath fpath manpath
 fpath+=(/usr/share/zsh/site-functions /usr/share/zsh/$ZSH_VERSION/functions /usr/share/zsh/vendor-completions)
