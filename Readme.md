@@ -35,7 +35,7 @@ I'm ready to go on a new machine with one simple command.
 
 ### Sysadmin
 
-- Bootstrap my environment with [Cockpit](https://cockpit-project.org/) and [libvrt](https://libvirt.org/), see [./.chezmoiscripts/run_after_07-install-cockpit-vm-kvm.sh.tmpl]
+- Bootstrap my environment with [Cockpit](https://cockpit-project.org/) and [libvrt](https://libvirt.org/), see [here](./.chezmoiscripts/run_after_07-install-cockpit-vm-kvm.sh.tmpl)
 
 ### Office
 
