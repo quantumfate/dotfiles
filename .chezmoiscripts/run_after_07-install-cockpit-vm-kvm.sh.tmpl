@@ -1,0 +1,36 @@
+
+{{ if eq .chezmoi.hostname "quantum-destktop" }}
+#!/bin/sh
+# Idempotent Cockpit + KVM setup for Arch Linux via chezmoi
+
+{{ $user := env "USER" }}
+
+# Install packages idempotently with yay (skips if already installed)
+if ! command -v yay >/dev/null 2>&1; then
+    echo "yay not found. Install AUR helper first."
+    exit 1
+fi
+
+sudo yay -S --needed cockpit cockpit-docker cockpit-files cockpit-packagekit \
+    cockpit-podman cockpit-machines cockpit-storaged qemu-full libvirt \
+    dnsmasq bridge-utils edk2-ovmf virt-viewer
+
+# Enable and start services idempotently
+sudo systemctl enable --now libvirtd cockpit.socket 2>/dev/null || true
+
+# Add user to groups idempotently (requires re-login after first run)
+if ! groups "$user" | grep -q libvirt; then
+    sudo usermod -aG libvirt "$user"
+fi
+if ! groups "$user" | grep -q kvm; then
+    sudo usermod -aG kvm "$user"
+fi
+if ! groups "$user" | grep -q wheel; then
+    sudo usermod -aG wheel "$user"
+fi
+
+echo "✓ Cockpit setup complete!"
+echo "  • Access: https://localhost:9090"
+echo "  • Re-login required for new groups"
+echo "  • Run 'chezmoi apply' again after re-login to verify"
+{{ end }}
