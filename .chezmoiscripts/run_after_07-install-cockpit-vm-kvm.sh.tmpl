@@ -1,8 +1,5 @@
-
-{{ if eq .chezmoi.hostname "quantum-desktop" }}
 #!/bin/sh
-# Idempotent Cockpit + KVM setup for Arch Linux via chezmoi
-
+{{ if eq .chezmoi.hostname "quantum-desktop" }}
 {{ $user := env "USER" }}
 
 # Install packages idempotently with yay (skips if already installed)
@@ -13,7 +10,7 @@ fi
 
 sudo yay -S --needed cockpit cockpit-docker cockpit-files cockpit-packagekit \
     cockpit-podman cockpit-machines cockpit-storaged qemu-full libvirt \
-    dnsmasq bridge-utils edk2-ovmf virt-viewer
+    dnsmasq bridge-utils edk2-ovmf virt-viewer virt-install
 
 # Enable and start services idempotently
 sudo systemctl enable --now libvirtd cockpit.socket 2>/dev/null || true

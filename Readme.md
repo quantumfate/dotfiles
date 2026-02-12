@@ -33,6 +33,10 @@ I'm ready to go on a new machine with one simple command.
 - Terminal Emulator: [Kitty](https://sw.kovidgoyal.net/kitty/)
 - Editor: [Neovim](https://github.com/neovim/neovim) with [my config](https://github.com/quantumfate/nvim)
 
+### Sysadmin
+
+- Bootstrap my environment with [Cockpit](https://cockpit-project.org/) and [libvrt](https://libvirt.org/), see [./.chezmoiscripts/run_after_07-install-cockpit-vm-kvm.sh.tmpl]
+
 ### Office
 
 - Note Taking: [Obsidian](https://obsidian.md/) Zettelkasten method
