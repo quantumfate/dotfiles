@@ -1,6 +1,5 @@
 #!/bin/sh
 {{ if eq .chezmoi.hostname "quantum-desktop" }}
-{{ $user := env "USER" }}
 
 # Install packages idempotently with yay (skips if already installed)
 if ! command -v yay >/dev/null 2>&1; then
@@ -8,7 +7,8 @@ if ! command -v yay >/dev/null 2>&1; then
     exit 1
 fi
 
-sudo yay -S --needed cockpit cockpit-docker cockpit-files cockpit-packagekit \
+user="{{ .chezmoi.username }}"
+yay -S --needed cockpit cockpit-docker cockpit-files cockpit-packagekit \
     cockpit-podman cockpit-machines cockpit-storaged qemu-full libvirt \
     dnsmasq bridge-utils edk2-ovmf virt-viewer virt-install
 

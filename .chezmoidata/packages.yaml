@@ -13,7 +13,6 @@ commonPackages:
       - glow
       - grc
       - lazygit
-      - tree-sitter-cli
       - plocate
       - tmux
       - neovim
@@ -156,7 +155,6 @@ commonPackages:
       - rustup
       - cargo
       - python-pip
-      - tree-sitter-cli
       - mermaid-cli
       - js-util-bin
       - typescript-language-server

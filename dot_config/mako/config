@@ -10,15 +10,16 @@ icon-location=left
 icon-path=/run/current-system/sw/share/icons/hicolor
 icons=1
 layer=top
-margin=0
+margin=0,0,10,0
 max-history=8
 max-icon-size=64
-outer-margin=0,0,0,0
+outer-margin=40
 output=DP-1
 padding=10
 text-color=#cad3f5
 width=450
 progress-color=over #363a4f
+default-timeout=3000
 
 [app-name="Hyprland"]
 anchor=top-left
@@ -73,7 +74,7 @@ width=200
 
 [app-name=pavucontrol]
 default-timeout=3000
-width=100
+width=120
 
 [app-name=vesktop]
 anchor=bottom-right
