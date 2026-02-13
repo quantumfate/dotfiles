@@ -142,13 +142,27 @@
     type = "archive"
     url = "https://github.com/catppuccin/wlogout/archive/refs/heads/main.tar.gz"
     stripComponents = 2
-    include = ["*/icons/**"] 
+    include = ["*/icons/**"]
     refreshPeriod = "168h"
 
 [".config/wlogout/catppuccin/themes"]
     type = "archive"
     url = "https://github.com/catppuccin/wlogout/archive/refs/heads/main.tar.gz"
     stripComponents = 2
-    include = ["*/themes/**"] 
+    include = ["*/themes/**"]
     refreshPeriod = "168h"
 
+[".config/tmux/plugins/catppuccin"]
+    type = "git-repo"
+    url = "https://github.com/catppuccin/tmux"
+    refreshPeriod = "168h"
+
+[".config/tmux/plugins/tmux-cpu"]
+    type = "git-repo"
+    url = "https://github.com/tmux-plugins/tmux-cpu"
+    refreshPeriod = "168h"
+
+[".config/tmux/plugins/tmux-battery"]
+    type = "git-repo"
+    url = "https://github.com/tmux-plugins/tmux-battery"
+    refreshPeriod = "168h"
