@@ -44,6 +44,8 @@ declare -A repos=(
   ["dofus-scripts:down"]="quantumfate:ssh:gitlab:$script_dir/dofus-scripts:no_callback"
   ["dofus-scripts:up"]="quantumfate:ssh:gitlab:$gitlab_dir/dofus-scripts:no_callback"
   ["nvim:up"]="quantumfate:ssh:github:$github_dir/nvim:no_callback"
+  ["security-and-privacy:down"]="quantumfate:ssh:gitlab:$script_dir/security-and-privacy:no_callback"
+  ["security-and-privacy:up"]="quantumfate:ssh:gitlab:$gitlab_dir/security-and-privacy:no_callback"
 )
 
 # Create necessary directories

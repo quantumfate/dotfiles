@@ -32,6 +32,7 @@ I'm ready to go on a new machine with one simple command.
 
 - Terminal Emulator: [Kitty](https://sw.kovidgoyal.net/kitty/)
 - Editor: [Neovim](https://github.com/neovim/neovim) with [my config](https://github.com/quantumfate/nvim)
+- Tmux
 
 ### Sysadmin
 
@@ -53,6 +54,10 @@ I'm ready to go on a new machine with one simple command.
 - [uBlock Origin](https://ublockorigin.com/)
 - [yokoffing/filterlits](https://github.com/yokoffing/filterlists)
 - [Clear URLs](https://github.com/ClearURLs/Addon)
+- Clicking external URLs are parsed through a script via Mime-Type associations that:
+
+1. blocks websites unless they are whitelisted
+2. routes whitelisted websites into isolated container
 
 ### Custom Dvorak layout
 
