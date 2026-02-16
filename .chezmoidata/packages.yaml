@@ -138,6 +138,7 @@ commonPackages:
       - xdg-desktop-portal-wlr
 
       # Development
+      - bash-language-server
       - base-devel
       - python-pillow
       - python-packaging
