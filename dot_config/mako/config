@@ -35,13 +35,6 @@ format=<b>%a</b>\n<b>%s</b>\n%b
 text-alignment=center
 width=200
 
-[app-name="Team Cra"]
-anchor=top-left
-default-timeout=3000
-format=<b>%a</b>\n<b>%s</b>\n%b
-text-alignment=center
-width=200
-
 [app-name="Team Pioneer"]
 anchor=top-left
 default-timeout=3000
@@ -49,7 +42,7 @@ format=<b>%a</b>\n<b>%s</b>\n%b
 text-alignment=center
 width=200
 
-[app-name="Team Nidas"]
+[app-name="Team Farm"]
 anchor=top-left
 default-timeout=3000
 format=<b>%a</b>\n<b>%s</b>\n%b
