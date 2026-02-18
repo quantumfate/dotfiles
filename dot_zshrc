@@ -27,6 +27,8 @@ if [ -f "${HOME}/.config/oh-my-zsh/custom/themes/catppuccin/catppuccin.zsh-theme
   CATPPUCCIN_FLAVOR="mocha" # Required! Options: mocha, flappe, macchiato, latte
   CATPPUCCIN_SHOW_TIME=true  # Optional! If set to true, this will add the current time to the prompt.
 fi
+
+ZSH_LS_BACKEND="eza"
 plugins=(
   git
   ls # https://github.com/zpm-zsh/ls
@@ -179,13 +181,6 @@ alias -- ranger=ranger-cd
 # Hyprland
 alias hyprclients="hyprctl -j clients | jq -r '.[]' | jless"
 
-# Replace ls with eza
-#alias ls='eza -al --color=always --group-directories-first --icons' # preferred listing
-#alias la='eza -a --color=always --group-directories-first --icons'  # all files and dirs
-#alias ll='eza -l --color=always --group-directories-first --icons'  # long format
-#alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
-#alias l.="eza -a | grep -e '^\.'"                                     # show only dotfiles
-
 # Common use
 alias grubup="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias fixpacman="sudo rm /var/lib/pacman/db.lck"
@@ -245,6 +240,11 @@ alias -s mov="open"
 alias -s png="feh_scaled"
 alias -s mp4="open"
 alias -s go="$EDITOR"
+alias -s rs="$EDITOR"
+alias -s c="$EDITOR"
+alias -s h="$EDITOR"
+alias -s cpp="$EDITOR"
+alias -s hpp="$EDITOR"
 alias -s js="$EDITOR"
 alias -s ts="$EDITOR"
 alias -s rb="$EDITOR"
@@ -268,3 +268,6 @@ clear-keep-buffer() {
 }
 zle -N clear-keep-buffer
 bindkey '^Xl' clear-keep-buffer
+
+## Hotkey Insertion
+bindkey -s '^Xgc' 'git commit -m ""\C-b'
