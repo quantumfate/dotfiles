@@ -64,7 +64,7 @@ I'm ready to go on a new machine with one simple command.
 ### Custom Dvorak layout
 
 [My layout](./dot_local/share/xkb/symbols/dvorak-custom) is inspired by [ThePrimeagen/keyboards](https://github.com/ThePrimeagen/keyboards/tree/master)
-and installed via [this script](./.chezmoiscripts/run_after_15-install-layout.sh).
+and installed via [this script](./.chezmoiscripts/run_after_15-install-layout.sh). Works in Wayland/X11 Sessions as well as TTY.
 
 - Legend: lower SHIFT (Programmer Dvorak-style number row: 9 7 5 3 1 0 2 4 6 8)
 - AltGr = Level 3 (dead keys: ´ ¨ ¸ ˇ ˙ ^ ` ˜ ˛ ˝)
