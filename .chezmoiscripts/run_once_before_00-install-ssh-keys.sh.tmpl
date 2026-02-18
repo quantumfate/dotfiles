@@ -7,13 +7,13 @@ pass-cli vault list >/dev/null 2>&1 || pass-cli login --interactive
 
 {{ if eq .chezmoi.hostname "quantum-desktop" }}
 declare -A ssh_keys=(
-  ["gitlab"]="Work:gitlab-desktop"
-  ["github"]="Work:github-desktop"
+  ["gitlab"]="Productivity:gitlab-desktop"
+  ["github"]="Productivity:github-desktop"
 )
 {{ else if eq .chezmoi.hostname "quantum-laptop" }}
 declare -A ssh_keys=(
-  ["gitlab"]="Work:gitlab-laptop"
-  ["github"]="Work:github-laptop"
+  ["gitlab"]="Productivity:gitlab-laptop"
+  ["github"]="Productivity:github-laptop"
 )
 {{ else }}
 echo "Undetected hostname {{ .chezmoi.hostname }}"
