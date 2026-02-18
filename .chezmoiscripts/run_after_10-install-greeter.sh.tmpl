@@ -1,0 +1,121 @@
+#!/bin/bash
+# chezmoi: run_once
+# Sets up greetd + tuigreet (NotAShelf fork) + uwsm as the display manager.
+# Idempotent: safe to re-run, only acts when needed.
+#
+if passwd -S "{{ .chezmoi.username }}" | grep -qE ' L | NP '; then
+  echo "ERROR: Your user password is not set. Run: passwd $USER" >&2
+  echo "Run 'su -c \"passwd -S {{ .chezmoi.username }}\"'"
+  exit 1
+fi
+sudo -v
+set -euo pipefail
+
+GREETD_CONFIG="/etc/greetd/config.toml"
+GREETER_USER="greeter"
+
+echo "==> Installing greetd..."
+if ! pacman -Qi greetd &>/dev/null; then
+  sudo pacman -S --noconfirm greetd
+fi
+
+echo "==> Installing NotAShelf's tuigreet fork from source..."
+if command -v tuigreet &>/dev/null; then
+  echo "✓ tuigreet already installed, skipping build"
+else
+  # Install rust if missing
+  if ! command -v cargo &>/dev/null; then
+    sudo pacman -S --noconfirm rust
+  fi
+
+  # Install git if missing
+  if ! command -v git &>/dev/null; then
+    sudo pacman -S --noconfirm git
+  fi
+
+  TUIGREET_DIR="/tmp/tuigreet-build"
+
+  # Clone or update
+  if [ -d "$TUIGREET_DIR" ]; then
+    git -C "$TUIGREET_DIR" pull
+  else
+    git clone https://github.com/NotAShelf/tuigreet "$TUIGREET_DIR"
+  fi
+
+  # Build and install
+  cargo build --release --manifest-path "$TUIGREET_DIR/Cargo.toml"
+  sudo install -Dm755 "$TUIGREET_DIR/target/release/tuigreet" /usr/bin/tuigreet
+
+  # Cleanup
+  rm -rf "$TUIGREET_DIR"
+  echo "✓ tuigreet installed to /usr/bin/tuigreet"
+fi
+
+echo "==> Creating tuigreet cache directory..."
+sudo mkdir -p /var/cache/tuigreet
+sudo chown greeter:greeter /var/cache/tuigreet
+sudo chmod 0755 /var/cache/tuigreet
+
+echo "==> Installing uwsm if missing..."
+if ! command -v uwsm &>/dev/null; then
+  if command -v paru &>/dev/null; then
+    paru -S --noconfirm uwsm
+  elif command -v yay &>/dev/null; then
+    yay -S --noconfirm uwsm
+  else
+    echo "ERROR: No AUR helper found. Please install uwsm manually." >&2
+    exit 1
+  fi
+fi
+
+echo "==> Installing gnome-keyring if missing..."
+if ! pacman -Qi gnome-keyring &>/dev/null; then
+  sudo pacman -S --noconfirm gnome-keyring
+fi
+
+echo "==> Configuring PAM for gnome-keyring auto-unlock..."
+PAM_GREETD="/etc/pam.d/greetd"
+if ! grep -q "pam_gnome_keyring" "$PAM_GREETD" 2>/dev/null; then
+  sudo tee -a "$PAM_GREETD" >/dev/null <<'EOF'
+auth     optional  pam_gnome_keyring.so
+session  optional  pam_gnome_keyring.so auto_start
+EOF
+fi
+
+echo "==> Removing systemd autologin if present..."
+AUTOLOGIN_OVERRIDE="/etc/systemd/system/getty@tty1.service.d/autologin.conf"
+if [ -f "$AUTOLOGIN_OVERRIDE" ]; then
+  sudo rm "$AUTOLOGIN_OVERRIDE"
+  sudo systemctl daemon-reload
+  sudo systemctl disable getty@tty1
+fi
+
+echo "==> Creating greeter user if needed..."
+if ! id "$GREETER_USER" &>/dev/null; then
+  sudo useradd -M -G video "$GREETER_USER"
+fi
+
+echo "==> Writing greetd config..."
+sudo mkdir -p /etc/greetd
+sudo tee "$GREETD_CONFIG" >/dev/null <<'EOF'
+[terminal]
+vt = 1
+
+[default_session]
+command = "tuigreet --time --greeting 'Hello Quantum!' --greet-align center --width 120 --window-padding 2 --container-padding 1 --prompt-padding 1 --remember --remember-session --remember-user-session --user-menu --user-menu-min-uid 1000 --user-menu-max-uid 60000 --asterisks --asterisks-char '*' --power-no-setsid --kb-command 2 --kb-sessions 3 --kb-power 12 --theme 'border=bright-black;text=white;time=bright-white;container=black;title=magenta;greet=white;prompt=bright-blue;input=bright-cyan;action=cyan;button=red' --debug /tmp/tuigreet.log"
+user = "greeter"
+EOF
+
+echo "==> Disabling conflicting display managers..."
+for dm in sddm gdm lightdm lxdm; do
+  if systemctl is-enabled "$dm" &>/dev/null; then
+    echo "  Disabling $dm..."
+    sudo systemctl disable "$dm"
+  fi
+done
+
+echo "==> Enabling greetd..."
+sudo systemctl enable --now greetd
+
+echo "==> Done. greetd with tuigreet (NotAShelf fork) + uwsm is configured."
+echo "    Changes take effect on next boot (or: sudo systemctl start greetd)"
