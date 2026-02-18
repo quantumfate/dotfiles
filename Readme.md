@@ -5,6 +5,8 @@ I'm ready to go on a new machine with one simple command.
 ## Features
 
 - Monitor Management: [Kanshi](https://sr.ht/~emersion/kanshi/)
+- Greeter: [Tuigreet](https://github.com/NotAShelf/tuigreet)
+- UWSM Session Management
 
 ### Theming/Ricing
 
