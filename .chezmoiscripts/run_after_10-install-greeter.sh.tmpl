@@ -150,6 +150,17 @@ sudo mkdir -p /var/cache/tuigreet
 sudo chown "$GREETER_USER:$GREETER_USER" /var/cache/tuigreet
 sudo chmod 0755 /var/cache/tuigreet
 
+
+{{- if eq .chezmoi.hostname "quantum-desktop" }}
+WIDTH=200
+WPAD=4
+CPAD=2
+{{- else }}
+WIDTH=120
+WPAD=2
+CPAD=1
+{{- end }}
+
 echo "==> Writing greetd config..."
 sudo mkdir -p /etc/greetd
 sudo tee "$GREETD_CONFIG" >/dev/null <<'EOF'
@@ -157,9 +168,77 @@ sudo tee "$GREETD_CONFIG" >/dev/null <<'EOF'
 vt = 1
 
 [default_session]
-command = "tuigreet --time --greeting 'Welcome to the system!' --greet-align center --width 120 --window-padding 2 --container-padding 1 --prompt-padding 1 --remember --remember-session --user-menu --user-menu-min-uid 1000 --user-menu-max-uid 60000 --asterisks --asterisks-char '*' --power-no-setsid --kb-command 2 --kb-sessions 3 --kb-power 12 --theme 'border=bright-black;text=white;time=bright-white;container=black;title=magenta;greet=white;prompt=bright-blue;input=bright-cyan;action=cyan;button=red'"
+command = "tuigreet --config /etc/tuigreet/config.toml"
 user = "greeter"
 EOF
+
+echo "==> Writing tuigreet config..."
+sudo mkdir -p /etc/tuigreet/
+sudo tee /etc/tuigreet/config.toml >/dev/null <<'EOF'
+[display]
+show_time = true
+greeting = "Hello Quantum!"
+align_greeting = "center"
+issue = false
+
+[layout]
+width = $WIDTH
+window_padding = $WPAD
+container_padding = $CPAD
+prompt_padding = 1
+
+[layout.widgets]
+time_position = "top"
+status_position = "bottom"
+
+[remember]
+username = true
+session = true
+user_session = true
+
+[user_menu]
+enabled = true
+min_uid = 1000
+max_uid = 60000
+
+[secret]
+mode = "characters"
+characters = "*"
+
+[keybindings]
+command = 2
+sessions = 3
+power = 12
+
+[session]
+sessions_dirs = ["/usr/share/wayland-sessions", "/usr/share/xsessions"]
+xsessions_dirs = []
+environments = []
+
+[power]
+use_setsid = false
+
+[theme]
+border = "bright-black"
+text = "white"
+time = "bright-white"
+container = "black"
+title = "magenta"
+greet = "white"
+prompt = "bright-blue"
+input = "bright-cyan"
+action = "cyan"
+button = "red"
+EOF
+
+# Ensure systemd-vconsole-setup runs before greetd
+sudo mkdir -p /etc/systemd/system/greetd.service.d
+sudo tee /etc/systemd/system/greetd.service.d/vconsole.conf >/dev/null <<'EOF'
+[Unit]
+After=systemd-vconsole-setup.service
+Wants=systemd-vconsole-setup.service
+EOF
+sudo systemctl daemon-reload
 
 for dm in sddm gdm lightdm lxdm; do
   if systemctl is-enabled "$dm" &>/dev/null; then
