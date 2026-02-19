@@ -1,0 +1,25 @@
+#!/bin/bash
+{{- if eq .chezmoi.hostname "quantum-desktop" }}
+set -euo pipefail
+
+if ! pacman -Qi terminus-font &>/dev/null; then
+  echo "==> Installing terminus-font..."
+  sudo pacman -S --noconfirm terminus-font
+fi
+
+# ter-v32n is the largest Terminus size (32px), good for 2K+ displays
+if ! grep -q "^FONT=ter-v32n" /etc/vconsole.conf 2>/dev/null; then
+  if grep -q "^FONT=" /etc/vconsole.conf 2>/dev/null; then
+    sudo sed -i "s/^FONT=.*/FONT=ter-v32n/" /etc/vconsole.conf
+  else
+    echo "FONT=ter-v32n" | sudo tee -a /etc/vconsole.conf >/dev/null
+  fi
+  echo "✓ Set console font to ter-v32n"
+else
+  echo "✓ Console font already set"
+fi
+
+# Apply immediately
+sudo setfont ter-v32n 2>/dev/null && echo "✓ Applied font" || echo "⚠ Could not apply (not in a VT?)"
+{{- end }}
+

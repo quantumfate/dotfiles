@@ -83,6 +83,9 @@ if command -v loadkeys &>/dev/null; then
   sudo loadkeys "$KEYMAP_FILE" 2>/dev/null && echo "✓ Applied keymap to current TTY" || echo "⚠ Could not apply to current TTY (not in a VT?)"
 fi
 
+if command -v localectl &>/dev/null; then
+  localectl set-keymap dvorak-custom
+fi
 echo ""
 echo "Installation complete!"
 echo "Note: ckbcomp may not support all XKB features — test edge cases in the TTY."

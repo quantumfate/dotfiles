@@ -22,10 +22,10 @@ feh_scaled() {
 export ZSH="$HOME/.config/oh-my-zsh"
 ZSH_THEME="eastwood"
 
-if [ -f "${HOME}/.config/oh-my-zsh/custom/themes/catppuccin/catppuccin.zsh-theme" ]; then
+if [ -f "${HOME}/.config/oh-my-zsh/themes/catppuccin.zsh-theme" ]; then
   ZSH_THEME="catppuccin"
   CATPPUCCIN_FLAVOR="mocha" # Required! Options: mocha, flappe, macchiato, latte
-  CATPPUCCIN_SHOW_TIME=true  # Optional! If set to true, this will add the current time to the prompt.
+  CATPPUCCIN_SHOW_TIME=true  # Optional! If set to true, this will add the current time to the prompt
 fi
 
 ZSH_LS_BACKEND="eza"
