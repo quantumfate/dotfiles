@@ -1,0 +1,67 @@
+#!/bin/bash
+set -euo pipefail
+
+{{- if eq .chezmoi.hostname "quantum-desktop" }}
+
+echo "==> Configuring display/VT settings for desktop..."
+
+# 1. Add kernel parameters to Limine if missing
+LIMINE_CONF="/etc/default/limine"
+NEEDS_LIMINE_UPDATE=false
+
+add_kernel_param() {
+  local param="$1"
+  if ! grep -q "$param" "$LIMINE_CONF" 2>/dev/null; then
+    sudo sed -i "s|KERNEL_CMDLINE\[default\]+=\"\(.*\)\"|KERNEL_CMDLINE[default]+=\"\1 $param\"|" "$LIMINE_CONF"
+    NEEDS_LIMINE_UPDATE=true
+    echo "✓ Added '$param' to kernel cmdline"
+  else
+    echo "✓ '$param' already in kernel cmdline"
+  fi
+}
+
+# Disable HDMI on VT so console uses only the main DP monitor
+add_kernel_param "video=HDMI-A-1:d"
+
+if [ "$NEEDS_LIMINE_UPDATE" = true ]; then
+  sudo limine-update
+  echo "✓ Limine config regenerated"
+fi
+
+# 2. udev rule to allow user-space HDMI re-enable
+UDEV_RULE="/etc/udev/rules.d/99-hdmi-status.rules"
+UDEV_CONTENT='ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card1-HDMI-A-1", RUN+="/bin/chmod 666 /sys/class/drm/card1-HDMI-A-1/status"'
+if [ ! -f "$UDEV_RULE" ] || ! grep -qF 'card1-HDMI-A-1' "$UDEV_RULE" 2>/dev/null; then
+  echo "$UDEV_CONTENT" | sudo tee "$UDEV_RULE" >/dev/null
+  sudo udevadm control --reload
+  echo "✓ udev rule for HDMI status created"
+else
+  echo "✓ udev rule for HDMI status already exists"
+fi
+
+# 3. Systemd user service to re-enable HDMI when Wayland session starts
+SERVICE_DIR="$HOME/.config/systemd/user"
+SERVICE_FILE="$SERVICE_DIR/enable-hdmi.service"
+mkdir -p "$SERVICE_DIR"
+
+cat > "$SERVICE_FILE" <<'UNIT'
+[Unit]
+Description=Re-enable HDMI output after Wayland session starts
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo detect > /sys/class/drm/card1-HDMI-A-1/status'
+
+[Install]
+WantedBy=graphical-session.target
+UNIT
+
+systemctl --user daemon-reload
+systemctl --user enable enable-hdmi.service 2>/dev/null
+echo "✓ HDMI re-enable service installed and enabled"
+
+echo "==> Desktop display configuration complete."
+echo "    Reboot required for kernel parameter changes to take effect."
+
+{{- end }}

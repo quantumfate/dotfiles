@@ -150,14 +150,6 @@ sudo mkdir -p /var/cache/tuigreet
 sudo chown "$GREETER_USER:$GREETER_USER" /var/cache/tuigreet
 sudo chmod 0755 /var/cache/tuigreet
 
-
-WIDTH=200
-WPAD=4
-CPAD=2
-WIDTH=120
-WPAD=2
-CPAD=1
-
 echo "==> Writing greetd config..."
 sudo mkdir -p /etc/greetd
 sudo tee "$GREETD_CONFIG" >/dev/null <<'EOF'
@@ -179,15 +171,9 @@ align_greeting = "center"
 issue = false
 
 [layout]
-{{- if eq .chezmoi.hostname "quantum-desktop" }}
-width = 240
-window_padding = 4
-container_padding = 2
-{{- else }}
 width = 120
 window_padding = 2
 container_padding = 1
-{{- end }}
 prompt_padding = 1
 
 [layout.widgets]
