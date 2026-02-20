@@ -1,13 +1,115 @@
 #!/bin/bash
-{{- if eq .chezmoi.hostname "quantum-desktop" }}
 set -euo pipefail
 
+echo "==> Applying Catppuccin Macchiato TTY colors..."
+
+# Catppuccin Macchiato colors
+# Source: https://github.com/catppuccin/tty
+VT_RED='vt.default_red=36,237,166,238,138,245,139,184,91,237,166,238,138,245,139,165'
+VT_GRN='vt.default_grn=39,135,218,212,173,189,213,192,96,135,218,212,173,189,213,173'
+VT_BLU='vt.default_blu=58,150,149,159,244,230,202,224,120,150,149,159,244,230,202,203'
+VT_PARAMS="$VT_RED $VT_GRN $VT_BLU"
+
+# --- Detect active bootloader ---
+BOOTLOADER=""
+if [ -d /sys/firmware/efi ] && command -v efibootmgr &>/dev/null; then
+  EFI_ENTRIES=$(efibootmgr 2>/dev/null || echo "")
+  if echo "$EFI_ENTRIES" | grep -qi 'limine'; then
+    BOOTLOADER="limine"
+  elif echo "$EFI_ENTRIES" | grep -qi 'grub'; then
+    BOOTLOADER="grub"
+  fi
+fi
+
+# Fallback detection if efibootmgr didn't resolve it
+if [ -z "$BOOTLOADER" ]; then
+  if [ -f /boot/limine.conf ] && command -v limine-update &>/dev/null; then
+    BOOTLOADER="limine"
+  elif [ -f /boot/grub/grub.cfg ] && command -v grub-mkconfig &>/dev/null; then
+    BOOTLOADER="grub"
+  fi
+fi
+
+# Helper: check if vt.default_red is already present in a string
+has_vt_colors() {
+  grep -q 'vt.default_red' <<< "$1" 2>/dev/null
+}
+
+# Helper: remove old vt.default_* params from a string
+strip_vt_colors() {
+  echo "$1" | sed -E 's/vt\.default_(red|grn|blu)=[0-9,]+//g' | sed 's/  */ /g' | sed 's/^ *//;s/ *$//'
+}
+
+case "$BOOTLOADER" in
+  limine)
+    echo "  Active bootloader: Limine"
+    LIMINE_CONF="/etc/default/limine"
+    if [ ! -f "$LIMINE_CONF" ]; then
+      echo "  ⚠ Limine detected but $LIMINE_CONF not found"
+      exit 1
+    fi
+
+    CURRENT=$(grep 'KERNEL_CMDLINE\[default\]' "$LIMINE_CONF" 2>/dev/null || echo "")
+
+    if has_vt_colors "$CURRENT"; then
+      if echo "$CURRENT" | grep -qF "$VT_RED"; then
+        echo "  ✓ Catppuccin TTY colors already applied"
+      else
+        STRIPPED=$(strip_vt_colors "$CURRENT")
+        INNER=$(echo "$STRIPPED" | sed -E 's/.*\+="(.*)"/\1/')
+        NEW_LINE="KERNEL_CMDLINE[default]+=\"$INNER $VT_PARAMS\""
+        sudo sed -i "/KERNEL_CMDLINE\[default\]/c\\$NEW_LINE" "$LIMINE_CONF"
+        sudo limine-update
+        echo "  ✓ Updated Catppuccin TTY colors"
+      fi
+    else
+      sudo sed -i "s|KERNEL_CMDLINE\[default\]+=\"\(.*\)\"|KERNEL_CMDLINE[default]+=\"\1 $VT_PARAMS\"|" "$LIMINE_CONF"
+      sudo limine-update
+      echo "  ✓ Added Catppuccin TTY colors"
+    fi
+    ;;
+
+  grub)
+    echo "  Active bootloader: GRUB"
+    GRUB_CONF="/etc/default/grub"
+    if [ ! -f "$GRUB_CONF" ]; then
+      echo "  ⚠ GRUB detected but $GRUB_CONF not found"
+      exit 1
+    fi
+
+    CURRENT=$(grep '^GRUB_CMDLINE_LINUX=' "$GRUB_CONF" 2>/dev/null || echo "")
+
+    if has_vt_colors "$CURRENT"; then
+      if echo "$CURRENT" | grep -qF "$VT_RED"; then
+        echo "  ✓ Catppuccin TTY colors already applied"
+      else
+        STRIPPED=$(strip_vt_colors "$CURRENT")
+        INNER=$(echo "$STRIPPED" | sed -E 's/.*="(.*)"/\1/')
+        sudo sed -i "s|^GRUB_CMDLINE_LINUX=.*|GRUB_CMDLINE_LINUX=\"$INNER $VT_PARAMS\"|" "$GRUB_CONF"
+        sudo grub-mkconfig -o /boot/grub/grub.cfg
+        echo "  ✓ Updated Catppuccin TTY colors"
+      fi
+    else
+      sudo sed -i "s|^GRUB_CMDLINE_LINUX=\"\(.*\)\"|GRUB_CMDLINE_LINUX=\"\1 $VT_PARAMS\"|" "$GRUB_CONF"
+      sudo grub-mkconfig -o /boot/grub/grub.cfg
+      echo "  ✓ Added Catppuccin TTY colors"
+    fi
+    ;;
+
+  *)
+    echo "  ⚠ Could not determine active bootloader (checked efibootmgr, limine, grub)"
+    echo "  You can manually add these to your kernel parameters:"
+    echo "  $VT_PARAMS"
+    ;;
+esac
+
+{{- if eq .chezmoi.hostname "quantum-desktop" }}
+# --- Console font for high-res desktop display ---
 if ! pacman -Qi terminus-font &>/dev/null; then
   echo "==> Installing terminus-font..."
   sudo pacman -S --noconfirm terminus-font
 fi
 
-# ter-v32n is the largest Terminus size (32px), good for 2K+ displays
 if ! grep -q "^FONT=ter-v32n" /etc/vconsole.conf 2>/dev/null; then
   if grep -q "^FONT=" /etc/vconsole.conf 2>/dev/null; then
     sudo sed -i "s/^FONT=.*/FONT=ter-v32n/" /etc/vconsole.conf
@@ -18,8 +120,6 @@ if ! grep -q "^FONT=ter-v32n" /etc/vconsole.conf 2>/dev/null; then
 else
   echo "✓ Console font already set"
 fi
-
-# Apply immediately
-sudo setfont ter-v32n 2>/dev/null && echo "✓ Applied font" || echo "⚠ Could not apply (not in a VT?)"
 {{- end }}
 
+echo "==> TTY theme configuration complete. Reboot to see changes."
