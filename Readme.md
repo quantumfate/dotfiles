@@ -13,6 +13,7 @@ I'm ready to go on a new machine with one simple command.
 - Colorscheme: [Catppuccin](https://catppuccin.com/) Macchiato Mauve
 - qt5ct
 - GTK automated with nwg-look
+- Grub/Limine + TTY with [this script](./.chezmoiscripts/run_after_09-configure-tty.sh.tmpl)
 
 ### Desktop Experience
 
