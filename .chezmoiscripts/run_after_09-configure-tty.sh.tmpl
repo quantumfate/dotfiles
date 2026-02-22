@@ -1,4 +1,10 @@
 #!/bin/bash
+
+echo "###################### Configuring TTY  #########################"
+echo ""
+echo ""
+
+sudo -v
 set -euo pipefail
 
 echo "==> Applying Catppuccin Macchiato TTY colors..."
@@ -9,6 +15,16 @@ VT_RED='vt.default_red=36,237,166,238,138,245,139,184,91,237,166,238,138,245,139
 VT_GRN='vt.default_grn=39,135,218,212,173,189,213,192,96,135,218,212,173,189,213,173'
 VT_BLU='vt.default_blu=58,150,149,159,244,230,202,224,120,150,149,159,244,230,202,203'
 VT_PARAMS="$VT_RED $VT_GRN $VT_BLU"
+
+
+# Ensure systemd-vconsole-setup runs before greetd
+sudo tee /etc/systemd/system/greetd.service.d/vconsole.conf >/dev/null <<'EOF'
+[Unit]
+After=systemd-vconsole-setup.service
+Wants=systemd-vconsole-setup.service
+EOF
+
+sudo systemctl daemon-reload
 
 # --- Detect active bootloader ---
 BOOTLOADER=""
@@ -123,3 +139,4 @@ fi
 {{- end }}
 
 echo "==> TTY theme configuration complete. Reboot to see changes."
+echo ""

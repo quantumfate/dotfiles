@@ -220,15 +220,17 @@ action = "bright-blue"
 button = "magenta"
 EOF
 
-# Ensure systemd-vconsole-setup runs before greetd
-sudo tee /etc/systemd/system/greetd.service.d/vconsole.conf >/dev/null <<'EOF'
+# Prevent greetd from restarting on suspend/resume
+sudo tee /etc/systemd/system/greetd.service.d/sleep.conf >/dev/null <<'EOF'
 [Unit]
-After=systemd-vconsole-setup.service
-Wants=systemd-vconsole-setup.service
+StopWhenUnneeded=no
+IgnoreOnIsolate=yes
 
 [Service]
-ExecStartPost=/usr/bin/systemctl restart systemd-vconsole-setup.service
+Restart=on-failure
+RestartSec=1
 EOF
+
 sudo systemctl daemon-reload
 
 for dm in sddm gdm lightdm lxdm; do
@@ -242,3 +244,4 @@ sudo systemctl enable greetd
 
 echo "==> Done. greetd with tuigreet (NotAShelf fork) + uwsm is configured."
 echo "    Changes take effect on next boot (or: sudo systemctl start greetd)"
+echo ""

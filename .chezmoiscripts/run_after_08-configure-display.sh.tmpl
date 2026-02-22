@@ -48,10 +48,12 @@ cat > "$SERVICE_FILE" <<'UNIT'
 [Unit]
 Description=Re-enable HDMI output after Wayland session starts
 After=graphical-session.target
+ConditionPathExists=!/tmp/hdmi-detected
 
 [Service]
 Type=oneshot
 ExecStart=/bin/sh -c 'echo detect > /sys/class/drm/card1-HDMI-A-1/status'
+ExecStartPost=/bin/touch /tmp/hdmi-detected
 
 [Install]
 WantedBy=graphical-session.target
