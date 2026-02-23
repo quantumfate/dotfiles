@@ -24,9 +24,7 @@
       "clock",
       "tray",
       "custom/mako",
-      "custom/lock",
-      "custom/reboot",
-      "custom/power"
+      "custom/wlogout"
     ],
 {{- else if eq .chezmoi.hostname "quantum-laptop" }}
     "modules-center": [
@@ -45,9 +43,7 @@
       "tray",
       "custom/mako",
       "battery",
-      "custom/lock",
-      "custom/reboot",
-      "custom/power"
+      "custom/wlogout"
     ],
 {{- else }}
     "modules-center": [
@@ -66,8 +62,7 @@
       "tray",
       "custom/mako",
       "custom/lock",
-      "custom/reboot",
-      "custom/power"
+      "custom/wlogout"
     ],
 {{- end}}
 {{- if eq .chezmoi.hostname "quantum-desktop" }}

@@ -46,6 +46,8 @@ declare -A repos=(
   ["nvim:up"]="quantumfate:ssh:github:$github_dir/nvim:no_callback"
   ["security-and-privacy:down"]="quantumfate:ssh:gitlab:$script_dir/security-and-privacy:no_callback"
   ["security-and-privacy:up"]="quantumfate:ssh:gitlab:$gitlab_dir/security-and-privacy:no_callback"
+  ["scripts:up"]="quantumfate:ssh:github:$script_dir/scripts:no_callback"
+  ["scripts:down"]="quantumfate:ssh:github:$script_dir/scripts:no_callback"
 )
 
 # Create necessary directories

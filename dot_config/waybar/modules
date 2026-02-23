@@ -4,10 +4,10 @@
         "format-window-separator": "\n",
         "window-rewrite-default": "",
         "window-rewrite": {
-            "title<.*youtube.*>": "", 
-            "class<brave-browser>": "", 
+            "title<.*youtube.*>": "",
+            "class<brave-browser>": "",
             "class<brave-browser> title<.*github.*>": "",
-            "foot": "", 
+            "foot": "",
             "code": "󰨞"
         }
     },
@@ -149,7 +149,7 @@
     },
     "custom/wlogout": {
         "format": " 󰣇 ",
-        "on-click": "wlogout -l ~/.config/wlogout/layout",
+        "on-click": "uwsm app -- wlogout",
         "tooltip": true,
         "tooltip-format": "Open the wlogout menu."
     }
