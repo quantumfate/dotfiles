@@ -234,10 +234,8 @@ user_pref("network.http.speculative-parallel-limit", 6);
 user_pref("network.dns.disablePrefetch", false);
 user_pref("network.dns.disablePrefetchFromHTTPS", false);
 user_pref("browser.urlbar.speculativeConnect.enabled", true);
-user_pref("browser.cache.disk.enable", false);
+user_pref("browser.cache.disk.enable", true);
 user_pref("security.OCSP.enabled", 1);
-
-user_pref("security.OCSP.require", true); // test if this breaks CA
 
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
