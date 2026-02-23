@@ -28,41 +28,6 @@ if [ "$NEEDS_LIMINE_UPDATE" = true ]; then
   echo "✓ Limine config regenerated"
 fi
 
-# 2. udev rule to allow user-space HDMI re-enable
-UDEV_RULE="/etc/udev/rules.d/99-hdmi-status.rules"
-UDEV_CONTENT='ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card1-HDMI-A-1", RUN+="/bin/chmod 666 /sys/class/drm/card1-HDMI-A-1/status"'
-if [ ! -f "$UDEV_RULE" ] || ! grep -qF 'card1-HDMI-A-1' "$UDEV_RULE" 2>/dev/null; then
-  echo "$UDEV_CONTENT" | sudo tee "$UDEV_RULE" >/dev/null
-  sudo udevadm control --reload
-  echo "✓ udev rule for HDMI status created"
-else
-  echo "✓ udev rule for HDMI status already exists"
-fi
-
-# 3. Systemd user service to re-enable HDMI when Wayland session starts
-SERVICE_DIR="$HOME/.config/systemd/user"
-SERVICE_FILE="$SERVICE_DIR/enable-hdmi.service"
-mkdir -p "$SERVICE_DIR"
-
-cat > "$SERVICE_FILE" <<'UNIT'
-[Unit]
-Description=Re-enable HDMI output after Wayland session starts
-After=graphical-session.target
-ConditionPathExists=!/tmp/hdmi-detected
-
-[Service]
-Type=oneshot
-ExecStart=/bin/sh -c 'echo detect > /sys/class/drm/card1-HDMI-A-1/status'
-ExecStartPost=/bin/touch /tmp/hdmi-detected
-
-[Install]
-WantedBy=graphical-session.target
-UNIT
-
-systemctl --user daemon-reload
-systemctl --user enable enable-hdmi.service 2>/dev/null
-echo "✓ HDMI re-enable service installed and enabled"
-
 echo "==> Desktop display configuration complete."
 echo "    Reboot required for kernel parameter changes to take effect."
 

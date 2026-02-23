@@ -1,0 +1,12 @@
+[Unit]
+Description=KeePassXC password manager
+After=graphical-session.target
+BindsTo=graphical-session.target
+
+[Service]
+ExecStartPre=/usr/bin/nm-online -s -q --timeout=60
+ExecStart=/usr/bin/keepassxc
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

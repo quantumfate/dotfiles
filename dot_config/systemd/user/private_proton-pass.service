@@ -1,0 +1,12 @@
+[Unit]
+Description=Proton Pass
+After=graphical-session.target
+BindsTo=graphical-session.target
+
+[Service]
+ExecStartPre=/bin/sh -c 'until ping -c1 1.1.1.1 >/dev/null 2>&1; do sleep 1; done'
+ExecStart="/opt/proton-pass/Proton Pass"
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
