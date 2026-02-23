@@ -7,6 +7,8 @@ BindsTo=graphical-session.target
 ExecStartPre=/bin/sh -c 'until ping -c1 1.1.1.1 >/dev/null 2>&1; do sleep 1; done; sleep 1'
 ExecStart=/usr/bin/proton-mail
 Restart=on-failure
+KillMode=mixed
+SendSIGHUP=yes
 
 [Install]
 WantedBy=graphical-session.target

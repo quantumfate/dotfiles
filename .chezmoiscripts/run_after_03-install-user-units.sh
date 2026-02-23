@@ -5,6 +5,12 @@ echo "###################### User Units ###############################"
 echo ""
 echo ""
 
+mkdir -p ~/.config/systemd/user.conf.d/
+cat >~/.config/systemd/user.conf.d/timeout.conf <<'EOF'
+[Manager]
+DefaultTimeoutStopSec=3
+EOF
+
 units=(
   # graphical session - no network
   foot-server.service
