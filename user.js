@@ -238,8 +238,80 @@ user_pref("security.OCSP.enabled", 1);
 
 user_pref("network.proxy.type", 0);
 user_pref("extensions.webextensions.restrictedDomains", "");
+
+// Additional overrides extracted from about:config
+// Only includes intentional settings not already in Betterfox
+
+// === UI / UX ===
+user_pref("accessibility.typeaheadfind.flashBar", 0);
+user_pref("browser.bookmarks.defaultLocation", "toolbar_____");
+user_pref("browser.bookmarks.editDialog.firstEditField", "tagsField");
+user_pref("browser.ctrlTab.sortByRecentlyUsed", true);
+user_pref("browser.download.useDownloadDir", false); // always ask where to save
+user_pref("browser.tabs.loadInBackground", false); // switch to new tabs immediately
+user_pref("browser.toolbars.bookmarks.visibility", "always");
 user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.startup.page", 1);
+
+// === Privacy extras (beyond Betterfox) ===
+user_pref("browser.safebrowsing.downloads.enabled", false);
+user_pref(
+  "browser.safebrowsing.downloads.remote.block_potentially_unwanted",
+  false,
+);
+user_pref("browser.translations.enable", false);
+user_pref("privacy.clearOnShutdown_v2.formdata", true);
+user_pref("privacy.fingerprintingProtection", true);
+user_pref("privacy.query_stripping.enabled", true);
+user_pref("privacy.query_stripping.enabled.pbmode", true);
+user_pref("privacy.bounceTrackingProtection.mode", 1);
+user_pref("privacy.trackingprotection.emailtracking.enabled", true);
+user_pref("privacy.trackingprotection.socialtracking.enabled", true);
+
+// === WebRTC leak prevention ===
+user_pref("media.peerconnection.ice.default_address_only", true);
+user_pref("media.peerconnection.ice.no_host", true);
+user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
+
+// === Fonts ===
+user_pref("font.size.monospace.x-western", 14);
+user_pref("font.size.variable.x-western", 18);
+
+// === Dark mode ===
+user_pref("layout.css.prefers-color-scheme.content-override", 0); // dark
+
+// === Passwords / autofill (all disabled) ===
+user_pref("signon.autofillForms", false);
+user_pref("signon.generation.enabled", false);
+user_pref("signon.management.page.breach-alerts.enabled", false);
+user_pref("signon.rememberSignons", false);
+user_pref("dom.forms.autocomplete.formautofill", true); // address autofill only
+
+// === AI blocking (Zen-specific) ===
+user_pref("browser.ai.control.default", "blocked");
+user_pref("browser.ai.control.linkPreviewKeyPoints", "blocked");
+user_pref("browser.ai.control.pdfjsAltText", "blocked");
+user_pref("browser.ai.control.sidebarChatbot", "blocked");
+user_pref("browser.ai.control.smartTabGroups", "blocked");
+user_pref("browser.ai.control.translations", "blocked");
+user_pref("pdfjs.enableAltText", false);
+
+// === Zen-specific ===
+user_pref("browser.link.open_newwindow.override.external", 7);
+user_pref("zen.pinned-tab-manager.restore-pinned-tabs-to-pinned-url", true);
+user_pref("zen.view.compact.enable-at-startup", true);
+user_pref("zen.view.window.scheme", 0);
+user_pref("zen.workspaces.force-container-workspace", true);
+
+// === Sync exclusions ===
+user_pref("services.sync.engine.passwords", false);
+user_pref(
+  "services.sync.declinedEngines",
+  "workspaces,passwords,creditcards,addresses",
+);
+
+// === Sidebar ===
+user_pref("sidebar.visibility", "hide-sidebar");
 
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
