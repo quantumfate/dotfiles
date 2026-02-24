@@ -73,7 +73,7 @@ user_pref("browser.uitour.enabled", false);
 user_pref("privacy.globalprivacycontrol.enabled", true);
 
 /** OCSP & CERTS / HPKP ***/
-//user_pref("security.OCSP.enabled", 0);
+user_pref("security.OCSP.enabled", 1);
 user_pref("privacy.antitracking.isolateContentScriptResources", true);
 user_pref("security.csp.reporting.enabled", false);
 
@@ -234,7 +234,6 @@ user_pref("network.dns.disablePrefetch", true);
 user_pref("network.dns.disablePrefetchFromHTTPS", true);
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
 user_pref("browser.cache.disk.enable", false);
-user_pref("security.OCSP.enabled", 1);
 
 user_pref("network.proxy.type", 0);
 user_pref("extensions.webextensions.restrictedDomains", "");
