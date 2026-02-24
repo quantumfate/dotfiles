@@ -74,6 +74,7 @@ user_pref("privacy.globalprivacycontrol.enabled", true);
 
 /** OCSP & CERTS / HPKP ***/
 user_pref("security.OCSP.enabled", 1);
+user_pref("security.OCSP.required", false);
 user_pref("privacy.antitracking.isolateContentScriptResources", true);
 user_pref("security.csp.reporting.enabled", false);
 
