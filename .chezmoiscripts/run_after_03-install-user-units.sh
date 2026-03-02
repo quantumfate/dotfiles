@@ -21,6 +21,7 @@ units=(
   hypridle.service
   udiskie.service
   kanshi.service
+  hyprsunset.service
   # graphical session + network
   elecwhat.service
   keepassxc.service
