@@ -89,6 +89,7 @@ commonPackages:
       - hyprqt6engine
       - hyprshutdown-git
       - grim-hyprland-git
+      - hyprsunset
 
       # Sway
       - sway
@@ -260,6 +261,10 @@ desktopPackages:
       - steam
       - ckb-next
       - ankama-launcher
+
+      - ollama-bin
+      - ollama-cuda13-bin
+      - open-webui
 
 laptopPackages:
   linux:
