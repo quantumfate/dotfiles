@@ -22,6 +22,7 @@ units=(
   udiskie.service
   kanshi.service
   hyprsunset.service
+  obsidian.service
   # graphical session + network
   elecwhat.service
   keepassxc.service

@@ -1,6 +1,10 @@
 {
     "hyprland/workspaces": {
         "format": "{icon}",
+        "format-icons": {
+          "a_obsidian": "󱞂 ",
+          "b_mail": " "
+        },
         "format-window-separator": "\n",
         "window-rewrite-default": "",
         "window-rewrite": {
@@ -9,7 +13,8 @@
             "class<brave-browser> title<.*github.*>": "",
             "foot": "",
             "code": "󰨞"
-        }
+        },
+        "sort": "name"
     },
     "cpu": {
         "interval": 4,
@@ -54,6 +59,14 @@
         "format-en": "EN",
         "keyboard-name": "kbdfans-kbd75-rev2"
     },
+    "custom/brightness": {
+        "exec": "~/.local/share/own-scripts/scripts/wrapper/brightness.sh --get-with-icon",
+        "scroll-step": 5.0,
+        "on-scroll-up": "~/.local/share/own-scripts/scripts/wrapper/brightness.sh --inc",
+        "on-scroll-down": "~/.local/share/own-scripts/scripts/wrapper/brightness.sh --dec",
+        "smooth-scrolling-threshold": 1,
+        "restart-interval": 1
+    },
     "pulseaudio": {
         "format": "{volume} {icon}",
         "format-muted": "Mute ",
@@ -75,8 +88,8 @@
         "scroll-step": 5.0,
         "on-click": "pamixer -t",
         "on-click-right": "kitty --class Wiremix wiremix",
-        "on-scroll-up": "/home/quantum/.config/hypr/scripts/wrapper/volume.sh --inc",
-        "on-scroll-down": "/home/quantum/.config/hypr/scripts/wrapper/volume.sh --dec",
+        "on-scroll-up": "~/.local/share/own-scripts/scripts/wrapper/volume.sh --inc",
+        "on-scroll-down": "~/.local/share/own-scripts/scripts/wrapper/volume.sh --dec",
         "smooth-scrolling-threshold": 1
     },
     "clock": {
@@ -114,7 +127,7 @@
         }
     },
     "custom/mako": {
-        "exec": "/home/quantum/.config/hypr/scripts/interface/mako.sh",
+        "exec": "~/.local/share/own-scripts/scripts/interface/mako.sh",
         "on-click": "makoctl mode -t do-not-disturb",
         "restart-interval": 1
     },
@@ -129,28 +142,11 @@
         "format-icons": ["", "", "", "", ""],
         "max-length": 25
     },
-    "custom/lock": {
-        "format": "<span color='#94E2D5'>  </span>",
-        "on-click": "hyprlock",
-        "tooltip": true,
-        "tooltip-format": "Lock the screen."
-        },
-    "custom/reboot": {
-        "format": "<span color='#F9E2AF'>  </span>",
-        "on-click": "hyprshutdown -t 'Restarting...' --post-cmd 'reboot'",
-        "tooltip": true,
-        "tooltip-format": "Reboot the system."
-    },
-    "custom/power": {
-        "format": "<span color='#F38BA8'>  </span>",
-        "on-click": "hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'",
-        "tooltip": true,
-        "tooltip-format": "Power off the system."
-    },
     "custom/wlogout": {
         "format": " 󰣇 ",
         "on-click": "uwsm app -- wlogout",
         "tooltip": true,
-        "tooltip-format": "Open the wlogout menu."
+        "tooltip-format": "Open the wlogout menu.",
+        "interval": 2
     }
 }

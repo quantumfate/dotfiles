@@ -1,7 +1,13 @@
 @import "themes/catppuccin-macchiato.css";
 
 * {
-  font-family: DejaVuSansM Nerd Font, FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    DejaVuSansM Nerd Font,
+    FontAwesome,
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
   font-weight: 700;
   font-size: 13px;
 }
@@ -30,7 +36,7 @@
 #battery {
   background-color: transparent;
   color: @teal;
-  /* border: 2px solid rgba(17,17,27,0.600000) */;
+  /* border: 2px solid rgba(17,17,27,0.600000) */
   padding: 0 15px;
   margin-right: 10px;
 }
@@ -49,6 +55,10 @@
 
 #network {
   color: @peach;
+}
+
+#custom-brightness {
+  color: @red;
 }
 
 #pulseaudio {
@@ -103,32 +113,6 @@ window#waybar.empty #window {
   background-color: transparent;
 }
 
-#custom-lock,
-#custom-reboot,
-#custom-power {
-  background-color: transparent;
-  /*
-  border-bottom: 2px solid rgba(17,17,27,0.600000);
-  border-top: 2px solid rgba(17,17,27,0.600000);
-  */
-}
-
-#custom-lock {
-  /*border-left: 2px solid rgba(17,17,27,0.600000);*/
-  padding-left: 14px;
-  padding-right: 10px;
-}
-
-#custom-reboot {
-  padding: 0 10px;
-}
-
-#custom-power {
-  /*border-right: 2px solid rgba(17,17,27,0.600000);*/
-  padding-right: 14px;
-  padding-left: 10px;
-} 
-
 #custom-wlogout {
   /*border-right: 2px solid rgba(17,17,27,0.600000);*/
   color: @teal;
@@ -137,10 +121,9 @@ window#waybar.empty #window {
 }
 tooltip {
   margin-top: 2px;
-  background: rgba(30,30,46,0.800000);
-  border: 2px solid rgba(17,17,27,0.600000);
+  background: rgba(30, 30, 46, 0.8);
+  border: 2px solid rgba(17, 17, 27, 0.6);
 }
 tooltip label {
   color: @text;
 }
-
