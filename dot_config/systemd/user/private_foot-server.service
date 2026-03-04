@@ -2,6 +2,7 @@
 Description=Foot terminal server
 After=graphical-session.target
 BindsTo=graphical-session.target
+PartOf=theme-reload.target
 ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]

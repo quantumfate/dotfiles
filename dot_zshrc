@@ -4,6 +4,7 @@ fi
 export LESS="-R"  # or
 export MANPAGER="less -R"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 typeset -U path cdpath fpath manpath
@@ -94,6 +95,11 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath' # 
 zstyle ':fzf-tab:complete:cd:*' fzf-tab-group-order \
   directory \
   alias
+
+export FZF_DEFAULT_OPTS="--bind 'tab:down,shift-tab:up'"
+export SKIM_DEFAULT_OPTIONS="--bind 'tab:down,shift-tab:up'" # for tms
+
+source <(COMPLETE=zsh tms)
 
 ## History
 # History options should be set in .zshrc and after oh-my-zsh sourcing.

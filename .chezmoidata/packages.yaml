@@ -15,6 +15,7 @@ commonPackages:
       - lazygit
       - plocate
       - tmux
+      - tmux-sessionizer
       - neovim
       - lesspipe
       - fd

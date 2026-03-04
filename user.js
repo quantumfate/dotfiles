@@ -172,11 +172,11 @@ user_pref("browser.discovery.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref(
   "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
-  false,
+  false
 );
 user_pref(
   "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
-  false,
+  false
 );
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutConfig.showWarning", false);
@@ -257,7 +257,7 @@ user_pref("browser.startup.page", 1);
 user_pref("browser.safebrowsing.downloads.enabled", false);
 user_pref(
   "browser.safebrowsing.downloads.remote.block_potentially_unwanted",
-  false,
+  false
 );
 user_pref("browser.translations.enable", false);
 user_pref("privacy.clearOnShutdown_v2.formdata", true);
@@ -307,7 +307,7 @@ user_pref("zen.workspaces.force-container-workspace", true);
 user_pref("services.sync.engine.passwords", false);
 user_pref(
   "services.sync.declinedEngines",
-  "workspaces,passwords,creditcards,addresses",
+  "workspaces,passwords,creditcards,addresses"
 );
 
 // === Sidebar ===

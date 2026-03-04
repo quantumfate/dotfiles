@@ -39,19 +39,18 @@ script_dir=$HOME/.local/share/own-scripts
 
 declare -A repos=(
   #["<repo:stream>="<repo-owner>:<protocol>:<website>:<target-dir>:<callback>"]
-  ["hypr:down"]="quantumfate:https:github:$config_dir/hypr:reload_hyprland"
-  ["hypr:up"]="quantumfate:ssh:github:$github_dir/hypr:no_callback"
-  ["dofus-scripts:down"]="quantumfate:ssh:gitlab:$script_dir/dofus-scripts:no_callback"
-  ["dofus-scripts:up"]="quantumfate:ssh:gitlab:$gitlab_dir/dofus-scripts:no_callback"
-  ["nvim:up"]="quantumfate:ssh:github:$github_dir/nvim:no_callback"
-  ["security-and-privacy:down"]="quantumfate:ssh:gitlab:$script_dir/security-and-privacy:no_callback"
-  ["security-and-privacy:up"]="quantumfate:ssh:gitlab:$gitlab_dir/security-and-privacy:no_callback"
-  ["scripts:up"]="quantumfate:ssh:github:$script_dir/scripts:no_callback"
-  ["scripts:down"]="quantumfate:ssh:github:$script_dir/scripts:no_callback"
+  ["hypr:down"]="quantumfate:https:github:$config_dir:reload_hyprland"
+  ["hypr:up"]="quantumfate:ssh:github:$github_dir:no_callback"
+  ["dofus-scripts:down"]="quantumfate:ssh:gitlab:$script_dir:no_callback"
+  ["dofus-scripts:up"]="quantumfate:ssh:gitlab:$gitlab_dir:no_callback"
+  ["nvim:up"]="quantumfate:ssh:github:$github_dir:no_callback"
+  ["security-and-privacy:down"]="quantumfate:ssh:gitlab:$script_dir:no_callback"
+  ["security-and-privacy:up"]="quantumfate:ssh:gitlab:$gitlab_dir:no_callback"
+  ["scripts:up"]="quantumfate:ssh:github:$script_dir:no_callback"
+  ["scripts:down"]="quantumfate:ssh:github:$script_dir:no_callback"
 )
 
 # Create necessary directories
-mkdir -p ~/Projects/{gitlab,github}
 mkdir -p "$script_dir"
 
 echo "Updating repositories..."
@@ -66,17 +65,20 @@ for repo_info in "${!repos[@]}"; do
     git_url="https://$repository.com/$owner/$repo_name"
   fi
 
-  if [ ! -d "$destination" ]; then
+  mkdir -p "$destination/$owner"
+  target_path="$destination/$owner/$repo_name"
+
+  if [ ! -d "$target_path" ]; then
     echo "  Cloning $repo_name..."
-    git clone -q "$git_url" "$destination"
+    git clone -q "$git_url" "$target_path"
     echo "  ✓ $repo_name ${repo_type}stream cloned"
     $callback
   else
     # Directory exists - check if it's a valid git repo
-    if ! is_git_repo "$destination"; then
-      if prompt_remove_directory "$destination"; then
+    if ! is_git_repo "$target_path"; then
+      if prompt_remove_directory "$target_path"; then
         echo "  Cloning $repo_name..."
-        git clone -q "$git_url" "$destination"
+        git clone -q "$git_url" "$target_path"
         echo "  ✓ $repo_name ${repo_type}stream cloned"
         $callback
       fi
@@ -84,7 +86,7 @@ for repo_info in "${!repos[@]}"; do
     fi
 
     if [[ $repo_type == "down" ]]; then
-      cd "$destination"
+      cd "$destination/$repo_name"
       output=$(git pull 2>&1)
       if [[ "$output" == *"Already up to date"* ]]; then
         echo "  ✓ $owner/$repo_name ${repo_type}stream is up to date"
