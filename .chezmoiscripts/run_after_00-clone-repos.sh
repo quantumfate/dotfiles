@@ -49,6 +49,7 @@ declare -A repos=(
   ["scripts:down"]="quantumfate:ssh:github:project:no_callback"
   ["zen:up"]="quantumfate:ssh:gitlab:project:no_callback"
   ["zen:down"]="quantumfate:ssh:gitlab:script:no_callback"
+  ["kbd75-rev2:up"]="quantumfate:ssh:github:project:no_callback"
 )
 
 echo "Updating repositories..."

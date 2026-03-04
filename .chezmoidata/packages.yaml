@@ -267,6 +267,9 @@ desktopPackages:
       - ollama-cuda13-bin
       - open-webui
 
+      - qmk
+      - dos2unix
+
 laptopPackages:
   linux:
     arch:

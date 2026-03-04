@@ -63,10 +63,10 @@
         "keyboard-name": "kbdfans-kbd75-rev2"
     },
     "custom/brightness": {
-        "exec": "~/.local/share/own-scripts/scripts/wrapper/brightness.sh --get-with-icon",
+        "exec": "~/.local/share/own-scripts/github/quantumfate/scripts/wrapper/brightness.sh --get-with-icon",
         "scroll-step": 5.0,
-        "on-scroll-up": "~/.local/share/own-scripts/scripts/wrapper/brightness.sh --inc",
-        "on-scroll-down": "~/.local/share/own-scripts/scripts/wrapper/brightness.sh --dec",
+        "on-scroll-up": "~/.local/share/own-scripts/github/quantumfate/scripts/wrapper/brightness.sh --inc",
+        "on-scroll-down": "~/.local/share/own-scripts/github/quantumfate/scripts/wrapper/brightness.sh --dec",
         "smooth-scrolling-threshold": 1,
         "restart-interval": 1
     },
@@ -91,8 +91,8 @@
         "scroll-step": 5.0,
         "on-click": "pamixer -t",
         "on-click-right": "kitty --class Wiremix wiremix",
-        "on-scroll-up": "~/.local/share/own-scripts/scripts/wrapper/volume.sh --inc",
-        "on-scroll-down": "~/.local/share/own-scripts/scripts/wrapper/volume.sh --dec",
+        "on-scroll-up": "~/.local/share/own-scripts/github/quantumfate/scripts/wrapper/volume.sh --inc",
+        "on-scroll-down": "~/.local/share/own-scripts/github/quantumfate/scripts/wrapper/volume.sh --dec",
         "smooth-scrolling-threshold": 1
     },
     "clock": {
@@ -130,7 +130,7 @@
         }
     },
     "custom/mako": {
-        "exec": "~/.local/share/own-scripts/scripts/interface/mako.sh",
+        "exec": "~/.local/share/own-scripts/github/quantumfate/scripts/interface/mako.sh",
         "on-click": "makoctl mode -t do-not-disturb",
         "restart-interval": 1
     },
