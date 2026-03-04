@@ -36,7 +36,7 @@ DesktopNames=wlroots
 Type=Application
 MANGO_UWSM
 
-SRC="$HOME/.local/share/own-scripts/security-and-privacy/zen-dispatcher.desktop"
+SRC="$HOME/.local/share/own-scripts/gitlab/quantumfate/security-and-privacy/zen-dispatcher.desktop"
 DEST="/usr/share/applications/zen-dispatcher.desktop"
 
 if ! [ -f "$SRC" ]; then
