@@ -1,3 +1,13 @@
+[init]
+	defaultBranch = "main"
+
+[pull]
+	rebase = false
+
+[user]
+	name = "Leon Connor Holm"
+  email = 62796852+quantumfate@users.noreply.github.com
+
 [includeIf "gitdir:~/Projects/github/"]
 	path = "~/.config/git/githubconf"
 
@@ -13,11 +23,4 @@
 [includeIf "gitdir:~/.local/share/chezmoi/"]
 	path = "~/.config/git/githubconf"
 
-[init]
-	defaultBranch = "main"
 
-[pull]
-	rebase = false
-
-[user]
-	name = "Leon Connor Holm"

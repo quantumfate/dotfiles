@@ -213,6 +213,10 @@ alias update='sudo pacman -Syu'
 # Get fastest mirrors
 alias mirror="sudo cachyos-rate-mirrors"
 
+# Git specific aliases
+alias gl="git log --oneline"
+alias glmerge="git log --oneline --decorate --graph --parents"
+
 # Help people new to Arch
 alias apt='man pacman'
 alias apt-get='man pacman'
