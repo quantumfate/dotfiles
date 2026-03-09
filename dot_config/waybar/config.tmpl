@@ -10,7 +10,8 @@
     "margin-top": 0,
 {{- if eq .chezmoi.hostname "quantum-desktop" }}
     "modules-center": [
-      "hyprland/window"
+      "hyprland/window",
+      "hyprland/submap"
     ],
     "modules-left": [
       "hyprland/workspaces",
@@ -29,7 +30,8 @@
     ],
 {{- else if eq .chezmoi.hostname "quantum-laptop" }}
     "modules-center": [
-      "hyprland/window"
+      "hyprland/window",
+      "hyprland/submap"
     ],
     "modules-left": [
       "hyprland/workspaces",
@@ -49,7 +51,8 @@
     ],
 {{- else }}
     "modules-center": [
-      "hyprland/window"
+      "hyprland/window",
+      "hyprland/submap"
     ],
     "modules-left": [
       "hyprland/workspaces",

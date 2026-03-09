@@ -17,7 +17,7 @@ outer-margin=40
 output=DP-1
 padding=15,30,15,30
 text-color=#cad3f5
-width=500
+width=700
 progress-color=over #363a4f
 default-timeout=3000
 
@@ -26,28 +26,20 @@ anchor=top-left
 default-timeout=3000
 format=<b>%a</b>\n<b>%s</b>\n%b
 text-alignment=center
-width=220
+
+
+[app-name="Dofus"]
+anchor=top-center
+default-timeout=3000
+format=<b>%a</b>\n<b>%s</b>\n%b
+text-alignment=center
+width=400
 
 [app-name="Dofus Launch"]
 anchor=top-left
 default-timeout=3000
 format=<b>%a</b>\n<b>%s</b>\n%b
 text-alignment=center
-width=220
-
-[app-name="Team Pioneer"]
-anchor=top-left
-default-timeout=3000
-format=<b>%a</b>\n<b>%s</b>\n%b
-text-alignment=center
-width=220
-
-[app-name="Team Farm"]
-anchor=top-left
-default-timeout=3000
-format=<b>%a</b>\n<b>%s</b>\n%b
-text-alignment=center
-width=220
 
 [app-name=Spotify]
 anchor=bottom-left

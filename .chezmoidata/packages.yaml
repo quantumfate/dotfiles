@@ -164,6 +164,7 @@ commonPackages:
       - lua-language-server
       - rust-analyzer
       - git-filter-repo
+      - github-cli
 
       # Package management
       - yay

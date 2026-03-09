@@ -94,7 +94,7 @@ window {
 background-color: @base;
 border: 2;
 border-color: @mauve;
-border-radius: 8;
+border-radius: 0;
 height: 600;
 padding: 10px 0px 10px 0px;
 width: 800;

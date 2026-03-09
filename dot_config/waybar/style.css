@@ -113,6 +113,10 @@ window#waybar.empty #window {
   background-color: transparent;
 }
 
+#submap {
+  color: @teal;
+}
+
 #custom-wlogout {
   /*border-right: 2px solid rgba(17,17,27,0.600000);*/
   color: @teal;

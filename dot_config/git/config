@@ -2,7 +2,7 @@
 	defaultBranch = "main"
 
 [pull]
-	rebase = false
+	rebase = true
 
 [user]
 	name = "Leon Connor Holm"
