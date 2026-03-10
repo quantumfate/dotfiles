@@ -2,7 +2,7 @@
 set -euo pipefail
 
 echo ""
-echo "[INFO]: Installing User Units..."
+echo "[INFO] Installing User Units..."
 
 mkdir -p ~/.config/systemd/user.conf.d/
 cat >~/.config/systemd/user.conf.d/timeout.conf <<'EOF'

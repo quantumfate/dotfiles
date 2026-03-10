@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo ""
-echo "[INFO]: System Package Manager ..."
+echo "[INFO] System Package Manager ..."
 
 if command -v pacman >/dev/null 2>&1; then
   if command -v yay >/dev/null 2>&1; then

@@ -4,7 +4,7 @@
 set -euo pipefail
 
 echo ""
-echo "[INFO]: Installing Desktop Files..."
+echo "[INFO] Installing Desktop Files..."
 sudo tee /usr/share/wayland-sessions/sway-uwsm.desktop >/dev/null <<'SWAY_UWSM'
 [Desktop Entry]
 Name=Sway (uwsm-managed)

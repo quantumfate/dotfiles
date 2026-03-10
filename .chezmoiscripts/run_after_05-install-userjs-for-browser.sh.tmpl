@@ -2,7 +2,7 @@
 set -e
 
 echo ""
-echo "[INFO]: Installing Browser Profiles..."
+echo "[INFO] Installing Browser Profiles..."
 
 firefox --headless >/dev/null 2>&1 &
 FIREFOX_PID=$!
@@ -34,7 +34,7 @@ fi
 
 
 echo ""
-echo "[INFO]: Installing User.js ..."
+echo "[INFO] Installing User.js ..."
 declare -A targets=(
   ["Zen"]="$HOME/.zen"
   ["Firefox"]="$HOME/.config/mozilla/firefox"

@@ -4,7 +4,7 @@ REPO_DIR="${HOME}/.cache/catppuccin-ohmyzsh"
 THEME_DIR="${HOME}/.config/oh-my-zsh/themes"
 
 echo ""
-echo "[INFO]: OH-MY-ZSH Theme ..."
+echo "[INFO] OH-MY-ZSH Theme ..."
 
 if [ -d "$REPO_DIR" ]; then
   git -C "$REPO_DIR" pull --quiet

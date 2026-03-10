@@ -10,6 +10,6 @@ if pass-cli vault list >/dev/null 2>&1; then
 fi
 
 echo ""
-echo "[INFO]: Login to password manager required ..."
+echo "[INFO] Login to password manager required ..."
 
 pass-cli login --interactive

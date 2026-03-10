@@ -4,7 +4,7 @@ set -e
 {{ if not .devenv }}exit 0{{ end }}
 
 echo ""
-echo "[INFO]: Preparing Rust dependencies for tree-sitter-cli..."
+echo "[INFO] Preparing Rust dependencies for tree-sitter-cli..."
 
 # Check if rustup is installed
 if ! command -v rustup &>/dev/null; then

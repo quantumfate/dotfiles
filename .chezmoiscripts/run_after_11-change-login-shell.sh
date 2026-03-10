@@ -2,7 +2,7 @@
 set -e
 
 echo ""
-echo "[INFO]: Changing login shell ..."
+echo "[INFO] Changing login shell ..."
 
 CURRENT_SHELL=$(getent passwd "$USER" | cut -d: -f7)
 TARGET_SHELL="/usr/bin/zsh"

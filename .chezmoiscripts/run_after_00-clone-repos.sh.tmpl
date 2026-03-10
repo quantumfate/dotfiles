@@ -47,11 +47,13 @@ declare -A repos=(
   ["security-and-privacy:up"]="quantumfate:ssh:gitlab:project:no_callback"
   ["scripts:up"]="quantumfate:ssh:github:project:no_callback"
   ["scripts:down"]="quantumfate:ssh:github:project:no_callback"
+  {{- if eq .profile "desktop" }}
   ["kbd75-rev2:up"]="quantumfate:ssh:github:project:no_callback"
+  {{- end }}
 )
 
 echo ""
-echo "[INFO]: Updating repositories..."
+echo "[INFO] Updating repositories..."
 
 for repo_info in "${!repos[@]}"; do
   IFS=':' read -r owner protocol repository target callback <<<"${repos[$repo_info]}"

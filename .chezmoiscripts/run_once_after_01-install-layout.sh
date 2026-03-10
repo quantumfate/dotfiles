@@ -6,7 +6,7 @@ XKB_DIR="/usr/share/X11/xkb"
 SOURCE_FILE="$HOME/.local/share/xkb/symbols/dvorak-custom"
 
 echo ""
-echo "[INFO]: Installing custom dvorak layout ..."
+echo "[INFO] Installing custom dvorak layout ..."
 
 # 1. Copy the symbols file (only if changed)
 if ! cmp -s "$SOURCE_FILE" "$XKB_DIR/symbols/$LAYOUT_NAME" 2>/dev/null; then
@@ -80,7 +80,7 @@ fi
 
 # 7. Apply immediately to current TTY without reboot
 if command -v loadkeys &>/dev/null; then
-  sudo loadkeys "$KEYMAP_FILE" 2>/dev/null && echo "✓ Applied keymap to current TTY" || echo "⚠ Could not apply to current TTY (not in a VT?)"
+  sudo loadkeys "$KEYMAP_FILE" 2>/dev/null && echo "  ✓ Applied keymap to current TTY" || echo "  ⚠ Could not apply to current TTY (not in a VT?)"
 fi
 
 if command -v localectl &>/dev/null; then
