@@ -25,7 +25,7 @@
       "clock",
       "tray",
       "custom/mako",
-{{- if .profile "laptop" }}
+{{- if eq .profile "laptop" }}
       "battery",
 {{- end }}
       "custom/wlogout"

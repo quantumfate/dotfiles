@@ -73,7 +73,7 @@ set -g status-right "#{E:@catppuccin_status_application}"
 set -agF status-right "#{E:@catppuccin_status_cpu}"
 set -ag status-right "#{E:@catppuccin_status_session}"
 set -ag status-right "#{E:@catppuccin_status_uptime}"
-{{- if eq .chezmoi.hostname "quantum-laptop" }}
+{{- if eq .profile "laptop" }}
 set -agF status-right "#{E:@catppuccin_status_battery}"
 {{- end }}
 set -agF status-right " #(tms sessions)"
