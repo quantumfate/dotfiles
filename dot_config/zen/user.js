@@ -184,11 +184,13 @@ user_pref("browser.compactmode.show", true);
 user_pref("browser.privateWindowSeparation.enabled", false); // WINDOWS
 
 /** AI ***/
-user_pref("browser.ml.enable", false);
-user_pref("browser.ml.chat.enabled", false);
-user_pref("browser.ml.chat.menu", false);
-user_pref("browser.tabs.groups.smart.enabled", false);
-user_pref("browser.ml.linkPreview.enabled", false);
+user_pref("browser.ml.enable", true);
+user_pref("browser.translations.enable", true);
+user_pref("browser.translations.autoTranslate", false);
+user_pref("browser.ml.chat.enabled", true);
+user_pref("browser.ml.chat.menu", true);
+user_pref("browser.tabs.groups.smart.enabled", true);
+user_pref("browser.ml.linkPreview.enabled", true);
 
 /** FULLSCREEN NOTICE ***/
 user_pref("full-screen-api.transition-duration.enter", "0 0");
@@ -250,7 +252,6 @@ user_pref("browser.startup.page", 1);
 // === Privacy extras (beyond Betterfox) ===
 user_pref("browser.safebrowsing.downloads.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
-user_pref("browser.translations.enable", false);
 user_pref("privacy.clearOnShutdown_v2.formdata", true);
 user_pref("privacy.fingerprintingProtection", true);
 user_pref("privacy.query_stripping.enabled", true);
@@ -279,13 +280,13 @@ user_pref("signon.rememberSignons", false);
 user_pref("dom.forms.autocomplete.formautofill", true); // address autofill only
 
 // === AI blocking (Zen-specific) ===
-user_pref("browser.ai.control.default", "blocked");
-user_pref("browser.ai.control.linkPreviewKeyPoints", "blocked");
-user_pref("browser.ai.control.pdfjsAltText", "blocked");
-user_pref("browser.ai.control.sidebarChatbot", "blocked");
-user_pref("browser.ai.control.smartTabGroups", "blocked");
-user_pref("browser.ai.control.translations", "blocked");
-user_pref("pdfjs.enableAltText", false);
+user_pref("browser.ai.control.default", "enabled");
+user_pref("browser.ai.control.linkPreviewKeyPoints", "enabled");
+user_pref("browser.ai.control.pdfjsAltText", "enabled");
+user_pref("browser.ai.control.sidebarChatbot", "enabled");
+user_pref("browser.ai.control.smartTabGroups", "enabled");
+user_pref("browser.ai.control.translations", "enabled");
+user_pref("pdfjs.enableAltText", true);
 
 // === Zen-specific ===
 user_pref("browser.link.open_newwindow.override.external", 7);
@@ -324,7 +325,8 @@ user_pref("general.smoothScroll.stopDecelerationWeighting", "0.6"); // default=.
 user_pref("uc.fixcontext.applyzenaccent", true);
 user_pref("uc.fixcontext.applyzengradient", true);
 user_pref("uc.fixcontext.ergonomicsfortabs", false);
-user_pref("uc.fixcontext.restoreicons", true);
+user_pref("uc.fixcontext.restoreicons", false);
+
 user_pref("uc.hidecontext.askchatbot", true);
 user_pref("uc.hidecontext.bookmark", false);
 user_pref("uc.hidecontext.copylink", true);
@@ -339,12 +341,14 @@ user_pref("uc.hidecontext.selectalltabs", true);
 user_pref("uc.hidecontext.selectalltext", true);
 user_pref("uc.hidecontext.sendtodevice", true);
 user_pref("uc.hidecontext.separators", false);
+
 user_pref("mod.lean.bottom-buttons", true);
 user_pref("mod.lean.hide-zoom", true);
 user_pref("mod.lean.pinned-ext", false);
 user_pref("mod.lean.pinned-ext.workspaces", false);
-user_pref("mod.lean.show-pageactions", true);
+user_pref("mod.lean.show-pageactions", false);
 user_pref("mod.lean.show-translation", true);
+
 user_pref("theme-better_find_bar-enable_custom_background", false);
 user_pref("theme.better_find_bar.custom_background", "#112233");
 user_pref("theme.better_find_bar.hide_find_status", false);
@@ -358,6 +362,8 @@ user_pref("theme.better_find_bar.instant_animations", false);
 user_pref("theme.better_find_bar.textbox_width", 800);
 user_pref("theme.better_find_bar.transparent_background", true);
 user_pref("theme.better_find_bar.vertical_position", "top");
+
 user_pref("theme.better_uniextbtn.custom", "url(chrome://branding/content/icon32.png)");
 user_pref("theme.better_uniextbtn.default", "Default");
+
 user_pref("mod.ivaon.urlbar.hide_results", 2);
