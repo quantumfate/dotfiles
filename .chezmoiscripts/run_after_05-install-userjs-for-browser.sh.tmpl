@@ -26,17 +26,21 @@ echo "  ✓ Zen Dofus"
 
 wait 2>/dev/null || true
 
-SOURCE_FILE="${CHEZMOI_SOURCE_DIR:-$HOME/.local/share/chezmoi}/user.js"
+SOURCE_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/zen/user.js"
 if [ ! -f "$SOURCE_FILE" ]; then
   echo "Source file not found: $SOURCE_FILE"
   exit 0
 fi
 
+ZEN_EXTRAS=(
+  "${XDG_CONFIG_HOME:-$HOME/.config}/zen/zen-themes.json"
+  "${XDG_CONFIG_HOME:-$HOME/.config}/zen/zen-keyboard-shortcuts.json"
+)
 
 echo ""
-echo "[INFO] Installing User.js ..."
+echo "[INFO] Installing User.js and settings ..."
 declare -A targets=(
-  ["Zen"]="$HOME/.zen"
+  ["Zen"]="${HOME}/.zen"
   ["Firefox"]="$HOME/.config/mozilla/firefox"
 )
 
@@ -52,9 +56,20 @@ for name in "${!targets[@]}"; do
     if [[ "$dir_name" == *.Default\ Profile ]] || [[ "$dir_name" == "Profile Groups" ]] || [[ "$dir_name" == "firefox-mpris" ]] || [[ "$dir_name" == "Pending Pings" ]] || [[ "$dir_name" == "Crash Reports" ]]; then
       continue
     fi
+
     target_link="$profile_dir/user.js"
-    [ -e "$target_link" ] && rm -f "$target_link"
+    [ -e "$target_link" ] || [ -L "$target_link" ] && rm -f "$target_link"
     ln -s "$SOURCE_FILE" "$target_link"
     echo "  ✓ ${name}: symlinked user.js to $(basename ${profile_dir})"
+
+    if [[ "$name" == "Zen" ]]; then
+      for extra in "${ZEN_EXTRAS[@]}"; do
+        [ ! -f "$extra" ] && echo "  [WARN] Extra file not found: $extra" && continue
+        extra_link="$profile_dir/$(basename $extra)"
+        [ -e "$extra_link" ] || [ -L "$extra_link" ] && rm -f "$extra_link"
+        ln -s "$extra" "$extra_link"
+        echo "  ✓ Zen: symlinked $(basename $extra) to $(basename ${profile_dir})"
+      done
+    fi
   done
 done
