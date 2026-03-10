@@ -4,8 +4,10 @@ fi
 export LESS="-R"  # or
 export MANPAGER="less -R"
 export PATH="$HOME/.local/bin:$PATH"
+{{- if .devenv }}
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+{{- end }}
 
 typeset -U path cdpath fpath manpath
 fpath+=(/usr/share/zsh/site-functions /usr/share/zsh/$ZSH_VERSION/functions /usr/share/zsh/vendor-completions)
@@ -182,7 +184,6 @@ fi
 bindkey ' ' magic-space
 
 ## Useful aliases
-alias -- nvim=nvim.sh
 alias -- feh=feh_scaled
 alias -- ranger=ranger-cd
 
