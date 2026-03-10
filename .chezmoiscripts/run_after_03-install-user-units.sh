@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+echo ""
+echo "[INFO]: Installing User Units..."
+
 mkdir -p ~/.config/systemd/user.conf.d/
 cat >~/.config/systemd/user.conf.d/timeout.conf <<'EOF'
 [Manager]
@@ -28,12 +31,11 @@ units=(
   proton-mail.service
 )
 
-echo ""
-echo "Reloading systemd user daemon..."
-systemctl --user daemon-reload
+systemctl --user daemon-reload >/dev/null
+echo "  ✓ Systemd user daemon reloaded"
 
-echo ""
-echo "Enabling units..."
 for unit in "${units[@]}"; do
-  systemctl --user enable "$unit"
+  systemctl --user enable "$unit" >/dev/null
 done
+
+echo "  ✓ Units enabled"

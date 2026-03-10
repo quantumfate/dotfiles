@@ -3,9 +3,10 @@
 # Sets up greetd + tuigreet (NotAShelf fork) + uwsm as the display manager.
 #
 
-echo "Installing tuigreet ..."
+echo ""
+echo "[INFO]: Installing tuigreet ..."
 if passwd -S "{{ .chezmoi.username }}" | grep -qE ' L | NP '; then
-  echo "ERROR: Your user password is not set. Run: passwd $USER" >&2
+  echo "[ERROR]: Your user password is not set. Run: passwd $USER" >&2
   echo "Run 'su -c \"passwd -S {{ .chezmoi.username }}\"'"
   exit 1
 fi
@@ -17,11 +18,9 @@ GREETD_CONFIG="/etc/greetd/config.toml"
 GREETER_USER="greeter"
 
 if ! pacman -Qi greetd &>/dev/null; then
-  echo "==> Installing greetd..."
-  sudo pacman -S --noconfirm greetd
+  sudo pacman -S --noconfirm greetd > /dev/null 2>&1
+  echo "  ✓ greetd installed"
 fi
-
-
 
 # Check if update is needed
 NEEDS_BUILD=false
@@ -37,17 +36,17 @@ else
 fi
 
 if [ "$NEEDS_BUILD" = true ]; then
-  echo "==> Installing NotAShelf's tuigreet fork via makepkg..."
-
-  # Install build dependencies
   if ! command -v cargo &>/dev/null; then
-    sudo pacman -S --noconfirm rust
+    sudo pacman -S --noconfirm rust > /dev/null 2>&1
+    echo "  ✓ rust installed"
   fi
   if ! command -v git &>/dev/null; then
-    sudo pacman -S --noconfirm git
+    sudo pacman -S --noconfirm git > /dev/null 2>&1
+    echo "  ✓ git installed"
   fi
   if ! pacman -Qi base-devel &>/dev/null; then
-    sudo pacman -S --noconfirm base-devel
+    sudo pacman -S --noconfirm base-devel > /dev/null 2>&1
+    echo "  ✓ base-devel installed"
   fi
 
   PKGBUILD_DIR="/tmp/tuigreet-notashelf-git"
@@ -97,56 +96,55 @@ PKGBUILD_EOF
   cd "$PKGBUILD_DIR"
   makepkg -si --noconfirm
   rm -rf "$PKGBUILD_DIR"
-  echo "✓ tuigreet (NotAShelf fork) updated"
+  echo "  ✓ tuigreet (NotAShelf fork) updated"
 else
-  echo "✓ tuigreet (NotAShelf fork) already up to date"
+  echo "  ✓ tuigreet (NotAShelf fork) already up to date"
 fi
 
 if ! command -v uwsm &>/dev/null; then
-  echo "==> Installing uwsm..."
   if command -v paru &>/dev/null; then
-    paru -S --noconfirm uwsm
+    paru -S --noconfirm uwsm > /dev/null
   elif command -v yay &>/dev/null; then
-    yay -S --noconfirm uwsm
+    yay -S --noconfirm uwsm > /dev/null
   else
     echo "ERROR: No AUR helper found. Please install uwsm manually." >&2
     exit 1
   fi
+  echo "  ✓ uwsm installed"
 fi
 
 if ! pacman -Qi gnome-keyring &>/dev/null; then
-  echo "==> Installing gnome-keyring..."
-  sudo pacman -S --noconfirm gnome-keyring
+  sudo pacman -S --noconfirm gnome-keyring > /dev/null
+  echo "  ✓ gnome-keyring installed"
 fi
 
 PAM_GREETD="/etc/pam.d/greetd"
 if ! grep -q "pam_gnome_keyring" "$PAM_GREETD" 2>/dev/null; then
-  echo "==> Configuring PAM for gnome-keyring auto-unlock..."
   sudo tee -a "$PAM_GREETD" >/dev/null <<'EOF'
 auth     optional  pam_gnome_keyring.so
 session  optional  pam_gnome_keyring.so auto_start
 EOF
+  echo "  ✓ PAM configured for gnome-keyring auto-unlock"
 fi
 
 AUTOLOGIN_OVERRIDE="/etc/systemd/system/getty@tty1.service.d/autologin.conf"
 if [ -f "$AUTOLOGIN_OVERRIDE" ]; then
-  echo "==> Removing systemd autologin..."
   sudo rm "$AUTOLOGIN_OVERRIDE"
   sudo systemctl daemon-reload
   sudo systemctl disable getty@tty1
+  echo "  ✓ systemd autologin removed"
 fi
 
 if ! id "$GREETER_USER" &>/dev/null; then
-  echo "==> Creating greeter user..."
   sudo useradd -M -G video "$GREETER_USER"
+  echo "  ✓ greeter user created"
 fi
 
-echo "==> Creating tuigreet cache directory..."
 sudo mkdir -p /var/cache/tuigreet
 sudo chown "$GREETER_USER:$GREETER_USER" /var/cache/tuigreet
 sudo chmod 0755 /var/cache/tuigreet
+echo "  ✓ tuigreet cache directory created"
 
-echo "==> Writing greetd config..."
 sudo mkdir -p /etc/greetd
 sudo tee "$GREETD_CONFIG" >/dev/null <<'EOF'
 [terminal]
@@ -156,8 +154,8 @@ vt = 1
 command = "tuigreet --config /etc/tuigreet/config.toml"
 user = "greeter"
 EOF
+echo "  ✓ greetd config written"
 
-echo "==> Writing tuigreet config..."
 sudo mkdir -p /etc/tuigreet/
 sudo tee /etc/tuigreet/config.toml >/dev/null <<'EOF'
 [display]
@@ -215,8 +213,8 @@ input = "white"
 action = "bright-blue"
 button = "magenta"
 EOF
+echo "  ✓ tuigreet config written"
 
-# Prevent greetd from restarting on suspend/resume
 sudo tee /etc/systemd/system/greetd.service.d/sleep.conf >/dev/null <<'EOF'
 [Unit]
 StopWhenUnneeded=no
@@ -231,13 +229,10 @@ sudo systemctl daemon-reload
 
 for dm in sddm gdm lightdm lxdm; do
   if systemctl is-enabled "$dm" &>/dev/null; then
-    echo "  Disabling $dm..."
     sudo systemctl disable "$dm"
+    echo "  ✓ $dm disabled"
   fi
 done
 
 sudo systemctl enable greetd
-
-echo "==> Done. greetd with tuigreet (NotAShelf fork) + uwsm is configured."
-echo "    Changes take effect on next boot (or: sudo systemctl start greetd)"
-echo ""
+echo "  ✓ greetd enabled"

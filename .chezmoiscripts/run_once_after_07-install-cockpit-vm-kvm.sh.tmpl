@@ -1,6 +1,9 @@
 #!/bin/sh
 {{ if .vms }}
 
+echo ""
+echo "[INFO]: Installing cockpit ..."
+
 user="{{ .chezmoi.username }}"
 
 # Enable and start services idempotently
@@ -17,13 +20,16 @@ if ! groups "$user" | grep -q wheel; then
     sudo usermod -aG wheel "$user"
 fi
 
+echo ""
+echo "[INFO]: Setting up firewall rules for libvirt ..."
+
 echo "Setting up firewall rules..."
 sudo ufw allow in on virbr0
 sudo ufw allow out on virbr0
 sudo ufw route allow in on virbr0
 sudo ufw route allow out on virbr0
 sudo ufw reload
-echo "✓ Cockpit setup complete!"
+echo "  ✓ Cockpit setup complete!"
 echo "  • Access: https://localhost:9090"
 echo "  • Re-login required for new groups"
 echo "  • Run 'chezmoi apply' again after re-login to verify"

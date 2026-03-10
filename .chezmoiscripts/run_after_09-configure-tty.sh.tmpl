@@ -1,13 +1,11 @@
 #!/bin/bash
 
-echo "###################### Configuring TTY  #########################"
-echo ""
-echo ""
-
-sudo -v
 set -euo pipefail
 
-echo "==> Applying Catppuccin Macchiato TTY colors..."
+echo ""
+echo "[INFO] Applying Catppuccin Macchiato TTY colors..."
+
+sudo -v
 
 # Catppuccin Macchiato colors
 # Source: https://github.com/catppuccin/tty
@@ -122,8 +120,8 @@ esac
 {{- if eq .profile "desktop" }}
 # --- Console font for high-res desktop display ---
 if ! pacman -Qi terminus-font &>/dev/null; then
-  echo "==> Installing terminus-font..."
-  sudo pacman -S --noconfirm terminus-font
+  sudo pacman -S --noconfirm terminus-font > /dev/null
+  echo "  ✓ terminus-font installed"
 fi
 
 if ! grep -q "^FONT=ter-v32n" /etc/vconsole.conf 2>/dev/null; then
@@ -132,11 +130,8 @@ if ! grep -q "^FONT=ter-v32n" /etc/vconsole.conf 2>/dev/null; then
   else
     echo "FONT=ter-v32n" | sudo tee -a /etc/vconsole.conf >/dev/null
   fi
-  echo "✓ Set console font to ter-v32n"
+  echo "  ✓ Set console font to ter-v32n"
 else
-  echo "✓ Console font already set"
+  echo "  ✓ Console font already set"
 fi
 {{- end }}
-
-echo "==> TTY theme configuration complete. Reboot to see changes."
-echo ""

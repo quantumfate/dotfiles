@@ -2,22 +2,26 @@
 
 set -e
 
+echo ""
+echo "[INFO]: Installing SSH Keys ..."
+
+
 export PATH="$HOME/.local/bin:$PATH"
 pass-cli vault list >/dev/null 2>&1 || pass-cli login --interactive
 
-{{ if eq .chezmoi.hostname "quantum-desktop" }}
+{{ if eq .profile "desktop" }}
 declare -A ssh_keys=(
   ["gitlab"]="Productivity:gitlab-desktop"
   ["github"]="Productivity:github-desktop"
 )
-{{ else if eq .chezmoi.hostname "quantum-laptop" }}
+{{ else if eq .profile "laptop" }}
 declare -A ssh_keys=(
   ["gitlab"]="Productivity:gitlab-laptop"
   ["github"]="Productivity:github-laptop"
 )
 {{ else }}
-echo "Undetected hostname {{ .chezmoi.hostname }}"
-exit 1
+echo "[WARN]: Skipping SSH key installation"
+exit 0
 {{ end }}
 
 mkdir -p ~/.ssh
@@ -35,4 +39,6 @@ for target in "${!ssh_keys[@]}"; do
 
   pass-cli item view --vault-name $vault_name --item-title $item_title --output=json | jq -r "$name_space.public_key" >$public_key_file
   chmod 644 $public_key_file
+
+  echo "  ✓ $target done!"
 done

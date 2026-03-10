@@ -3,7 +3,8 @@
 
 set -euo pipefail
 
-echo "Installing Sway uwsm desktop file..."
+echo ""
+echo "[INFO]: Installing Desktop Files..."
 sudo tee /usr/share/wayland-sessions/sway-uwsm.desktop >/dev/null <<'SWAY_UWSM'
 [Desktop Entry]
 Name=Sway (uwsm-managed)
@@ -14,6 +15,8 @@ DesktopNames=sway
 Type=Application
 SWAY_UWSM
 
+echo "  ✓ Sway uwsm desktop file installed"
+
 SRC="$HOME/.local/share/own-scripts/gitlab/quantumfate/security-and-privacy/zen-dispatcher.desktop"
 DEST="/usr/share/applications/zen-dispatcher.desktop"
 
@@ -23,12 +26,12 @@ if ! [ -f "$SRC" ]; then
 fi
 
 if cmp -s "$SRC" "$DEST" 2>/dev/null; then
-  echo "Already up to date."
+  echo "  ✓ Zen Dispatcher already installed"
   exit 0
 fi
 
-echo "Installing $SRC → $DEST"
 sudo cp "$SRC" "$DEST"
 sudo chmod 644 "$DEST"
 sudo update-desktop-database /usr/share/applications
-echo "Done."
+
+echo "  ✓ Zen Dispatcher Desktop File"

@@ -1,7 +1,10 @@
 #!/bin/bash
 
-echo "Setting Catppuccin Papirus older theme..."
-papirus-folders -C cat-macchiato-mauve --theme Papirus-Dark
+echo ""
+echo "[INFO]: Finalising themes ..."
 
-echo "Applying GKT settings..."
-nwg-look -a
+papirus-folders -C cat-macchiato-mauve --theme Papirus-Dark >/dev/null
+echo "  ✓ Cattppuccin Papirus Folders"
+
+nwg-look -a >/dev/null 2>&1
+echo "  ✓ GTK Settings"

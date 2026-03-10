@@ -3,6 +3,9 @@
 REPO_DIR="${HOME}/.cache/catppuccin-ohmyzsh"
 THEME_DIR="${HOME}/.config/oh-my-zsh/themes"
 
+echo ""
+echo "[INFO]: OH-MY-ZSH Theme ..."
+
 if [ -d "$REPO_DIR" ]; then
   git -C "$REPO_DIR" pull --quiet
 else
@@ -12,3 +15,5 @@ fi
 ln -sf "$REPO_DIR/catppuccin.zsh-theme" "$THEME_DIR/catppuccin.zsh-theme"
 mkdir -p "$THEME_DIR/catppuccin-flavors"
 ln -sf "$REPO_DIR/catppuccin-flavors"/* "$THEME_DIR/catppuccin-flavors/"
+
+echo "  ✓ OH-MY-ZSH Theme installed"

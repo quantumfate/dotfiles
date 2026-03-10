@@ -1,9 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 {{- if eq .profile "desktop" }}
-echo "==> Configuring display/VT settings for desktop..."
+echo ""
+echo "[INFO] Configuring display/VT settings for desktop profile..."
 
-# --- Detect active bootloader (mirrors run_after_09-configure-tty.sh.tmpl) ---
 BOOTLOADER=""
 if [ -d /sys/firmware/efi ] && command -v efibootmgr &>/dev/null; then
   EFI_ENTRIES=$(efibootmgr 2>/dev/null || echo "")
@@ -22,6 +22,8 @@ if [ -z "$BOOTLOADER" ]; then
   fi
 fi
 
+echo "  Active bootloader: $BOOTLOADER"
+
 # --- Bootloader-aware kernel param helper ---
 NEEDS_UPDATE=false
 
@@ -34,9 +36,9 @@ add_kernel_param() {
       if ! grep -q "$param" "$conf" 2>/dev/null; then
         sudo sed -i "s|KERNEL_CMDLINE\[default\]+=\"\(.*\)\"|KERNEL_CMDLINE[default]+=\"\1 $param\"|" "$conf"
         NEEDS_UPDATE=true
-        echo "✓ Added '$param' to Limine kernel cmdline"
+        echo "  ✓ Added '$param' to Limine kernel cmdline"
       else
-        echo "✓ '$param' already in Limine kernel cmdline"
+        echo "  ✓ '$param' already in Limine kernel cmdline"
       fi
       ;;
     grub)
@@ -44,9 +46,9 @@ add_kernel_param() {
       if ! grep -q "$param" "$conf" 2>/dev/null; then
         sudo sed -i "s|^GRUB_CMDLINE_LINUX=\"\(.*\)\"|GRUB_CMDLINE_LINUX=\"\1 $param\"|" "$conf"
         NEEDS_UPDATE=true
-        echo "✓ Added '$param' to GRUB kernel cmdline"
+        echo "  ✓ Added '$param' to GRUB kernel cmdline"
       else
-        echo "✓ '$param' already in GRUB kernel cmdline"
+        echo "  ✓ '$param' already in GRUB kernel cmdline"
       fi
       ;;
     *)
@@ -62,15 +64,12 @@ if [ "$NEEDS_UPDATE" = true ]; then
   case "$BOOTLOADER" in
     limine)
       sudo limine-update
-      echo "✓ Limine config regenerated"
+      echo "  ✓ Limine config regenerated"
       ;;
     grub)
       sudo grub-mkconfig -o /boot/grub/grub.cfg
-      echo "✓ GRUB config regenerated"
+      echo "  ✓ GRUB config regenerated"
       ;;
   esac
 fi
-
-echo "==> Desktop display configuration complete."
-echo "    Reboot required for kernel parameter changes to take effect."
 {{- end }}
