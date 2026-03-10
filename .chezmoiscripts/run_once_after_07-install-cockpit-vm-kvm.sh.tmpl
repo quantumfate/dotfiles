@@ -1,16 +1,7 @@
 #!/bin/sh
 {{ if eq .chezmoi.hostname "quantum-desktop" }}
 
-# Install packages idempotently with yay (skips if already installed)
-if ! command -v yay >/dev/null 2>&1; then
-    echo "yay not found. Install AUR helper first."
-    exit 1
-fi
-
 user="{{ .chezmoi.username }}"
-yay -S --needed cockpit cockpit-docker cockpit-files cockpit-packagekit \
-    cockpit-podman cockpit-machines cockpit-storaged qemu-full libvirt \
-    dnsmasq bridge-utils edk2-ovmf virt-viewer virt-install
 
 # Enable and start services idempotently
 sudo systemctl enable --now libvirtd cockpit.socket 2>/dev/null || true
@@ -26,6 +17,12 @@ if ! groups "$user" | grep -q wheel; then
     sudo usermod -aG wheel "$user"
 fi
 
+echo "Setting up firewall rules..."
+sudo ufw allow in on virbr0
+sudo ufw allow out on virbr0
+sudo ufw route allow in on virbr0
+sudo ufw route allow out on virbr0
+sudo ufw reload
 echo "✓ Cockpit setup complete!"
 echo "  • Access: https://localhost:9090"
 echo "  • Re-login required for new groups"

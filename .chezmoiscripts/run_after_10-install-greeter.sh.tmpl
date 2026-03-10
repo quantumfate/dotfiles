@@ -4,10 +4,7 @@
 # Idempotent: safe to re-run, only acts when needed.
 #
 
-echo "###################### Installing Tuigreet ######################"
-echo ""
-echo ""
-
+echo "Installing tuigreet ..."
 if passwd -S "{{ .chezmoi.username }}" | grep -qE ' L | NP '; then
   echo "ERROR: Your user password is not set. Run: passwd $USER" >&2
   echo "Run 'su -c \"passwd -S {{ .chezmoi.username }}\"'"

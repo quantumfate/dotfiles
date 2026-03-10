@@ -181,6 +181,7 @@ commonPackages:
       - netctl
       - dhclient
       - ufw
+      - dnsmasq
 
       # Bluetooth
       - bluez-hid2hci
@@ -279,6 +280,22 @@ desktopPackages:
 
       - qmk
       - dos2unix
+
+      - cockpit
+      - cockpit-files
+      - cockpit-machines
+      - cockpit-packagekit
+      - cockpit-podman
+      - cockpit-storaged
+      - cockpit-docker
+      - bridge-utils
+      - libvirt
+      - swtpm
+      - qemu-full
+      - virt-viewer
+      - virtio-win
+      - edk2-ovmf
+      - virt-install
 
 laptopPackages:
   linux:

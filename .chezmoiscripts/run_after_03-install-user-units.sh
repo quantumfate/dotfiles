@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "###################### User Units ###############################"
-echo ""
-echo ""
-
 mkdir -p ~/.config/systemd/user.conf.d/
 cat >~/.config/systemd/user.conf.d/timeout.conf <<'EOF'
 [Manager]
