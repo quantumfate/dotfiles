@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+{{ if not .devenv }}exit 0{{ end }}
+
 echo "Preparing Rust dependencies for tree-sitter-cli..."
 
 # Check if rustup is installed

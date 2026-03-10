@@ -119,7 +119,7 @@ case "$BOOTLOADER" in
     ;;
 esac
 
-{{- if eq .chezmoi.hostname "quantum-desktop" }}
+{{- if eq .profile "desktop" }}
 # --- Console font for high-res desktop display ---
 if ! pacman -Qi terminus-font &>/dev/null; then
   echo "==> Installing terminus-font..."

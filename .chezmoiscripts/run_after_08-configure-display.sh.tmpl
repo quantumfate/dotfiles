@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-{{- if eq .chezmoi.hostname "quantum-desktop" }}
+{{- if eq .profile "desktop" }}
 echo "==> Configuring display/VT settings for desktop..."
 
 # --- Detect active bootloader (mirrors run_after_09-configure-tty.sh.tmpl) ---

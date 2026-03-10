@@ -3,6 +3,7 @@ commonPackages:
   linux:
     arch:
       # Core utilities
+      - base-devel
       - age
       - chezmoi
       - btop
@@ -66,10 +67,8 @@ commonPackages:
       - obsidian
       - spotify
       - vesktop
-      - keepassxc
       - qalculate-qt
       - vlc-plugins-all
-      - vscodium-bin
 
       # Proton
       - proton-authenticator-bin
@@ -98,12 +97,6 @@ commonPackages:
       - swaylock-effects-git
       - swaylock-fancy-git
 
-      # Niri
-      - niri
-
-      # Mango
-      - mangowc
-
       # Wayland tools
       - kanshi
       - waybar
@@ -121,6 +114,7 @@ commonPackages:
       - wob
       - uwsm
       - xwayland-satellite
+      - wev
 
       # Audio
       - playerctl
@@ -135,36 +129,9 @@ commonPackages:
       - chafa
 
       # XDG portals
-      - xdg-desktop-portal-gnome
       - xdg-desktop-portal-hyprland
       - xdg-desktop-portal-wlr
-
-      # Development
-      - bash-language-server
-      - base-devel
-      - python-pillow
-      - python-packaging
-      - python-defusedxml
-      - ruby-colorls
-      - lua51
-      - luarocks
-      - hererocks
-      - pandoc-cli
-      - tectonic
-      - texlive-bin
-      - meld
-      - npm
-      - go
-      - rustup
-      - cargo
-      - python-pip
-      - mermaid-cli
-      - js-util-bin
-      - typescript-language-server
-      - lua-language-server
-      - rust-analyzer
-      - git-filter-repo
-      - github-cli
+      - xdg-desktop-portal-gtk
 
       # Package management
       - yay
@@ -193,23 +160,14 @@ commonPackages:
       - kvantum
       - kvantum-theme-nordic-git
       - papirus-folders-catppuccin-git
+      - catppuccin-gtk-theme-latte
       - catppuccin-gtk-theme-macchiato
-      - catppuccin-cursors-frappe
       - catppuccin-cursors-latte
       - catppuccin-cursors-macchiato
-      - catppuccin-cursors-mocha
-      - catppuccin-frappe-grub-theme-git
       - catppuccin-latte-grub-theme-git
       - catppuccin-macchiato-grub-theme-git
-      - catppuccin-mocha-grub-theme-git
-      - catppuccin-sddm-theme-frappe
-      - catppuccin-sddm-theme-latte
-      - catppuccin-sddm-theme-macchiato
-      - catppuccin-sddm-theme-mocha
       - juno-palenight-gtk-theme-git
       - juno-palenight-standard-buttons-gtk-theme-git
-      - sddm
-      - sddm-catppuccin-git
       - ly
       - quickshell
       - qt5-svg
@@ -267,20 +225,18 @@ commonPackages:
       - xorg-xkill
       - xf86-input-libinput
 
-desktopPackages:
+gamingPackages:
   linux:
     arch:
       - steam
-      - ckb-next
+      - gamemode
+      - mangohud
       - ankama-launcher
+      - cachyos-gaming-meta
 
-      - ollama-bin
-      - ollama-cuda13-bin
-      - open-webui
-
-      - qmk
-      - dos2unix
-
+vmPackages:
+  linux:
+    arch:
       - cockpit
       - cockpit-files
       - cockpit-machines
@@ -296,6 +252,59 @@ desktopPackages:
       - virtio-win
       - edk2-ovmf
       - virt-install
+
+llmPackages:
+  linux:
+    arch:
+      - ollama-bin
+      - ollama-cuda13-bin
+      - open-webui
+
+devPackages:
+  linux:
+    arch:
+      # Language servers & tooling
+      - bash-language-server
+      - typescript-language-server
+      - lua-language-server
+      - rust-analyzer
+
+      # Runtimes & build tools
+      - base-devel
+      - npm
+      - go
+      - rustup
+      - cargo
+      - python-pip
+      - lua51
+      - luarocks
+      - hererocks
+      - ruby-colorls
+
+      # Python libs
+      - python-pillow
+      - python-packaging
+      - python-defusedxml
+
+      # Docs & markup
+      - pandoc-cli
+      - tectonic
+      - texlive-bin
+      - mermaid-cli
+
+      # Dev utilities
+      - meld
+      - js-util-bin
+      - git-filter-repo
+      - github-cli
+      - scdoc
+
+desktopPackages:
+  linux:
+    arch:
+      - ckb-next
+      - qmk
+      - dos2unix
 
 laptopPackages:
   linux:
