@@ -12,7 +12,7 @@
 }
 {
     "label" : "logout",
-    "action" : "~/.local/share/own-scripts/scripts/compositor-logout.sh",
+    "action" : "~/.local/share/own-scripts/github/quantumfate/scripts/compositor-logout.sh",
     "text" : "Logout",
     "keybind" : "e"
 }
