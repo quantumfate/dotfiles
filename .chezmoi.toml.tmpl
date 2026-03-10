@@ -1,3 +1,15 @@
+{{- $profile := promptChoiceOnce . "profile" "Machine profile" (list "desktop" "laptop") -}}
+{{- $gaming := promptBoolOnce . "gaming" "Enable gaming" -}}
+{{- $vms := promptBoolOnce . "vms" "Enable VMs (libvirt/virt-manager)" -}}
+{{- $llms := promptBoolOnce . "llms" "Enable LLMs (ollama)" -}}
+{{- $devenv := promptBoolOnce . "devenv" "Enable dev environment" -}}
+[data]
+  profile = {{ $profile | quote }}
+  gaming = {{ $gaming }}
+  vms = {{ $vms }}
+  llms = {{ $llms }}
+  devenv = {{ $devenv }}
+
 [hooks.read-source-state.pre]
     command = ".local/share/chezmoi/.install-password-manager.sh"
 [secret]
