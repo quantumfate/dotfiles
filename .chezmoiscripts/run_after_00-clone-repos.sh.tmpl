@@ -31,9 +31,9 @@ clone_repo() {
 
 # --- Declarations ---
 declare -A target_dirs=(
-  [project]="${PROJECT_DIR}"
-  [config]="${XDG_CONFIG_HOME}"
-  [script]="${SCRIPT_DIR}"
+  [project]="${PROJECT_DIR:-${HOME}/Projects}"
+  [config]="${XDG_CONFIG_HOME:-${HOME}/.config}"
+  [script]="${SCRIPT_DIR:-${HOME}/.local/share/own-scripts}"
 )
 
 declare -A repos=(

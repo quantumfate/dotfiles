@@ -15,6 +15,7 @@ VT_BLU='vt.default_blu=58,150,149,159,244,230,202,224,120,150,149,159,244,230,20
 VT_PARAMS="$VT_RED $VT_GRN $VT_BLU"
 
 
+sudo mkdir -p /etc/systemd/system/greetd.service.d/
 # Ensure systemd-vconsole-setup runs before greetd
 sudo tee /etc/systemd/system/greetd.service.d/vconsole.conf >/dev/null <<'EOF'
 [Unit]

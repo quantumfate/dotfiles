@@ -26,21 +26,21 @@ echo "  ✓ Zen Dofus"
 
 wait 2>/dev/null || true
 
-SOURCE_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/zen/user.js"
+SOURCE_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/zen-chezmoi/user.js"
 if [ ! -f "$SOURCE_FILE" ]; then
   echo "Source file not found: $SOURCE_FILE"
   exit 0
 fi
 
 ZEN_EXTRAS=(
-  "${XDG_CONFIG_HOME:-$HOME/.config}/zen/zen-themes.json"
-  "${XDG_CONFIG_HOME:-$HOME/.config}/zen/zen-keyboard-shortcuts.json"
+  "${XDG_CONFIG_HOME:-$HOME/.config}/zen-chezmoi/zen-themes.json"
+  "${XDG_CONFIG_HOME:-$HOME/.config}/zen-chezmoi/zen-keyboard-shortcuts.json"
 )
 
 echo ""
 echo "[INFO] Installing User.js and settings ..."
 declare -A targets=(
-  ["Zen"]="${HOME}/.zen"
+  ["Zen"]="${HOME}/.config/zen"
   ["Firefox"]="$HOME/.config/mozilla/firefox"
 )
 
