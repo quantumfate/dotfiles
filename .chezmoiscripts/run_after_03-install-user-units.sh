@@ -24,7 +24,6 @@ units=(
   obsidian.service
   # graphical session + network
   elecwhat.service
-  keepassxc.service
   vesktop.service
   spotify.service
   proton-pass.service
