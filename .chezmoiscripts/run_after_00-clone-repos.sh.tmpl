@@ -46,7 +46,7 @@ declare -A repos=(
   ["security-and-privacy:down"]="quantumfate:ssh:gitlab:script:no_callback"
   ["security-and-privacy:up"]="quantumfate:ssh:gitlab:project:no_callback"
   ["scripts:up"]="quantumfate:ssh:github:project:no_callback"
-  ["scripts:down"]="quantumfate:ssh:github:project:no_callback"
+  ["scripts:down"]="quantumfate:ssh:github:script:no_callback"
   {{- if eq .profile "desktop" }}
   ["kbd75-rev2:up"]="quantumfate:ssh:github:project:no_callback"
   {{- end }}
@@ -93,7 +93,11 @@ for repo_info in "${!repos[@]}"; do
   # Already cloned — only downstreams get pulled
   if [[ "$repo_type" == "down" ]]; then
     cd "$target_path"
-    output=$(git pull 2>&1)
+    if ! output=$(git pull 2>&1); then
+      echo "  ✗ $owner/$repo_name ${repo_type}stream pull failed:"
+      echo "$output" | sed 's/^/    /'
+      continue
+    fi
     if [[ "$output" == *"Already up to date"* ]]; then
       echo "  ✓ $owner/$repo_name ${repo_type}stream is up to date"
     else
@@ -101,6 +105,6 @@ for repo_info in "${!repos[@]}"; do
       $callback
     fi
   else
-    echo "  ✓ Skipping: $repo_name ${repo_type}stream already cloned"
+    echo "  ✓ $owner/$repo_name ${repo_type}stream already cloned"
   fi
 done
