@@ -15,33 +15,35 @@ general {
 
 image {
   monitor=
-  size=100
-  border_color=$mauve
+  size=60
+  border_color=$mantle
   halign=center
+  rounding=0
   path=/home/quantum/.config/hypr/icons/avatar-small.png
-  position=0, 75
+  position=-140, 0
   valign=center
 }
 
 input-field {
   monitor=
   size=300, 60
-  capslock_color=#F9E2AF
-  check_color=#94E2D5
+  capslock_color=$yellow
+  check_color=$green
   dots_center=true
   dots_size=0.200000
   dots_spacing=0.200000
   fade_on_empty=false
-  fail_color=#F38BA8
+  fail_color=$red
   fail_text=<i>$FAIL <b>($ATTEMPTS)</b></i>
   font_color=$text
   halign=center
   hide_input=false
   inner_color=$base
-  outer_color=$crust
+  outer_color=$mantle
+  rounding=0
   outline_thickness=4
   placeholder_text=<span foreground="##CDD6F4"><i>󰌾 Logged in as </i><span foreground="##CBA6F7">$USER</span></span>
-  position=0, -47
+  position=60, 0
   valign=center
 }
 
