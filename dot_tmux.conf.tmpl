@@ -82,10 +82,6 @@ set -agF status-right " #(tms sessions)"
 run ~/.config/tmux/plugins/tmux-cpu/cpu.tmux
 run ~/.config/tmux/plugins/tmux-battery/battery.tmux
 
-unbind C-b          # remove default prefix
-set -g prefix C-a   # set new prefix (e.g., Ctrl+a)
-bind C-a send-prefix
-
 bind C-o display-popup -E "tms"
 bind C-s display-popup -E "tms switch"
 bind C-w display-popup -E "tms windows"

@@ -25,6 +25,11 @@ commonPackages:
       - cmatrix
       - fzf
 
+      # Cryptsetup
+      - fwupd
+      - tpm2-tss
+      - sbctl
+
       # TUIs
       - wiremix
       - lf
