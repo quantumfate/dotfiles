@@ -18,6 +18,7 @@ units=(
   waybar.service
   hyprpaper.service
   hypridle.service
+  hyprpolkitagent.service
   udiskie.service
   kanshi.service
   hyprsunset.service
