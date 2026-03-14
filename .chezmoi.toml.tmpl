@@ -1,10 +1,12 @@
 {{- $profile := promptChoiceOnce . "profile" "Machine profile" (list "desktop" "laptop") -}}
+{{- $primary_monitor := promptChoiceOnce . "primany monitor" "Machine primary monitor" (list "DP-1" "eDP-1") -}}
 {{- $gaming := promptBoolOnce . "gaming" "Enable gaming" -}}
 {{- $vms := promptBoolOnce . "vms" "Enable VMs (libvirt/virt-manager)" -}}
 {{- $llms := promptBoolOnce . "llms" "Enable LLMs (ollama)" -}}
 {{- $devenv := promptBoolOnce . "devenv" "Enable dev environment" -}}
 [data]
   profile = {{ $profile | quote }}
+  primary_monitor = {{ $primary_monitor | quote }}
   gaming = {{ $gaming }}
   vms = {{ $vms }}
   llms = {{ $llms }}

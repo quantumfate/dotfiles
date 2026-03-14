@@ -315,6 +315,10 @@ desktopPackages:
       - qmk
       - dos2unix
 
+      - sddm
+      - catppuccin-sddm-theme-latte
+      - catppuccin-sddm-theme-macchiato
+
 laptopPackages:
   linux:
     arch:

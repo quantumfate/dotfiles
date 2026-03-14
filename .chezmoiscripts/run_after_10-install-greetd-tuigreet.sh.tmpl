@@ -1,4 +1,5 @@
 #!/bin/bash
+{{- if eq .profile "laptop" }}
 # chezmoi: run_once
 # Sets up greetd + tuigreet (NotAShelf fork) + uwsm as the display manager.
 #
@@ -124,3 +125,4 @@ done
 
 sudo systemctl enable greetd
 echo "  ✓ greetd enabled"
+{{- end }}
