@@ -305,6 +305,7 @@ devPackages:
       - git-filter-repo
       - github-cli
       - scdoc
+      - uv
 
 desktopPackages:
   linux:
