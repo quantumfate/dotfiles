@@ -5,17 +5,9 @@ align_greeting = "center"
 issue = false
 
 {{- if eq .profile "desktop" }}
-[[outputs]]
-connector = "DP-1"
-primary = true
-
-[[outputs]]
-connector = "HDMI-A-1"
-enabled = false
-
-[[outputs]]
-connector = "HDMI-A-2"
-enabled = false
+[terminal]
+cols = 160
+rows = 45
 {{- end }}
 {{- if eq .profile "laptop" }}
 [[outputs]]
@@ -32,10 +24,6 @@ width = 60
 window_padding = 2
 container_padding = 1
 prompt_padding = 1
-
-[terminal]
-cols = 237
-rows = 52
 
 [layout.widgets]
 time_position = "top"
