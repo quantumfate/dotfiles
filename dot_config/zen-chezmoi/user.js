@@ -320,6 +320,11 @@ user_pref("general.smoothScroll.stopDecelerationWeighting", "0.6"); // default=.
  * END: BETTERFOX                                                           *
  ****************************************************************************/
 
+// theming
+
+user_pref("widget.use-xdg-desktop-portal.color-scheme", true);
+user_pref("widget.use-xdg-desktop-portal.file-picker", true);
+
 // Zen-Mods
 
 user_pref("uc.fixcontext.applyzenaccent", true);

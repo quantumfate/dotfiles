@@ -137,6 +137,7 @@ commonPackages:
       - xdg-desktop-portal-hyprland
       - xdg-desktop-portal-wlr
       - xdg-desktop-portal-gtk
+      - xdg-desktop-portal-kde
 
       # Package management
       - yay
@@ -162,6 +163,7 @@ commonPackages:
       # Themes & appearance
       - nwg-look
       - qt5ct
+      - qt6ct-kde
       - kvantum
       - kvantum-theme-nordic-git
       - papirus-folders-catppuccin-git
@@ -169,10 +171,10 @@ commonPackages:
       - catppuccin-gtk-theme-macchiato
       - catppuccin-cursors-latte
       - catppuccin-cursors-macchiato
-      - catppuccin-latte-grub-theme-git
-      - catppuccin-macchiato-grub-theme-git
       - juno-palenight-gtk-theme-git
       - juno-palenight-standard-buttons-gtk-theme-git
+      - catppuccin-plasma-colorscheme-macchiato
+      - catppuccin-plasma-colorscheme-latte
       - ly
       - quickshell
       - qt5-svg
