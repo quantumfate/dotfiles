@@ -5,20 +5,16 @@
 
 echo ""
 echo "[INFO] Installing tuigreet ..."
-if passwd -S "{{ .chezmoi.username }}" | grep -qE ' L | NP '; then
-  echo "[ERROR]: Your user password is not set. Run: passwd $USER" >&2
-  echo "Run 'su -c \"passwd -S {{ .chezmoi.username }}\"'"
-  exit 1
-fi
 
 sudo -v
 set -euo pipefail
 
 GREETD_CONFIG="/etc/greetd/config.toml"
 GREETER_USER="greeter"
+CHEZMOI_DIR="$HOME/.config/tuigreet-chezmoi"
 
 if ! pacman -Qi greetd &>/dev/null; then
-  sudo pacman -S --noconfirm greetd > /dev/null 2>&1
+  sudo pacman -S --noconfirm greetd >/dev/null 2>&1
   echo "  ✓ greetd installed"
 fi
 
@@ -37,61 +33,22 @@ fi
 
 if [ "$NEEDS_BUILD" = true ]; then
   if ! command -v cargo &>/dev/null; then
-    sudo pacman -S --noconfirm rust > /dev/null 2>&1
+    sudo pacman -S --noconfirm rust >/dev/null 2>&1
     echo "  ✓ rust installed"
   fi
   if ! command -v git &>/dev/null; then
-    sudo pacman -S --noconfirm git > /dev/null 2>&1
+    sudo pacman -S --noconfirm git >/dev/null 2>&1
     echo "  ✓ git installed"
   fi
   if ! pacman -Qi base-devel &>/dev/null; then
-    sudo pacman -S --noconfirm base-devel > /dev/null 2>&1
+    sudo pacman -S --noconfirm base-devel >/dev/null 2>&1
     echo "  ✓ base-devel installed"
   fi
 
   PKGBUILD_DIR="/tmp/tuigreet-notashelf-git"
   rm -rf "$PKGBUILD_DIR"
   mkdir -p "$PKGBUILD_DIR"
-
-cat > "$PKGBUILD_DIR/PKGBUILD" << 'PKGBUILD_EOF'
-# Maintainer: Auto-generated for NotAShelf/tuigreet
-pkgname=tuigreet-notashelf-git
-pkgver=r0
-pkgrel=1
-pkgdesc="Stylish graphical console greeter for greetd (NotAShelf fork)"
-arch=('x86_64' 'aarch64')
-url="https://github.com/NotAShelf/tuigreet"
-license=('GPL-3.0-only')
-depends=('greetd')
-makedepends=('cargo' 'git')
-provides=('tuigreet')
-conflicts=('tuigreet' 'greetd-tuigreet')
-source=("git+https://github.com/NotAShelf/tuigreet.git")
-sha256sums=('SKIP')
-
-pkgver() {
-  cd tuigreet
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
-
-prepare() {
-  cd tuigreet
-  export RUSTUP_TOOLCHAIN=stable
-  cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
-}
-
-build() {
-  cd tuigreet
-  export RUSTUP_TOOLCHAIN=stable
-  export CARGO_TARGET_DIR=target
-  cargo build --frozen --release
-}
-
-package() {
-  cd tuigreet
-  install -Dm755 "target/release/tuigreet" "$pkgdir/usr/bin/tuigreet"
-}
-PKGBUILD_EOF
+  cp "$CHEZMOI_DIR/PKGBUILD" "$PKGBUILD_DIR/PKGBUILD"
 
   cd "$PKGBUILD_DIR"
   makepkg -si --noconfirm
@@ -103,9 +60,9 @@ fi
 
 if ! command -v uwsm &>/dev/null; then
   if command -v paru &>/dev/null; then
-    paru -S --noconfirm uwsm > /dev/null
+    paru -S --noconfirm uwsm >/dev/null
   elif command -v yay &>/dev/null; then
-    yay -S --noconfirm uwsm > /dev/null
+    yay -S --noconfirm uwsm >/dev/null
   else
     echo "ERROR: No AUR helper found. Please install uwsm manually." >&2
     exit 1
@@ -114,7 +71,7 @@ if ! command -v uwsm &>/dev/null; then
 fi
 
 if ! pacman -Qi gnome-keyring &>/dev/null; then
-  sudo pacman -S --noconfirm gnome-keyring > /dev/null
+  sudo pacman -S --noconfirm gnome-keyring >/dev/null
   echo "  ✓ gnome-keyring installed"
 fi
 
@@ -146,84 +103,15 @@ sudo chmod 0755 /var/cache/tuigreet
 echo "  ✓ tuigreet cache directory created"
 
 sudo mkdir -p /etc/greetd
-sudo tee "$GREETD_CONFIG" >/dev/null <<'EOF'
-[terminal]
-vt = 1
-
-[default_session]
-command = "tuigreet --config /etc/tuigreet/config.toml"
-user = "greeter"
-EOF
+sudo cp "$CHEZMOI_DIR/greetd.toml" "$GREETD_CONFIG"
 echo "  ✓ greetd config written"
 
 sudo mkdir -p /etc/tuigreet/
-sudo tee /etc/tuigreet/config.toml >/dev/null <<'EOF'
-[display]
-show_time = true
-greeting = "Hello Quantum!"
-align_greeting = "center"
-issue = false
-
-[layout]
-width = 120
-window_padding = 2
-container_padding = 1
-prompt_padding = 1
-
-[layout.widgets]
-time_position = "top"
-status_position = "bottom"
-
-[remember]
-username = true
-session = true
-user_session = true
-
-[user_menu]
-enabled = true
-min_uid = 1000
-max_uid = 60000
-
-[secret]
-mode = "characters"
-characters = "*"
-
-[keybindings]
-command = 2
-sessions = 3
-power = 12
-
-[session]
-sessions_dirs = ["/usr/share/wayland-sessions", "/usr/share/xsessions"]
-xsessions_dirs = []
-environments = []
-
-[power]
-use_setsid = false
-
-[theme]
-border = "white"
-text = "green"
-time = "blue"
-container = "black"
-title = "magenta"
-greet = "magenta"
-prompt = "magenta"
-input = "white"
-action = "bright-blue"
-button = "magenta"
-EOF
+sudo cp "$CHEZMOI_DIR/tuigreet.toml" /etc/tuigreet/config.toml
 echo "  ✓ tuigreet config written"
 
-sudo tee /etc/systemd/system/greetd.service.d/sleep.conf >/dev/null <<'EOF'
-[Unit]
-StopWhenUnneeded=no
-IgnoreOnIsolate=yes
-
-[Service]
-Restart=always
-RestartSec=1
-EOF
+sudo mkdir -p /etc/systemd/system/greetd.service.d/
+sudo cp "$CHEZMOI_DIR/greetd-sleep.conf" /etc/systemd/system/greetd.service.d/sleep.conf
 
 sudo systemctl daemon-reload
 

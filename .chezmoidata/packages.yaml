@@ -275,6 +275,7 @@ devPackages:
       - typescript-language-server
       - lua-language-server
       - rust-analyzer
+      - codebook-lsp
 
       # Runtimes & build tools
       - base-devel

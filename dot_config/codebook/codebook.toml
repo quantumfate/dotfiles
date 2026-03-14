@@ -1,0 +1,33 @@
+dictionaries = [
+    "en_us",
+    "en_gb",
+]
+words = [
+    "bigfile",
+    "bufdelete",
+    "clangd",
+    "esc",
+    "folke",
+    "neovim",
+    "nvim",
+    "quickfile",
+    "statuscolumn",
+    "stopinsert",
+    "vsplit",
+]
+flag_words = [
+    "todo",
+    "fixme",
+]
+ignore_paths = [
+    "target/**/*",
+    "**/*.json",
+    ".git/**/*",
+]
+ignore_patterns = [
+    '\b[ATCG]+\b',
+    '\d{3}-\d{2}-\d{4}',
+    "^[A-Z]{2,}$",
+    'https?://[^\s]+',
+    "<[^>]+>",
+]
