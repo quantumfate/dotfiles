@@ -1,0 +1,14 @@
+#!/bin/bash
+{{- if .vms }}
+echo ""
+echo "[INFO] Changing login shell ..."
+
+sudo usermod -aG docker {{ .chezmoi.username }} >/dev/null
+
+echo "  ✓ User added to docker group"
+
+sudo systemctl enable docker.service >/dev/null
+sudo systemctl enable containerd.service >/dev/null
+sudo systemctl daemon-reload >/dev/null
+echo "  ✓ Docker Services enabled"
+{{- end }}

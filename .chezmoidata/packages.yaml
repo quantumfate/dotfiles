@@ -24,6 +24,8 @@ commonPackages:
       - tree
       - cmatrix
       - fzf
+      - wf-recorder
+      - slurp
 
       # Cryptsetup
       - fwupd
@@ -259,6 +261,9 @@ vmPackages:
       - virtio-win
       - edk2-ovmf
       - virt-install
+      - docker
+      - docker-compose-bin
+      - winboat-bin
 
 llmPackages:
   linux:
