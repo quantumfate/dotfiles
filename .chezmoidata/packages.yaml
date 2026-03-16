@@ -263,7 +263,6 @@ vmPackages:
       - virt-install
       - docker
       - docker-compose-bin
-      - winboat-bin
 
 llmPackages:
   linux:
