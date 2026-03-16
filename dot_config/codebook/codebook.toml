@@ -10,6 +10,8 @@ words = [
     "folke",
     "neovim",
     "nvim",
+    "pygame",
+    "pyright",
     "quickfile",
     "statuscolumn",
     "stopinsert",
