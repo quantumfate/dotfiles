@@ -8,6 +8,10 @@ excluded_dirs = [
 
 bookmarks = ["/home/quantum"]
 
+[popup]
+width = "95%"
+height = "95%"
+
 [[search_dirs]]
 path = "~/Projects/github/"
 depth = 10
