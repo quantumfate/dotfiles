@@ -1,4 +1,5 @@
 profile desktop {
+  output DP-2
   output DP-1
   exec hyprctl dispatch moveworkspacetomonitor "1 DP-1"
   exec hyprctl dispatch moveworkspacetomonitor "2 DP-1"
@@ -8,6 +9,7 @@ profile desktop {
   exec hyprctl dispatch moveworkspacetomonitor "6 DP-1"
 }
 profile desktop-secondary {
+  output DP-2
   output DP-1
   output HDMI-A-1
   exec hyprctl dispatch moveworkspacetomonitor "1 DP-1"

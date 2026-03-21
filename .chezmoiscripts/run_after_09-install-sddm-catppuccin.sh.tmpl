@@ -39,7 +39,10 @@ echo "  ✓ sddm config written"
 sudo mkdir -p /usr/share/sddm/scripts
 sudo tee /usr/share/sddm/scripts/Xsetup >/dev/null <<'EOF'
 #!/bin/sh
-xrandr --output DP-0 --primary --mode 2560x1440 --output HDMI-0 --off
+xrandr --output DP-2 --mode 2560x1440 --pos 0x0 \
+       --output DP-0 --primary --mode 5120x1440 --pos 2560x0 \
+       --output HDMI-0 --off
+
 setxkbmap dvorak-custom
 EOF
 sudo chmod +x /usr/share/sddm/scripts/Xsetup
