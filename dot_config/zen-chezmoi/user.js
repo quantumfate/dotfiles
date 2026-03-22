@@ -170,8 +170,14 @@ user_pref("extensions.getAddons.showPane", true);
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 user_pref("browser.discovery.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
+user_pref(
+  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
+  false,
+);
+user_pref(
+  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
+  false,
+);
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.startup.homepage_override.mstone", "ignore");
@@ -252,7 +258,10 @@ user_pref("layout.css.devPixelsPerPx", "1.2");
 
 // === Privacy extras (beyond Betterfox) ===
 user_pref("browser.safebrowsing.downloads.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
+user_pref(
+  "browser.safebrowsing.downloads.remote.block_potentially_unwanted",
+  false,
+);
 user_pref("privacy.clearOnShutdown_v2.formdata", true);
 user_pref("privacy.fingerprintingProtection", true);
 user_pref("privacy.query_stripping.enabled", true);
@@ -273,10 +282,10 @@ user_pref("font.name.sans-serif.x-western", "Hack Nerd Font");
 user_pref("font.name.sans-serif.x-western", "Hack Nerd Font");
 user_pref("font.name.monospace.x-western", "Hack Nerd Font Mono");
 // Minimum font size
-user_pref("font.minimum-size.x-western", 16);
+user_pref("font.minimum-size.x-western", 14);
 // Default font size
-user_pref("font.size.variable.x-western", 20);
-user_pref("font.size.monospace.x-western", 16);
+user_pref("font.size.variable.x-western", 18);
+user_pref("font.size.monospace.x-western", 14);
 // === Dark mode ===
 user_pref("layout.css.prefers-color-scheme.content-override", 0); // dark
 
@@ -305,7 +314,10 @@ user_pref("zen.workspaces.force-container-workspace", true);
 
 // === Sync exclusions ===
 user_pref("services.sync.engine.passwords", false);
-user_pref("services.sync.declinedEngines", "workspaces,passwords,creditcards,addresses");
+user_pref(
+  "services.sync.declinedEngines",
+  "workspaces,passwords,creditcards,addresses",
+);
 
 // === Sidebar ===
 user_pref("sidebar.visibility", "hide-sidebar");
@@ -376,7 +388,10 @@ user_pref("theme.better_find_bar.textbox_width", 800);
 user_pref("theme.better_find_bar.transparent_background", true);
 user_pref("theme.better_find_bar.vertical_position", "top");
 
-user_pref("theme.better_uniextbtn.custom", "url(chrome://branding/content/icon32.png)");
+user_pref(
+  "theme.better_uniextbtn.custom",
+  "url(chrome://branding/content/icon32.png)",
+);
 user_pref("theme.better_uniextbtn.default", "Default");
 
 user_pref("mod.ivaon.urlbar.hide_results", 2);
