@@ -38,6 +38,7 @@ commonPackages:
       - ranger
       - parui
       - bluetui
+      - gimp
 
       # Shell & Terminal
       - kitty

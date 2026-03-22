@@ -1,13 +1,7 @@
 @import "themes/catppuccin-macchiato.css";
 
 * {
-  font-family:
-    DejaVuSansM Nerd Font,
-    FontAwesome,
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
+  font-family: Hack Nerd Font Mono;
   font-weight: 700;
   font-size: 14px;
 }

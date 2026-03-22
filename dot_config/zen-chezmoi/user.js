@@ -248,6 +248,7 @@ user_pref("browser.tabs.loadInBackground", false); // switch to new tabs immedia
 user_pref("browser.toolbars.bookmarks.visibility", "always");
 user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.startup.page", 1);
+user_pref("layout.css.devPixelsPerPx", "1.2");
 
 // === Privacy extras (beyond Betterfox) ===
 user_pref("browser.safebrowsing.downloads.enabled", false);
@@ -266,9 +267,16 @@ user_pref("media.peerconnection.ice.no_host", true);
 user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
 
 // === Fonts ===
-user_pref("font.size.monospace.x-western", 14);
-user_pref("font.size.variable.x-western", 18);
-
+// UI font (chrome/interface)
+user_pref("font.name.sans-serif.x-western", "Hack Nerd Font");
+// Default webpage font
+user_pref("font.name.sans-serif.x-western", "Hack Nerd Font");
+user_pref("font.name.monospace.x-western", "Hack Nerd Font Mono");
+// Minimum font size
+user_pref("font.minimum-size.x-western", 16);
+// Default font size
+user_pref("font.size.variable.x-western", 20);
+user_pref("font.size.monospace.x-western", 16);
 // === Dark mode ===
 user_pref("layout.css.prefers-color-scheme.content-override", 0); // dark
 

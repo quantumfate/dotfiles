@@ -7,7 +7,7 @@
     "layer": "top",
     "margin-left": 0,
     "margin-right": 0,
-    "output": "{{ .primary_monitor }}",
+    "output": ["{{ .primary_monitor }}"],
     "margin-top": 0,
     "modules-center": [
       "hyprland/window",
@@ -33,5 +33,34 @@
     ],
     "position": "top",
     "spacing": 0
+  }{{- if .secondary_monitor }},
+  {
+    "fixed-center": true,
+    "height": 30,
+    "include": "/home/quantum/.config/waybar/modules",
+    "ipc": true,
+    "layer": "top",
+    "margin-left": 0,
+    "margin-right": 0,
+    "output": ["{{ .secondary_monitor }}"],
+    "margin-top": 0,
+    "modules-center": [
+      "hyprland/window",
+      "hyprland/submap"
+    ],
+    "modules-left": [
+      "hyprland/workspaces",
+    ],
+    "modules-right": [
+      "custom/brightness",
+      "pulseaudio",
+      "clock",
+      "tray",
+      "custom/mako",
+      "custom/wlogout"
+    ],
+    "position": "top",
+    "spacing": 0
   }
+  {{- end }}
 ]
