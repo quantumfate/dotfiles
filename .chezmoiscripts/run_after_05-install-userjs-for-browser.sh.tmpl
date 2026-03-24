@@ -37,6 +37,12 @@ ZEN_EXTRAS=(
   "${XDG_CONFIG_HOME:-$HOME/.config}/zen-chezmoi/zen-keyboard-shortcuts.json"
 )
 
+ZEN_STYLE_EXTRAS=(
+  "${XDG_CONFIG_HOME:-$HOME/.config}/zen-chezmoi/userChrome.css"
+  "${XDG_CONFIG_HOME:-$HOME/.config}/zen-chezmoi/userContent.css"
+  "${XDG_CONFIG_HOME:-$HOME/.config}/zen-chezmoi/zen-logo-macchiato.svg"
+)
+
 echo ""
 echo "[INFO] Installing User.js and settings ..."
 declare -A targets=(
@@ -69,6 +75,14 @@ for name in "${!targets[@]}"; do
         [ -e "$extra_link" ] || [ -L "$extra_link" ] && rm -f "$extra_link"
         ln -s "$extra" "$extra_link"
         echo "  ✓ Zen: symlinked $(basename $extra) to $(basename ${profile_dir})"
+      done
+      for extra in "${ZEN_STYLE_EXTRAS[@]}"; do
+        [ ! -f "$extra" ] && echo "  [WARN] Extra file not found: $extra" && continue
+        mkdir -p "$profile_dir/chrome"
+        extra_link="$profile_dir/chrome/$(basename $extra)"
+        [ -e "$extra_link" ] || [ -L "$extra_link" ] && rm -f "$extra_link"
+        ln -s "$extra" "$extra_link"
+        echo "  ✓ Zen: symlinked $(basename $extra) to $(basename ${profile_dir})/chrome"
       done
     fi
   done

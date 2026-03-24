@@ -170,14 +170,8 @@ user_pref("extensions.getAddons.showPane", true);
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 user_pref("browser.discovery.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
-user_pref(
-  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons",
-  false,
-);
-user_pref(
-  "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
-  false,
-);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.startup.homepage_override.mstone", "ignore");
@@ -185,6 +179,7 @@ user_pref("browser.aboutwelcome.enabled", false);
 user_pref("browser.profiles.enabled", true);
 
 /** THEME ADJUSTMENTS ***/
+user_pref("layout.css.prefers-color-scheme.content-override", 3);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("browser.compactmode.show", true);
 user_pref("browser.privateWindowSeparation.enabled", false); // WINDOWS
@@ -254,14 +249,11 @@ user_pref("browser.tabs.loadInBackground", false); // switch to new tabs immedia
 user_pref("browser.toolbars.bookmarks.visibility", "always");
 user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.startup.page", 1);
-user_pref("layout.css.devPixelsPerPx", "1.2");
+user_pref("layout.css.devPixelsPerPx", "-1.0");
 
 // === Privacy extras (beyond Betterfox) ===
 user_pref("browser.safebrowsing.downloads.enabled", false);
-user_pref(
-  "browser.safebrowsing.downloads.remote.block_potentially_unwanted",
-  false,
-);
+user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
 user_pref("privacy.clearOnShutdown_v2.formdata", true);
 user_pref("privacy.fingerprintingProtection", true);
 user_pref("privacy.query_stripping.enabled", true);
@@ -277,15 +269,16 @@ user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
 
 // === Fonts ===
 // UI font (chrome/interface)
-user_pref("font.name.sans-serif.x-western", "Hack Nerd Font");
+user_pref("font.name.serif.x-western", "Roboto");
 // Default webpage font
-user_pref("font.name.sans-serif.x-western", "Hack Nerd Font");
-user_pref("font.name.monospace.x-western", "Hack Nerd Font Mono");
+user_pref("font.name.sans-serif.x-western", "Roboto");
+user_pref("font.name.monospace.x-western", "JetBrainsMono Nerd Font Mono");
 // Minimum font size
 user_pref("font.minimum-size.x-western", 14);
 // Default font size
-user_pref("font.size.variable.x-western", 18);
+user_pref("font.size.variable.x-western", 16);
 user_pref("font.size.monospace.x-western", 14);
+user_pref("browser.display.use_document_fonts", 0);
 // === Dark mode ===
 user_pref("layout.css.prefers-color-scheme.content-override", 0); // dark
 
@@ -314,10 +307,7 @@ user_pref("zen.workspaces.force-container-workspace", true);
 
 // === Sync exclusions ===
 user_pref("services.sync.engine.passwords", false);
-user_pref(
-  "services.sync.declinedEngines",
-  "workspaces,passwords,creditcards,addresses",
-);
+user_pref("services.sync.declinedEngines", "workspaces,passwords,creditcards,addresses");
 
 // === Sidebar ===
 user_pref("sidebar.visibility", "hide-sidebar");
@@ -374,8 +364,8 @@ user_pref("mod.lean.pinned-ext.workspaces", false);
 user_pref("mod.lean.show-pageactions", false);
 user_pref("mod.lean.show-translation", true);
 
-user_pref("theme-better_find_bar-enable_custom_background", false);
-user_pref("theme.better_find_bar.custom_background", "#112233");
+user_pref("theme-better_find_bar-enable_custom_background", true);
+user_pref("theme.better_find_bar.custom_background", "#363a4f");
 user_pref("theme.better_find_bar.hide_find_status", false);
 user_pref("theme.better_find_bar.hide_found_matches", false);
 user_pref("theme.better_find_bar.hide_highlight", "not_hide");
@@ -388,10 +378,7 @@ user_pref("theme.better_find_bar.textbox_width", 800);
 user_pref("theme.better_find_bar.transparent_background", true);
 user_pref("theme.better_find_bar.vertical_position", "top");
 
-user_pref(
-  "theme.better_uniextbtn.custom",
-  "url(chrome://branding/content/icon32.png)",
-);
+user_pref("theme.better_uniextbtn.custom", "url(chrome://branding/content/icon32.png)");
 user_pref("theme.better_uniextbtn.default", "Default");
 
 user_pref("mod.ivaon.urlbar.hide_results", 2);

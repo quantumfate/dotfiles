@@ -169,6 +169,9 @@ autoload -Uz add-zsh-hook
 add-zsh-hook chpwd auto_venv
 add-zsh-hook chpwd auto_nvm
 
+[[ -n "$TMUX" ]] && auto_venv
+[[ -n "$TMUX" ]] && auto_nvm
+
 ## Ranger
 source /home/quantum/.config/ranger/rangercd.sh
 if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi

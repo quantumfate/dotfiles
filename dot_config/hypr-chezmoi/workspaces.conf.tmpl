@@ -1,23 +1,10 @@
-{{- if eq .profile "desktop" }}
-workspace=1,monitor:DP-1,persistent:true,default:true
-workspace=2,monitor:DP-1,persistent:true
-workspace=3,monitor:DP-1,persistent:true
-workspace=4,monitor:DP-1,persistent:true
-workspace=5,monitor:DP-1
-workspace=6,monitor:DP-2
-workspace=7,monitor:DP-2
-workspace=8,monitor:DP-2
-workspace=9,monitor:DP-2
-workspace=10,monitor:HDMI-A-1
-{{- else }}
-workspace=1,monitor:eDP-1,persistent:true,default:true
-workspace=2,monitor:eDP-1,persistent:true
-workspace=3,monitor:eDP-1,persistent:true
-workspace=4,monitor:eDP-1,persistent:true
-workspace=5,monitor:eDP-1
-workspace=6,monitor:HDMI-A-1
-{{- end }}
-workspace=s[true]n[e:feh], name:feh
-workspace=s[true]n[e:spotify], name:spotiy, on-created-empty:spotify
-workspace=s[true]n[e:vesktop], name:vesktop, on-created-empty:vesktop
-
+workspace=1, monitor:{{ .primary_monitor }}, persistent:true, default:true
+workspace=2, monitor:{{ .primary_monitor }}, persistent:true
+workspace=3, monitor:{{ .primary_monitor }}
+workspace=4, monitor:{{ .primary_monitor }}
+workspace=5, monitor:{{ .primary_monitor }}, gapsin:0, gapsout:0, bordersize:0
+workspace=6, monitor:{{ if .secondary_monitor }}{{ .secondary_monitor }}{{ else }}{{ .primary_monitor }}{{ end }}, orientation:right
+workspace=7, monitor:{{ if .secondary_monitor }}{{ .secondary_monitor }}{{ else }}{{ .primary_monitor }}{{ end }}, orientation:right
+workspace=8, monitor:{{ if .secondary_monitor }}{{ .secondary_monitor }}{{ else }}{{ .primary_monitor }}{{ end }}, orientation:right
+workspace=9, monitor:{{ if .secondary_monitor }}{{ .secondary_monitor }}{{ else }}{{ .primary_monitor }}{{ end }}, orientation:right
+workspace=10, monitor:{{ if .secondary_monitor }}{{ .secondary_monitor }}{{ else }}{{ .primary_monitor }}{{ end }}, orientation:right

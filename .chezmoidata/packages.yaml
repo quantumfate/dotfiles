@@ -202,6 +202,7 @@ commonPackages:
       - ttf-iosevka-nerd
       - ttf-jetbrains-mono-nerd
       - ttf-meslo-nerd
+      - ttf-roboto
       - noto-color-emoji-fontconfig
       - cantarell-fonts
       - awesome-terminal-fonts
