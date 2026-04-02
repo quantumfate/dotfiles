@@ -87,6 +87,12 @@ commonPackages:
 
       # Hyprland ecosystem
       - hyprland
+      - hyprutils
+      - hyprlang
+      - hyprgraphics
+      - hyprcursor
+      - hyprland-qt-support
+      - hyprland-guiutils
       - hypridle
       - hyprlock
       - hyprpaper
@@ -94,7 +100,6 @@ commonPackages:
       - hyprpolkitagent
       - hyprqt6engine
       - hyprshot
-      - hyprqt6engine
       - hyprshutdown-git
       - grim-hyprland-git
       - hyprsunset

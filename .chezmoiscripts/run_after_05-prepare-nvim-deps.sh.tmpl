@@ -12,15 +12,15 @@ if ! command -v rustup &>/dev/null; then
   exit 1
 fi
 
-# Set stable as default if not already
-if [[ "$(rustup default)" != *"stable"* ]]; then
-  rustup default stable
+# Set nightly as default if not already
+if [[ "$(rustup default)" != *"nightly"* ]]; then
+  rustup default nightly
 else
   echo "  ✓ Rust stable already set as default"
 fi
 
 # Install components if missing
-for component in rustfmt clippy; do
+for component in rustfmt clippy rust-analyzer; do
   if rustup component list --installed | grep -q "^${component}"; then
     echo "  ✓ ${component} already installed"
   else
