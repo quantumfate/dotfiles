@@ -98,9 +98,7 @@ commonPackages:
       - hyprpaper
       - hyprpicker
       - hyprpolkitagent
-      - hyprqt6engine
       - hyprshot
-      - hyprshutdown-git
       - grim-hyprland-git
       - hyprsunset
 
@@ -195,7 +193,7 @@ commonPackages:
       - unixodbc
 
       # Spotify customization
-      - spicetify-cli
+      # - spicetify-cli
 
       # Fonts
       - ttf-arimo-nerd
@@ -276,7 +274,7 @@ llmPackages:
     arch:
       - ollama-bin
       - ollama-cuda13-bin
-      - open-webui
+      # - open-webui
 
 devPackages:
   linux:
