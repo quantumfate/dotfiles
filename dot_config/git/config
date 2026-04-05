@@ -6,21 +6,7 @@
 
 [user]
 	name = "Leon Connor Holm"
-  email = 62796852+quantumfate@users.noreply.github.com
-
-[includeIf "gitdir:~/Projects/github/"]
-	path = "~/.config/git/githubconf"
-
-[includeIf "gitdir:~/Projects/gitlab/"]
-	path = "~/.config/git/gitlabconf"
-
-[includeIf "gitdir:~/.config/hypr/"]
-	path = "~/.config/git/githubconf"
-
-[includeIf "gitdir:~/.config/nvim/"]
-	path = "~/.config/git/githubconf"
-
-[includeIf "gitdir:~/.local/share/chezmoi/"]
-	path = "~/.config/git/githubconf"
-
-
+  email = l.c.holm@proton.me
+	signingkey = 01058FC8A9034CBB643A5CFA45EE29D4AA966DFD
+[commit]
+	gpgsign = true
