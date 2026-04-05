@@ -13,11 +13,13 @@ pass-cli vault list >/dev/null 2>&1 || pass-cli login --interactive
 declare -A ssh_keys=(
   ["gitlab"]="Productivity:gitlab-desktop"
   ["github"]="Productivity:github-desktop"
+  ["aur"]="Productivity:aur-desktop"
 )
 {{ else if eq .profile "laptop" }}
 declare -A ssh_keys=(
   ["gitlab"]="Productivity:gitlab-laptop"
   ["github"]="Productivity:github-laptop"
+  ["aur"]="Productivity:aur-laptop"
 )
 {{ else }}
 echo "[WARN]: Skipping SSH key installation"
