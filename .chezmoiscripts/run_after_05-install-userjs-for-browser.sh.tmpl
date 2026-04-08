@@ -16,13 +16,11 @@ sleep 2
 kill $ZEN_PID 2>/dev/null || true
 echo "  ✓ Zen"
 
-{{- if .gaming }}
-zen-twilight --headless -P Dofus >/dev/null 2>&1 &
-ZEN_DOFUS_PID=$!
+zen-twilight --headless -P Media >/dev/null 2>&1 &
+ZEN_MEDIA_PID=$!
 sleep 2
-kill $ZEN_DOFUS_PID 2>/dev/null || true
-echo "  ✓ Zen Dofus"
-{{- end }}
+kill $ZEN_MEDIA_PID 2>/dev/null || true
+echo "  ✓ Zen Media"
 
 wait 2>/dev/null || true
 
