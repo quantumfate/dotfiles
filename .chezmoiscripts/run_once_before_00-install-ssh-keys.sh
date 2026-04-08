@@ -9,6 +9,7 @@ export PATH="$HOME/.local/bin:$PATH"
 pass-cli vault list >/dev/null 2>&1 || pass-cli login --interactive
 
 declare -A ssh_keys=(
+  ["codeberg"]="Productivity:codeberg"
   ["gitlab"]="Productivity:gitlab"
   ["github"]="Productivity:github"
   ["aur"]="Productivity:aur"

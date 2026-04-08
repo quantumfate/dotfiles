@@ -11,6 +11,7 @@ export PATH="$HOME/.luarocks/bin:$PATH"
 eval "$(luarocks --local --lua-version 5.1 path)"
 export PATH="$HOME/.cargo/bin:$PATH"
 {{- end }}
+eval "$(zoxide init zsh)"
 
 typeset -U path cdpath fpath manpath
 fpath+=(/usr/share/zsh/site-functions /usr/share/zsh/$ZSH_VERSION/functions /usr/share/zsh/vendor-completions)
@@ -175,9 +176,15 @@ add-zsh-hook chpwd auto_nvm
 [[ -n "$TMUX" ]] && auto_venv
 [[ -n "$TMUX" ]] && auto_nvm
 
-## Ranger
-source /home/quantum/.config/ranger/rangercd.sh
-if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
+## LF
+
+lfcd () {
+    cd "$(command lf -print-last-dir "$@")" && zoxide add "$PWD"
+}
+alias lf=lfcd
+
+# bash equivalent:
+# bind '"\C-o":"lfcd\n"'
 
 if test -n "$KITTY_INSTALLATION_DIR"; then
   export KITTY_SHELL_INTEGRATION="no-rc"

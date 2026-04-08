@@ -10,6 +10,13 @@ Host *
   ControlPath ~/.ssh/master-%r@%n:%p
   ControlPersist no
 
+Host codeberg.org
+  HostName codeberg.org
+  User git
+  IdentityFile ~/.ssh/gitlab
+  IdentitiesOnly yes
+  AddKeysToAgent yes
+
 Host github.com
   HostName github.com
   User git
