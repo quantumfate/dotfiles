@@ -9,9 +9,11 @@ set hidden false
 set number
 set relativenumber
 set period 1
-set promptfmt "\033[1;38;5;39m%u@%h \033[38;5;244m%w/\033[1;38;5;255m%f\033[0m"
 set previewer ~/.config/lf/preview
-set cleaner   ~/.config/lf/cleaner
+# no cleaner needed — we redraw instead
+set cleaner ""
+
+set promptfmt "\033[1;38;5;39m%u@%h \033[38;5;244m%w/\033[1;38;5;255m%f\033[0m"
 set preview true
 set ratios 1:2:3
 
@@ -117,9 +119,6 @@ map gd cd ~/Downloads
 map R bulk-rename
 map . set hidden!
 
-set previewer ~/.config/lf/preview
-# no cleaner needed — we redraw instead
-set cleaner ""
 
 # Force lf to redraw when selection changes. This wipes kitty's image
 # from the preview pane when moving to a non-image file.
