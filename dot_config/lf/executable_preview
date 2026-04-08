@@ -1,0 +1,75 @@
+#!/bin/sh
+# lf previewer with native kitty graphics protocol
+
+file="$1"
+w="$2"
+h="$3"
+x="$4"
+y="$5"
+
+# Cache thumbnails keyed on inode + mtime so we don't reconvert every scroll
+hash="$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$file")" |
+  sha256sum | awk '{print $1}')"
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/lf"
+CACHE="$CACHE_DIR/$hash"
+mkdir -p "$CACHE_DIR"
+
+kitty_show() {
+  img_id=$(printf '%s' "$1" | cksum | awk '{print ($1 % 16777215) + 1}')
+  if [ -n "$TMUX" ]; then
+    kitten icat \
+      --silent \
+      --stdin no \
+      --transfer-mode memory \
+      --passthrough tmux \
+      --image-id "$img_id" \
+      --place "${w}x${h}@${x}x${y}" \
+      "$1" </dev/null >/dev/tty
+  else
+    kitten icat \
+      --silent \
+      --stdin no \
+      --transfer-mode file \
+      --place "${w}x${h}@${x}x${y}" \
+      "$1" </dev/null >/dev/tty
+  fi
+}
+
+case "$(file -Lb --mime-type "$file")" in
+image/svg+xml)
+  [ ! -f "$CACHE.png" ] && rsvg-convert -o "$CACHE.png" "$file" 2>/dev/null
+  kitty_show "$CACHE.png"
+  ;;
+image/*)
+  kitty_show "$file"
+  ;;
+video/*)
+  [ ! -f "$CACHE.jpg" ] &&
+    ffmpegthumbnailer -i "$file" -o "$CACHE.jpg" -s 0 -q 5 2>/dev/null
+  kitty_show "$CACHE.jpg"
+  ;;
+application/pdf)
+  [ ! -f "$CACHE.jpg" ] &&
+    pdftoppm -jpeg -f 1 -singlefile "$file" "$CACHE" 2>/dev/null
+  kitty_show "$CACHE.jpg"
+  ;;
+application/epub+zip)
+  [ ! -f "$CACHE.png" ] &&
+    gnome-epub-thumbnailer "$file" "$CACHE.png" 2>/dev/null
+  kitty_show "$CACHE.png"
+  ;;
+application/zip) unzip -l "$file" ;;
+application/x-tar) tar tvf "$file" ;;
+application/gzip) tar tzvf "$file" 2>/dev/null || zcat "$file" ;;
+text/* | application/json | application/javascript | application/xml | application/x-shellscript)
+  bat --color=always --style=plain --pager=never --terminal-width="$w" "$file"
+  ;;
+*)
+  file -Lb "$file"
+  ;;
+esac
+
+# Exit 1 tells lf NOT to cache the preview output in memory — critical for
+# image previews because the escape codes are positioned absolutely and
+# can't be replayed.
+exit 1

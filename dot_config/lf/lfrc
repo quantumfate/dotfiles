@@ -1,0 +1,173 @@
+set shell sh
+set shellopts '-eu'
+set ifs "\n"
+set scrolloff 10
+set icons
+set ignorecase true
+set drawbox
+set hidden false
+set number
+set relativenumber
+set period 1
+set promptfmt "\033[1;38;5;39m%u@%h \033[38;5;244m%w/\033[1;38;5;255m%f\033[0m"
+set previewer ~/.config/lf/preview
+set cleaner   ~/.config/lf/cleaner
+set preview true
+set ratios 1:2:3
+
+
+cmd open &{{
+    for f in $fx; do
+        case $(file --mime-type -Lb "$f") in
+            text/*|application/json|application/javascript|application/xml|application/x-shellscript)
+                lf -remote "send $id \$$EDITOR \"\$f\""
+                ;;
+            image/svg+xml)         setsid -f inkscape   "$f" >/dev/null 2>&1 ;;
+            image/*)               setsid -f imv        "$f" >/dev/null 2>&1 ;;
+            audio/*)               setsid -f mpv --no-audio-display "$f" >/dev/null 2>&1 ;;
+            video/*)               setsid -f mpv        "$f" >/dev/null 2>&1 ;;
+            application/pdf|application/epub+zip|application/x-mobipocket-ebook)
+                                   setsid -f zathura    "$f" >/dev/null 2>&1 ;;
+            application/zip|application/x-tar|application/gzip|application/x-7z-compressed|application/x-rar)
+                                   lf -remote "send $id \$less \"\$f\"" ;;
+            *)                     setsid -f xdg-open   "$f" >/dev/null 2>&1 ;;
+        esac
+    done
+}}
+
+cmd mkdir %IFS=' '; mkdir -p -- "$*"
+cmd mkfile %IFS=' '; touch -- "$*"
+cmd chmod  %IFS=' '; chmod -- "$1" $fx
+
+cmd trash %set -f; trash-put $fx
+cmd delete ${{
+    set -f
+    printf "%s\n" $fx
+    printf "delete? [y/N] "
+    read -r ans
+    [ "$ans" = "y" ] && rm -rf -- $fx
+}}
+
+cmd extract ${{
+    set -f
+    case "$f" in
+        *.tar.bz2|*.tbz2) tar xjvf "$f" ;;
+        *.tar.gz|*.tgz)   tar xzvf "$f" ;;
+        *.tar.xz|*.txz)   tar xJvf "$f" ;;
+        *.tar)            tar xvf  "$f" ;;
+        *.zip)            unzip    "$f" ;;
+        *.rar)            unrar x  "$f" ;;
+        *.7z)             7z x     "$f" ;;
+    esac
+}}
+
+cmd tar ${{
+    set -f
+    mkdir -p -- "$1"
+    cp -r -- $fx "$1"
+    tar czf "$1.tar.gz" "$1"
+    rm -rf -- "$1"
+}}
+
+cmd fzf_jump ${{
+    res="$(fd --hidden --exclude .git | fzf --reverse --header='Jump to file')"
+    [ -n "$res" ] && lf -remote "send $id select \"$res\""
+}}
+
+# Jump to a frecent directory. With args: z proj → jumps to best match.
+# Without args: z → opens interactive fzf picker of your zoxide history.
+cmd z %{{
+    if [ -n "$1" ]; then
+        result="$(zoxide query -- "$@")"
+    else
+        result="$(zoxide query -i)"
+    fi
+    [ -n "$result" ] && lf -remote "send $id cd \"$result\""
+}}
+
+# Auto-record every cd inside lf
+cmd on-cd &{{
+    zoxide add "$PWD" >/dev/null 2>&1
+}}
+
+# Bulk rename with $EDITOR
+cmd bulk-rename ${{
+    old="$(mktemp)"; new="$(mktemp)"
+    [ -z "$fs" ] && fs="$(ls)"
+    printf '%s\n' "$fs" >"$old"
+    printf '%s\n' "$fs" >"$new"
+    $EDITOR "$new"
+    [ "$(wc -l <"$new")" -ne "$(wc -l <"$old")" ] && echo "line count mismatch" && exit 1
+    paste "$old" "$new" | while IFS=$(printf '\t') read -r src dst; do
+        [ "$src" = "$dst" ] || [ -z "$dst" ] && continue
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+}}
+
+map <enter> open
+map D trash
+map <delete> delete
+map x extract
+map au tar
+map <c-f> fzf_jump
+map gh cd ~
+map gc cd ~/.config
+map gd cd ~/Downloads
+map R bulk-rename
+map . set hidden!
+
+set previewer ~/.config/lf/preview
+# no cleaner needed — we redraw instead
+set cleaner ""
+
+# Force lf to redraw when selection changes. This wipes kitty's image
+# from the preview pane when moving to a non-image file.
+cmd on-select &{{
+    # Only force a redraw if the previous preview was an image.
+    # Track state in a tmpfile.
+    state="${XDG_RUNTIME_DIR:-/tmp}/lf-preview-state.$id"
+    prev=$(cat "$state" 2>/dev/null || echo "none")
+    mime=$(file -Lb --mime-type -- "$f" 2>/dev/null)
+    case "$mime" in
+        image/*|application/pdf|video/*) echo "image" > "$state" ;;
+        *)
+            echo "text" > "$state"
+            [ "$prev" = "image" ] && lf -remote "send $id redraw"
+            ;;
+    esac
+}}
+
+# Also redraw when the pane/window geometry changes
+cmd on-redraw &{{
+    lf -remote "send $id redraw"
+}}
+
+# Catppuccin Macchiato ANSI styling for lf chrome
+# Palette:
+#   base     #24273a   surface0 #363a4f   surface1 #494d64
+#   text     #cad3f5   subtext0 #a5adcb   overlay0 #6e738d
+#   blue     #8aadf4   mauve    #c6a4f5   green    #a6da95
+#   peach    #f5a97f   red      #ed8796   yellow   #eed49f
+
+# Prompt: mauve user@host, subtext0 dir, blue filename
+set promptfmt "\033[38;2;198;164;245;1m%u@%h\033[0m  \033[38;2;165;173;203m%d\033[38;2;138;173;244;1m%f\033[0m"
+
+# Selection cursor (current file) — surface0 bg, text fg
+set cursorfmt "\033[48;2;54;58;79;38;2;202;211;245;1m"
+
+# Cursor in the preview pane — subtler
+set cursorpreviewfmt "\033[48;2;54;58;79m"
+
+# "Selected" marker (toggled with space) — surface1 bg, yellow fg
+set selectfmt "\033[48;2;73;77;100;38;2;238;212;159;1m"
+
+# Copy / cut buffer highlight
+set copyfmt "\033[38;2;166;218;149;1m"
+set cutfmt "\033[38;2;237;135;150;1m"
+
+# Number column — overlay0
+set numberfmt "\033[38;2;110;115;141m"
+
+# Truncation character
+set truncatefmt "\033[38;2;237;135;150m"
