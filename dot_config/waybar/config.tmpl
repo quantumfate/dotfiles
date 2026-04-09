@@ -33,7 +33,7 @@
     ],
     "position": "top",
     "spacing": 0
-  }{{- if .secondary_monitor }},
+  }{{- if and (hasKey . "secondary_monitor") .secondary_monitor }},
   {
     "fixed-center": true,
     "height": 30,
