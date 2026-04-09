@@ -334,3 +334,4 @@ desktopPackages:
 laptopPackages:
   linux:
     arch:
+      - greetd-tuigreet-fork-bin
