@@ -27,6 +27,7 @@ commonPackages:
       - wf-recorder
       - slurp
       - zoxide
+      - thefuck
 
       # Cryptsetup
       - fwupd
