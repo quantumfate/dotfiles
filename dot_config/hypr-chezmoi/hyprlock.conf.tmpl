@@ -91,6 +91,18 @@ label {
   text=$FPRINTPROMPT
   valign=center
 }
+
+label {
+    monitor =
+    text = cmd[update:1800000] curl -s 'wttr.in/?format=%c+%t' 2>/dev/null
+    color = $text
+    font_size = 18
+    font_family = $font_family
+    position = -30, -260
+    halign = right
+    valign = top
+}
+
 {{ if eq .profile "laptop" }}
 label {
   monitor=
