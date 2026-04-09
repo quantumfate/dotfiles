@@ -1,0 +1,11 @@
+#!/bin/bash
+# sudoers hash: {{ include "dot_config/sudoers.d/10-timeout" | sha256sum }}
+set -euo pipefail
+
+SRC="{{ .chezmoi.sourceDir }}/dot_config/sudoers.d/10-timeout"
+DST="/etc/sudoers.d/10-timeout"
+
+# Validate before installing — a broken sudoers file can lock you out
+visudo -cf "$SRC"
+
+sudo install -m 0440 -o root -g root "$SRC" "$DST"
