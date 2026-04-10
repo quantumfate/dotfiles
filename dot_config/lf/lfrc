@@ -153,7 +153,7 @@ cmd on-redraw &{{
 set promptfmt "\033[38;2;198;164;245;1m%u@%h\033[0m  \033[38;2;165;173;203m%d\033[38;2;138;173;244;1m%f\033[0m"
 
 # Selection cursor (current file) — surface0 bg, text fg
-set cursorfmt "\033[48;2;54;58;79;38;2;202;211;245;1m"
+set cursoractivefmt "\033[48;2;54;58;79;38;2;202;211;245;1m"
 
 # Cursor in the preview pane — subtler
 set cursorpreviewfmt "\033[48;2;54;58;79m"
@@ -169,4 +169,4 @@ set cutfmt "\033[38;2;237;135;150;1m"
 set numberfmt "\033[38;2;110;115;141m"
 
 # Truncation character
-set truncatefmt "\033[38;2;237;135;150m"
+# set truncatefmt "\033[38;2;237;135;150m"

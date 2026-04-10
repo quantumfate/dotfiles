@@ -6,3 +6,4 @@ export QT_STYLE_OVERRIDE=kvantum
 export XDG_CONFIG_HOME=$HOME/.config
 export BROWSER=zen-twilight
 export GDK_BACKEND=wayland,x11,*
+export MOZ_ENABLE_WAYLAND=1

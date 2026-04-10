@@ -23,6 +23,7 @@ units=(
   kanshi.service
   hyprsunset.service
   obsidian.service
+  hypr-ipc-wrapper.service
   # graphical session + network
   elecwhat.service
   vesktop.service

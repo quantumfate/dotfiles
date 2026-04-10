@@ -21,10 +21,12 @@
 user_pref("gfx.content.skia-font-cache-size", 32);
 
 /** GFX ***/
-user_pref("gfx.webrender.layer-compositor", true);
+user_pref("gfx.webrender.layer-compositor", false);
 user_pref("gfx.canvas.accelerated.cache-items", 32768);
 user_pref("gfx.canvas.accelerated.cache-size", 4096);
 user_pref("webgl.max-size", 16384);
+user_pref("gfx.webrender.quality.force-subpixel-aa-where-possible", true);
+user_pref("gfx.webrender.software", false);
 
 /** DISK CACHE ***/
 //user_pref("browser.cache.disk.enable", false);
@@ -231,7 +233,9 @@ user_pref("network.http.speculative-parallel-limit", 0);
 user_pref("network.dns.disablePrefetch", true);
 user_pref("network.dns.disablePrefetchFromHTTPS", true);
 user_pref("browser.urlbar.speculativeConnect.enabled", false);
+user_pref("gfx.webrender.precache-shaders", true);
 user_pref("browser.cache.disk.enable", false);
+user_pref("gfx.webrender.max-shared-surface-size", 2048)
 
 user_pref("network.proxy.type", 0);
 user_pref("extensions.webextensions.restrictedDomains", "");
@@ -249,7 +253,7 @@ user_pref("browser.tabs.loadInBackground", false); // switch to new tabs immedia
 user_pref("browser.toolbars.bookmarks.visibility", "always");
 user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.startup.page", 1);
-user_pref("layout.css.devPixelsPerPx", "-1.0");
+user_pref("layout.css.devPixelsPerPx", 1.25);
 
 // === Privacy extras (beyond Betterfox) ===
 user_pref("browser.safebrowsing.downloads.enabled", false);
@@ -274,7 +278,7 @@ user_pref("font.name.serif.x-western", "Roboto");
 user_pref("font.name.sans-serif.x-western", "Roboto");
 user_pref("font.name.monospace.x-western", "JetBrainsMono Nerd Font Mono");
 // Minimum font size
-user_pref("font.minimum-size.x-western", 14);
+user_pref("font.minimum-size.x-western", 11);
 // Default font size
 user_pref("font.size.variable.x-western", 16);
 user_pref("font.size.monospace.x-western", 14);
