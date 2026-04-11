@@ -72,12 +72,12 @@ and installed via [this script](./.chezmoiscripts/run_after_15-install-layout.sh
 
 ```ascii
             ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────────┐
- AltGr+⇧    │  1  │  2  │  3  │  4  │  5  │  6  │  7  │  8  │  9  │  0  │     │     │     │         │
+ AltGr+S    │  1  │  2  │  3  │  4  │  5  │  6  │  7  │  8  │  9  │  0  │     │     │     │         │
  AltGr      │  ¹  │  ²  │  ³  │  ⁴  │  ⁵  │  ⁶  │  ⁷  │  ⁸  │  ⁹  │  ⁰  │     │  ~̃  │     │         │
  Shift      │  %  │  9  │  7  │  5  │  3  │  1  │  0  │  2  │  4  │  6  │  8  │  #  │     │  Bksp   │
  base       │  +  │  [  │  {  │  (  │  &  │  =  │  )  │  }  │  ]  │  *  │  !  │  `  │     │         │
             ├─────┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──────┤
- AltGr+⇧    │        │  ¨  │  ˇ  │  ·  │     │     │     │     │     │     │     │     │  ˘  │      │
+ AltGr+S    │        │  ¨  │  ˇ  │  ·  │     │     │     │     │     │     │     │     │  ˘  │      │
  AltGr      │        │  ´  │  ¸  │  ˙  │     │     │     │     │     │     │     │     │  ^  │      │
  Shift      │  Tab   │  :  │  <  │  >  │  P  │  Y  │  F  │  G  │  C  │  R  │  L  │  ?  │  ^  │  |   │
  base       │        │  ;  │  ,  │  .  │  p  │  y  │  f  │  g  │  c  │  r  │  l  │  /  │  @  │  \   │
@@ -85,7 +85,7 @@ and installed via [this script](./.chezmoiscripts/run_after_15-install-layout.sh
  Shift      │         │  A  │  O  │  E  │  U  │  I  │  D  │  H  │  T  │  N  │  S  │  _  │           │
  base       │  Caps   │  a  │  o  │  e  │  u  │  i  │  d  │  h  │  t  │  n  │  s  │  -  │   Enter   │
             ├─────────┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───┬─┴───────────┤
- AltGr+⇧    │             │  ˝  │     │     │     │     │     │     │     │     │     │             │
+ AltGr+S    │             │  ˝  │     │     │     │     │     │     │     │     │     │             │
  AltGr      │             │  ˛  │     │     │     │     │     │     │     │     │     │             │
  Shift      │   Shift     │  "  │  Q  │  J  │  K  │  X  │  B  │  M  │  W  │  V  │  Z  │   Shift     │
  base       │             │  '  │  q  │  j  │  k  │  x  │  b  │  m  │  w  │  v  │  z  │             │
