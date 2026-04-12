@@ -1,6 +1,6 @@
 [[profile]]
 name = "desktop"
-exec = ["xrandr --output DP-1 --primary", "systemctl --user restart monitors-changed.target"]
+exec = ["xrandr --output DP-1 --primary", "sleep 2 && systemctl --user restart monitors-changed.target"]
 
   [[profile.output]]
   search = "n=DP-2"
@@ -40,7 +40,7 @@ exec = ["xrandr --output DP-1 --primary", "systemctl --user restart monitors-cha
 
 [[profile]]
 name = "desktop-pip"
-exec = ["xrandr --output DP-1 --primary"]
+exec = ["xrandr --output DP-1 --primary", "sleep 4 && systemctl --user restart monitors-changed.target"]
 
   [[profile.output]]
   search = "n=DP-2"
@@ -80,7 +80,7 @@ exec = ["xrandr --output DP-1 --primary"]
 
 [[profile]]
 name = "laptop"
-exec = ["xrandr --output eDP-1 --primary", "systemctl --user restart monitors-changed.target"]
+exec = ["xrandr --output eDP-1 --primary", "sleep 2 && systemctl --user restart monitors-changed.target"]
 
   [[profile.output]]
   search = "n=eDP-1"
