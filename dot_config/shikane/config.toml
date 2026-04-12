@@ -1,0 +1,101 @@
+[[profile]]
+name = "desktop"
+exec = ["xrandr --output DP-1 --primary"]
+
+  [[profile.output]]
+  search = "n=DP-2"
+  enable = true
+  mode = "2560x1440@143.856Hz"
+  position = "0,0"
+  scale = 1.0
+  exec = [
+    "hyprctl dispatch moveworkspacetomonitor '6 DP-2'",
+    "hyprctl dispatch moveworkspacetomonitor '7 DP-2'",
+    "hyprctl dispatch moveworkspacetomonitor '8 DP-2'",
+    "hyprctl dispatch moveworkspacetomonitor '9 DP-2'",
+    "hyprctl dispatch moveworkspacetomonitor '10 DP-2'",
+  ]
+
+  [[profile.output]]
+  search = "n=DP-1"
+  enable = true
+  mode = "5120x1440@119.988Hz"
+  position = "2560,0"
+  scale = 1.0
+  exec = [
+    "hyprctl dispatch moveworkspacetomonitor '1 DP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '2 DP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '3 DP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '4 DP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '5 DP-1'",
+  ]
+
+  [[profile.output]]
+  search = "n=HDMI-A-1"
+  enable = true
+  mode = "800x1280@59.973Hz"
+  position = "7680,0"
+  scale = 1.0
+  transform = "90"
+
+[[profile]]
+name = "desktop-pip"
+exec = ["xrandr --output DP-1 --primary"]
+
+  [[profile.output]]
+  search = "n=DP-2"
+  enable = true
+  mode = "2560x1440@143.856Hz"
+  position = "0,0"
+  scale = 1.0
+  exec = [
+    "hyprctl dispatch moveworkspacetomonitor '2 DP-2'",
+    "hyprctl dispatch moveworkspacetomonitor '7 DP-2'",
+    "hyprctl dispatch moveworkspacetomonitor '8 DP-2'",
+    "hyprctl dispatch moveworkspacetomonitor '9 DP-2'",
+    "hyprctl dispatch moveworkspacetomonitor '10 DP-2'",
+  ]
+
+  [[profile.output]]
+  search = "n=DP-1"
+  enable = true
+  mode = "2560x1440@119.998Hz"
+  position = "2560,0"
+  scale = 1.0
+  exec = [
+    "hyprctl dispatch moveworkspacetomonitor '1 DP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '3 DP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '4 DP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '5 DP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '6 DP-1'",
+  ]
+
+  [[profile.output]]
+  search = "n=HDMI-A-1"
+  enable = true
+  mode = "800x1280@59.973Hz"
+  position = "5120,0"
+  scale = 1.0
+  transform = "90"
+
+[[profile]]
+name = "laptop"
+exec = ["xrandr --output eDP-1 --primary"]
+
+  [[profile.output]]
+  search = "n=eDP-1"
+  enable = true
+  position = "0,0"
+  scale = 1.0
+  exec = [
+    "hyprctl dispatch moveworkspacetomonitor '1 eDP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '2 eDP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '3 eDP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '4 eDP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '5 eDP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '6 eDP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '7 eDP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '8 eDP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '9 eDP-1'",
+    "hyprctl dispatch moveworkspacetomonitor '10 eDP-1'",
+  ]

@@ -1,22 +1,7 @@
 profile desktop {
-  output DP-2
-  output DP-1
-  exec hyprctl dispatch moveworkspacetomonitor "1 DP-1"
-  exec hyprctl dispatch moveworkspacetomonitor "2 DP-1"
-  exec hyprctl dispatch moveworkspacetomonitor "3 DP-1"
-  exec hyprctl dispatch moveworkspacetomonitor "4 DP-1"
-  exec hyprctl dispatch moveworkspacetomonitor "5 DP-1"
-  exec hyprctl dispatch moveworkspacetomonitor "6 DP-2"
-  exec hyprctl dispatch moveworkspacetomonitor "7 DP-2"
-  exec hyprctl dispatch moveworkspacetomonitor "8 DP-2"
-  exec hyprctl dispatch moveworkspacetomonitor "9 DP-2"
-  exec hyprctl dispatch moveworkspacetomonitor "10 DP-2"
-  exec xrandr --output DP-1 --primary
-}
-profile desktop-secondary {
-  output DP-2
-  output DP-1
-  output HDMI-A-1
+  output DP-2 mode 2560x1440@143.86Hz position 0,0 scale 1
+  output DP-1 mode 5120x1440@119.99Hz position 2560,0 scale 1
+  output HDMI-A-1 mode 800x1280@59.97Hz position 7680,0 scale 1 transform 90
   exec hyprctl dispatch moveworkspacetomonitor "1 DP-1"
   exec hyprctl dispatch moveworkspacetomonitor "2 DP-1"
   exec hyprctl dispatch moveworkspacetomonitor "3 DP-1"
@@ -30,43 +15,34 @@ profile desktop-secondary {
   exec xrandr --output DP-1 --primary
 }
 
-profile desktop-tv {
-  output DP-2
-  output DP-1
-  output HDMI-A-1
-  output HDMI-A-2
+profile desktop-pip {
+  output DP-2 mode 2560x1440@143.86Hz position 0,0 scale 1
+  output DP-1 mode 2560x1440@119.99Hz position 2560,0 scale 1
+  output HDMI-A-1 mode 800x1280@59.97Hz position 5120,0 scale 1 transform 90
   exec hyprctl dispatch moveworkspacetomonitor "1 DP-1"
-  exec hyprctl dispatch moveworkspacetomonitor "2 DP-1"
+  exec hyprctl dispatch moveworkspacetomonitor "2 DP-2"
   exec hyprctl dispatch moveworkspacetomonitor "3 DP-1"
   exec hyprctl dispatch moveworkspacetomonitor "4 DP-1"
   exec hyprctl dispatch moveworkspacetomonitor "5 DP-1"
-  exec hyprctl dispatch moveworkspacetomonitor "6 DP-2"
+  exec hyprctl dispatch moveworkspacetomonitor "6 DP-1"
   exec hyprctl dispatch moveworkspacetomonitor "7 DP-2"
   exec hyprctl dispatch moveworkspacetomonitor "8 DP-2"
   exec hyprctl dispatch moveworkspacetomonitor "9 DP-2"
-  exec hyprctl dispatch moveworkspacetomonitor "10 HDMI-A-2"
+  exec hyprctl dispatch moveworkspacetomonitor "10 DP-2"
   exec xrandr --output DP-1 --primary
 }
 
 profile laptop {
-  output eDP-1
+  output eDP-1 position 0,0 scale 1
   exec hyprctl dispatch moveworkspacetomonitor "1 eDP-1"
   exec hyprctl dispatch moveworkspacetomonitor "2 eDP-1"
   exec hyprctl dispatch moveworkspacetomonitor "3 eDP-1"
   exec hyprctl dispatch moveworkspacetomonitor "4 eDP-1"
   exec hyprctl dispatch moveworkspacetomonitor "5 eDP-1"
   exec hyprctl dispatch moveworkspacetomonitor "6 eDP-1"
-  exec xrandr --output eDP-1 --primary
-}
-
-profile laptop-tv {
-  output eDP-1
-  output HDMI-A-1
-  exec hyprctl dispatch moveworkspacetomonitor "1 eDP-1"
-  exec hyprctl dispatch moveworkspacetomonitor "2 eDP-1"
-  exec hyprctl dispatch moveworkspacetomonitor "3 eDP-1"
-  exec hyprctl dispatch moveworkspacetomonitor "4 eDP-1"
-  exec hyprctl dispatch moveworkspacetomonitor "5 eDP-1"
-  exec hyprctl dispatch moveworkspacetomonitor "6 HDMI-A-1"
+  exec hyprctl dispatch moveworkspacetomonitor "7 eDP-1"
+  exec hyprctl dispatch moveworkspacetomonitor "8 eDP-1"
+  exec hyprctl dispatch moveworkspacetomonitor "9 eDP-1"
+  exec hyprctl dispatch moveworkspacetomonitor "10 eDP-1"
   exec xrandr --output eDP-1 --primary
 }

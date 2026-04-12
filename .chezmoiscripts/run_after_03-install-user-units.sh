@@ -20,7 +20,7 @@ units=(
   hypridle.service
   hyprpolkitagent.service
   udiskie.service
-  kanshi.service
+  shikane.service
   hyprsunset.service
   obsidian.service
   hypr-ipc-wrapper.service

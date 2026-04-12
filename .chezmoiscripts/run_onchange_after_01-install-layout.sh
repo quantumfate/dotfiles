@@ -16,7 +16,7 @@ else
   echo "  ✓ Symbols file already up to date"
 fi
 
-# 2. Add to evdev.xml (backup only if we're modifying)
+# 2. Add to evdev.xml
 EVDEV_XML="$XKB_DIR/rules/evdev.xml"
 if ! grep -q "dvorak-custom" "$EVDEV_XML"; then
   sudo cp -n "$EVDEV_XML" "$EVDEV_XML.bak"
