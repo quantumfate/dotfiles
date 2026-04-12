@@ -1,12 +1,11 @@
 [Unit]
-Description=Waybar status bar
+Description=Shikane dynamic display configuration
 After=graphical-session.target
 BindsTo=graphical-session.target
-PartOf=theme-reload.target monitors-changed.target
 ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
-ExecStart=/usr/bin/waybar
+ExecStart=/usr/bin/shikane
 Restart=on-failure
 
 [Install]

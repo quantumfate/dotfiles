@@ -4,7 +4,7 @@ I'm ready to go on a new machine with one simple command.
 
 ## Features
 
-- Monitor Management: [Kanshi](https://sr.ht/~emersion/kanshi/)
+- Monitor Management: [Shikane](https://gitlab.com/w0lff/shikane#configuration)
 - Greeter: [Tuigreet](https://github.com/NotAShelf/tuigreet)
 - UWSM Session Management
 - Systemd Autostart with compositor scopes

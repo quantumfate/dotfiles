@@ -2,6 +2,7 @@
 Description=Hyprpaper wallpaper daemon
 After=wayland-session@hyprland.desktop.target
 BindsTo=wayland-session@hyprland.desktop.target
+PartOf=monitors-changed.target
 
 [Service]
 ExecStart=/usr/bin/hyprpaper
