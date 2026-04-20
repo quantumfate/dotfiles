@@ -112,6 +112,7 @@ commonPackages:
 
       # Wayland tools
       - kanshi
+      - shikane
       - waybar
       - wofi
       - rofi
