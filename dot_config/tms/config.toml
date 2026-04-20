@@ -6,7 +6,7 @@ excluded_dirs = [
     ".git",
 ]
 
-bookmarks = ["/home/quantum"]
+bookmarks = ["/home/quantum", "/home/quantum/Documents/Obsidian/Main", "/home/quantum/.config/nvim"]
 
 [popup]
 width = "95%"
