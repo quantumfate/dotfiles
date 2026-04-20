@@ -1,0 +1,15 @@
+[Unit]
+Description=Hyprland IPC wrapper (window event handler)
+PartOf=graphical-session.target
+After=graphical-session.target
+ConditionEnvironment=HYPRLAND_INSTANCE_SIGNATURE
+
+[Service]
+Type=simple
+ExecStart=%h/.config/hypr/scripts/ipc_wrapper.sh
+Restart=on-failure
+RestartSec=2
+Slice=session.slice
+
+[Install]
+WantedBy=graphical-session.target
