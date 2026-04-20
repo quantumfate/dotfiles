@@ -1,321 +1,351 @@
-/* Catppuccin Latte Mauve userContent.css*/
-
-@media (prefers-color-scheme: light) {
-  /* Common variables affecting all pages */
-  @-moz-document url-prefix("about:") {
-    :root {
-      --in-content-page-color: #4c4f69 !important;
-      --color-accent-primary: #8839ef !important;
-      --color-accent-primary-hover: rgb(150, 81, 241) !important;
-      --color-accent-primary-active: rgb(181, 57, 239) !important;
-      background-color: #eff1f5 !important;
-      --in-content-page-background: #eff1f5 !important;
-    }
-  }
-
-  /* Variables and styles specific to about:newtab and about:home */
-  @-moz-document url("about:newtab"), url("about:home") {
-    :root {
-      --newtab-background-color: #eff1f5 !important;
-      --newtab-background-color-secondary: #ccd0da !important;
-      --newtab-element-hover-color: #ccd0da !important;
-      --newtab-text-primary-color: #4c4f69 !important;
-      --newtab-wordmark-color: #4c4f69 !important;
-      --newtab-primary-action-background: #8839ef !important;
-    }
-
-    .icon {
-      color: #8839ef !important;
-    }
-
-    .search-wrapper .logo-and-wordmark .logo {
-      background:
-        url("zen-logo-latte.svg"),
-        url("https://raw.githubusercontent.com/IAmJafeth/zen-browser/main/themes/Latte/Mauve/zen-logo-latte.svg")
-          no-repeat center !important;
-      display: inline-block !important;
-      height: 82px !important;
-      width: 82px !important;
-      background-size: 82px !important;
-    }
-
-    @media (max-width: 609px) {
-      .search-wrapper .logo-and-wordmark .logo {
-        background-size: 64px !important;
-        height: 64px !important;
-        width: 64px !important;
-      }
-    }
-
-    .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title {
-      color: #8839ef !important;
-    }
-
-    .top-site-outer .search-topsite {
-      background-color: #1e66f5 !important;
-    }
-
-    .compact-cards .card-outer .card-context .card-context-icon.icon-download {
-      fill: #40a02b !important;
-    }
-  }
-
-  /* Variables and styles specific to about:preferences */
-  @-moz-document url-prefix("about:preferences") {
-    :root {
-      --zen-colors-tertiary: #e6e9ef !important;
-      --in-content-text-color: #4c4f69 !important;
-      --link-color: #8839ef !important;
-      --link-color-hover: rgb(150, 81, 241) !important;
-      --zen-colors-primary: #ccd0da !important;
-      --in-content-box-background: #ccd0da !important;
-      --zen-primary-color: #8839ef !important;
-    }
-
-    groupbox,
-    moz-card {
-      background: #eff1f5 !important;
-    }
-
-    button,
-    groupbox menulist {
-      background: #ccd0da !important;
-      color: #4c4f69 !important;
-    }
-
-    .main-content {
-      background-color: #dce0e8 !important;
-    }
-
-    .identity-color-blue {
-      --identity-tab-color: #8aadf4 !important;
-      --identity-icon-color: #8aadf4 !important;
-    }
-
-    .identity-color-turquoise {
-      --identity-tab-color: #8bd5ca !important;
-      --identity-icon-color: #8bd5ca !important;
-    }
-
-    .identity-color-green {
-      --identity-tab-color: #a6da95 !important;
-      --identity-icon-color: #a6da95 !important;
-    }
-
-    .identity-color-yellow {
-      --identity-tab-color: #eed49f !important;
-      --identity-icon-color: #eed49f !important;
-    }
-
-    .identity-color-orange {
-      --identity-tab-color: #f5a97f !important;
-      --identity-icon-color: #f5a97f !important;
-    }
-
-    .identity-color-red {
-      --identity-tab-color: #ed8796 !important;
-      --identity-icon-color: #ed8796 !important;
-    }
-
-    .identity-color-pink {
-      --identity-tab-color: #f5bde6 !important;
-      --identity-icon-color: #f5bde6 !important;
-    }
-
-    .identity-color-purple {
-      --identity-tab-color: #c6a0f6 !important;
-      --identity-icon-color: #c6a0f6 !important;
-    }
-  }
-
-  /* Variables and styles specific to about:addons */
-  @-moz-document url-prefix("about:addons") {
-    :root {
-      --zen-dark-color-mix-base: #e6e9ef !important;
-      --background-color-box: #eff1f5 !important;
-    }
-  }
-
-  /* Variables and styles specific to about:protections */
-  @-moz-document url-prefix("about:protections") {
-    :root {
-      --zen-primary-color: #eff1f5 !important;
-      --social-color: #8839ef !important;
-      --coockie-color: #04a5e5 !important;
-      --fingerprinter-color: #df8e1d !important;
-      --cryptominer-color: #7287fd !important;
-      --tracker-color: #40a02b !important;
-      --in-content-primary-button-background-hover: rgb(
-        203,
-        206,
-        215
-      ) !important;
-      --in-content-primary-button-text-color-hover: #4c4f69 !important;
-      --in-content-primary-button-background: #bcc0cc !important;
-      --in-content-primary-button-text-color: #4c4f69 !important;
-    }
-
-    .card {
-      background-color: #ccd0da !important;
-    }
-  }
-}
-
-/* Catppuccin Macchiato Mauve userContent.css*/
+/* Catppuccin Macchiato Mauve userChrome.css*/
 
 @media (prefers-color-scheme: dark) {
-  /* Common variables affecting all pages */
-  @-moz-document url-prefix("about:") {
-    :root {
-      --in-content-page-color: #cad3f5 !important;
-      --color-accent-primary: #c6a0f6 !important;
-      --color-accent-primary-hover: rgb(213, 184, 248) !important;
-      --color-accent-primary-active: rgb(220, 160, 246) !important;
-      background-color: #24273a !important;
-      --in-content-page-background: #24273a !important;
-    }
+  :root {
+    --zen-colors-primary: #363a4f !important;
+    --zen-primary-color: #c6a0f6 !important;
+    --zen-colors-secondary: #363a4f !important;
+    --zen-colors-tertiary: #1e2030 !important;
+    --zen-colors-border: #c6a0f6 !important;
+    --toolbarbutton-icon-fill: #c6a0f6 !important;
+    --lwt-text-color: #cad3f5 !important;
+    --toolbar-field-color: #cad3f5 !important;
+    --tab-selected-textcolor: rgb(200, 185, 245) !important;
+    --toolbar-field-focus-color: #cad3f5 !important;
+    --toolbar-color: #cad3f5 !important;
+    --newtab-text-primary-color: #cad3f5 !important;
+    --arrowpanel-color: #cad3f5 !important;
+    --arrowpanel-background: #24273a !important;
+    --sidebar-text-color: #cad3f5 !important;
+    --lwt-sidebar-text-color: #cad3f5 !important;
+    --lwt-sidebar-background-color: #181926 !important;
+    --toolbar-bgcolor: #363a4f !important;
+    --newtab-background-color: #24273a !important;
+    --zen-themed-toolbar-bg: #1e2030 !important;
+    --zen-main-browser-background: #1e2030 !important;
+    --toolbox-bgcolor-inactive: #1e2030 !important;
+    --zen-element-separation: 8px !important;
+    --zen-webview-border-radius: 10px !important;
+    --catppuccin-quit-dialog-bg: #24273a !important;
+    --catppuccin-quit-dialog-fg: #cad3f5 !important;
+    --catppuccin-quit-dialog-accent: #c6a0f6 !important;
+    --catppuccin-quit-dialog-button-bg: #363a4f !important;
+    --catppuccin-quit-dialog-button-bg-hover: #494d64 !important;
+    --catppuccin-quit-dialog-button-bg-active: #5b6078 !important;
+    --catppuccin-quit-dialog-button-border: #5b6078 !important;
+    --catppuccin-quit-dialog-muted: #a5adcb !important;
   }
 
-  /* Variables and styles specific to about:newtab and about:home */
-  @-moz-document url("about:newtab"), url("about:home") {
-    :root {
-      --newtab-background-color: #24273a !important;
-      --newtab-background-color-secondary: #363a4f !important;
-      --newtab-element-hover-color: #363a4f !important;
-      --newtab-text-primary-color: #cad3f5 !important;
-      --newtab-wordmark-color: #cad3f5 !important;
-      --newtab-primary-action-background: #c6a0f6 !important;
-    }
+  #permissions-granted-icon {
+    color: #1e2030 !important;
+  }
 
-    .icon {
-      color: #c6a0f6 !important;
-    }
+  /* Keep the bookmarks slide-in panel on one flat background so the header
+   * strip doesn't read as a darker band above the tree.
+   */
+  #bookmarksPanel {
+    --sidebar-background-color: #24273a !important;
+    --sidebar-text-color: #cad3f5 !important;
+    --sidebar-border-color: #24273a !important;
+    --lwt-sidebar-background-color: #24273a !important;
+    --lwt-sidebar-text-color: #cad3f5 !important;
+    background: #24273a !important;
+    background-image: none !important;
+  }
 
-    .search-wrapper .logo-and-wordmark .logo {
-      background:
-        url("zen-logo-macchiato.svg"),
-        url("https://raw.githubusercontent.com/IAmJafeth/zen-browser/main/themes/Macchiato/Mauve/zen-logo-macchiato.svg")
-          no-repeat center !important;
-      display: inline-block !important;
-      height: 82px !important;
-      width: 82px !important;
-      background-size: 82px !important;
-    }
+  #bookmarksPanel #sidebar-panel-header,
+  #bookmarksPanel #sidebar-search-container,
+  #bookmarksPanel .sidebar-placesTree {
+    background: #24273a !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
 
-    @media (max-width: 609px) {
-      .search-wrapper .logo-and-wordmark .logo {
-        background-size: 64px !important;
-        height: 64px !important;
-        width: 64px !important;
+  #bookmarksPanel #search-box {
+    --toolbar-field-focus-color: #24273a !important;
+    --lwt-toolbar-field-focus: #24273a !important;
+    --lwt-toolbar-field-border-color: #24273a !important;
+    border-color: #24273a !important;
+    box-shadow: none !important;
+  }
+
+  /* The host sidebar shell can paint its own darker backdrop, so force the
+   * bookmarks launcher container itself to the same color too.
+   */
+  #sidebar-box[sidebarcommand="viewBookmarksSidebar"],
+  #sidebar-box[sidebarcommand="viewBookmarksSidebar"] > *,
+  #sidebar-main[sidebarcommand="viewBookmarksSidebar"],
+  #sidebar-main[sidebarcommand="viewBookmarksSidebar"] > * {
+    --sidebar-background-color: #24273a !important;
+    --sidebar-text-color: #cad3f5 !important;
+    --sidebar-border-color: #24273a !important;
+    background: #24273a !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  .sidebar-placesTree {
+    background-color: #24273a !important;
+  }
+
+  #zen-workspaces-button {
+    background-color: #24273a !important;
+  }
+
+  #TabsToolbar {
+    background-color: #1e2030 !important;
+  }
+
+  .urlbar-background {
+    background-color: #24273a !important;
+  }
+
+  .content-shortcuts {
+    background-color: #24273a !important;
+    border-color: #c6a0f6 !important;
+  }
+
+  .urlbarView-url {
+    color: #c6a0f6 !important;
+  }
+
+  #zenEditBookmarkPanelFaviconContainer {
+    background: #181926 !important;
+  }
+
+  #zen-media-controls-toolbar {
+    & #zen-media-progress-bar {
+      &::-moz-range-track {
+        background: #363a4f !important;
       }
     }
+  }
 
-    .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title {
-      color: #c6a0f6 !important;
-    }
-
-    .top-site-outer .search-topsite {
-      background-color: #8aadf4 !important;
-    }
-
-    .compact-cards .card-outer .card-context .card-context-icon.icon-download {
-      fill: #a6da95 !important;
+  toolbar .toolbarbutton-1 {
+    &:not([disabled]) {
+      &:is([open], [checked])
+        > :is(
+          .toolbarbutton-icon,
+          .toolbarbutton-text,
+          .toolbarbutton-badge-stack
+        ) {
+        fill: #181926;
+      }
     }
   }
 
-  /* Variables and styles specific to about:preferences */
-  @-moz-document url-prefix("about:preferences") {
-    :root {
-      --zen-colors-tertiary: #1e2030 !important;
-      --in-content-text-color: #cad3f5 !important;
-      --link-color: #c6a0f6 !important;
-      --link-color-hover: rgb(213, 184, 248) !important;
-      --zen-colors-primary: #363a4f !important;
-      --in-content-box-background: #363a4f !important;
-      --zen-primary-color: #c6a0f6 !important;
-    }
-
-    groupbox,
-    moz-card {
-      background: #24273a !important;
-    }
-
-    button,
-    groupbox menulist {
-      background: #363a4f !important;
-      color: #cad3f5 !important;
-    }
-
-    .main-content {
-      background-color: #181926 !important;
-    }
-
-    .identity-color-blue {
-      --identity-tab-color: #8aadf4 !important;
-      --identity-icon-color: #8aadf4 !important;
-    }
-
-    .identity-color-turquoise {
-      --identity-tab-color: #8bd5ca !important;
-      --identity-icon-color: #8bd5ca !important;
-    }
-
-    .identity-color-green {
-      --identity-tab-color: #a6da95 !important;
-      --identity-icon-color: #a6da95 !important;
-    }
-
-    .identity-color-yellow {
-      --identity-tab-color: #eed49f !important;
-      --identity-icon-color: #eed49f !important;
-    }
-
-    .identity-color-orange {
-      --identity-tab-color: #f5a97f !important;
-      --identity-icon-color: #f5a97f !important;
-    }
-
-    .identity-color-red {
-      --identity-tab-color: #ed8796 !important;
-      --identity-icon-color: #ed8796 !important;
-    }
-
-    .identity-color-pink {
-      --identity-tab-color: #f5bde6 !important;
-      --identity-icon-color: #f5bde6 !important;
-    }
-
-    .identity-color-purple {
-      --identity-tab-color: #c6a0f6 !important;
-      --identity-icon-color: #c6a0f6 !important;
-    }
+  .identity-color-blue {
+    --identity-tab-color: #8aadf4 !important;
+    --identity-icon-color: #8aadf4 !important;
   }
 
-  /* Variables and styles specific to about:addons */
-  @-moz-document url-prefix("about:addons") {
-    :root {
-      --zen-dark-color-mix-base: #1e2030 !important;
-      --background-color-box: #24273a !important;
-    }
+  .identity-color-turquoise {
+    --identity-tab-color: #8bd5ca !important;
+    --identity-icon-color: #8bd5ca !important;
   }
 
-  /* Variables and styles specific to about:protections */
-  @-moz-document url-prefix("about:protections") {
+  .identity-color-green {
+    --identity-tab-color: #a6da95 !important;
+    --identity-icon-color: #a6da95 !important;
+  }
+
+  .identity-color-yellow {
+    --identity-tab-color: #eed49f !important;
+    --identity-icon-color: #eed49f !important;
+  }
+
+  .identity-color-orange {
+    --identity-tab-color: #f5a97f !important;
+    --identity-icon-color: #f5a97f !important;
+  }
+
+  .identity-color-red {
+    --identity-tab-color: #ed8796 !important;
+    --identity-icon-color: #ed8796 !important;
+  }
+
+  .identity-color-pink {
+    --identity-tab-color: #f5bde6 !important;
+    --identity-icon-color: #f5bde6 !important;
+  }
+
+  .identity-color-purple {
+    --identity-tab-color: #c6a0f6 !important;
+    --identity-icon-color: #c6a0f6 !important;
+  }
+
+  #zen-appcontent-navbar-container {
+    background-color: #1e2030 !important;
+  }
+
+  /* Keep only the splitter themed; let Zen manage its own wrapper layers so
+   * detached compact mode preserves the native shell structure.
+   */
+  #sidebar-splitter,
+  #zen-sidebar-splitter {
+    --catppuccin-splitter-idle: #1e2030;
+    --catppuccin-splitter-hover-neutral: color-mix(
+      in srgb,
+      white 28%,
+      #1e2030 72%
+    );
+    border: none !important;
+    opacity: 1 !important;
+    background: var(--catppuccin-splitter-idle) !important;
+    background-color: var(--catppuccin-splitter-idle) !important;
+    transition:
+      background-color 0.18s ease-in-out,
+      background 0.18s ease-in-out,
+      opacity 0.18s ease-in-out !important;
+  }
+
+  #sidebar-splitter::before,
+  #zen-sidebar-splitter::before {
+    display: none !important;
+    opacity: 0 !important;
+  }
+
+  #sidebar-splitter:hover,
+  #zen-sidebar-splitter:hover {
+    background: var(--catppuccin-splitter-hover-neutral) !important;
+    background-color: var(--catppuccin-splitter-hover-neutral) !important;
+  }
+
+  /* Wrapper appearance reset that proved safe in testing */
+  #zen-main-app-wrapper,
+  #zen-appcontent-wrapper,
+  #zen-sidebar-splitter,
+  #zen-browser-background {
+    appearance: unset !important;
+    -moz-default-appearance: none !important;
+  }
+
+  /* Wrapper/background painting that proved safe in testing */
+  #zen-main-app-wrapper,
+  #zen-appcontent-wrapper,
+  #zen-browser-background,
+  .zen-browser-generic-background,
+  .zen-toolbar-background,
+  #navigator-toolbox,
+  #tabbrowser-tabbox,
+  #main-window {
+    background: #1e2030 !important;
+    background-color: #1e2030 !important;
+  }
+
+  /* Keep Zen's detached compact shell layered instead of painting every wrapper. */
+  :root[zen-compact-mode="true"] #navigator-toolbox:not([animate="true"]),
+  :root[zen-compact-mode="true"]
+    #navigator-toolbox:not([animate="true"])
+    #titlebar,
+  :root[zen-compact-mode="true"] #TabsToolbar,
+  :root[zen-compact-mode="true"] #zen-appcontent-navbar-container {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  :root[zen-compact-mode="true"]
+    #navigator-toolbox:not([animate="true"])
+    .zen-toolbar-background,
+  :root[zen-compact-mode="true"]
+    #navigator-toolbox:not([animate="true"])
+    .zen-toolbar-background::before,
+  :root[zen-compact-mode="true"]
+    #navigator-toolbox:not([animate="true"])
+    .zen-toolbar-background::after {
+    background: color-mix(
+      in srgb,
+      var(--lwt-sidebar-background-color) 82%,
+      black
+    ) !important;
+    background-color: color-mix(
+      in srgb,
+      var(--lwt-sidebar-background-color) 82%,
+      black
+    ) !important;
+  }
+
+  /* Remove seam shadows that can show through at the sidebar/content corners */
+  #zen-tabbox-wrapper #sidebar-box,
+  #tabbrowser-tabbox #tabbrowser-tabpanels .browserSidebarContainer {
+    box-shadow: none !important;
+  }
+
+  /* Theme Firefox/Zen's common prompt dialogs, including the quit warning. */
+  @-moz-document url("chrome://global/content/commonDialog.xhtml")
+  {
     :root {
-      --zen-primary-color: #24273a !important;
-      --social-color: #c6a0f6 !important;
-      --coockie-color: #91d7e3 !important;
-      --fingerprinter-color: #eed49f !important;
-      --cryptominer-color: #b7bdf8 !important;
-      --tracker-color: #a6da95 !important;
-      --in-content-primary-button-background-hover: rgb(84, 89, 116) !important;
-      --in-content-primary-button-text-color-hover: #cad3f5 !important;
-      --in-content-primary-button-background: #494d64 !important;
-      --in-content-primary-button-text-color: #cad3f5 !important;
+      color-scheme: dark !important;
+      --focus-outline: 2px solid var(--catppuccin-quit-dialog-accent) !important;
+      --focus-outline-offset: 2px !important;
     }
 
-    .card {
-      background-color: #363a4f !important;
+    #commonDialog,
+    dialog,
+    dialog::part(content-box) {
+      appearance: none !important;
+      background: var(--catppuccin-quit-dialog-bg) !important;
+      color: var(--catppuccin-quit-dialog-fg) !important;
+    }
+
+    #dialogGrid,
+    #infoContainer,
+    #iconContainer,
+    #checkboxContainer,
+    .dialogRow,
+    .dialogRow:not([hidden]) {
+      background: transparent !important;
+      color: inherit !important;
+    }
+
+    #infoTitle,
+    #infoBody,
+    description,
+    label,
+    checkbox,
+    .checkbox-label {
+      color: var(--catppuccin-quit-dialog-fg) !important;
+    }
+
+    #infoTitle {
+      font-weight: 700 !important;
+    }
+
+    #infoBody,
+    .checkbox-label {
+      color: var(--catppuccin-quit-dialog-muted) !important;
+    }
+
+    #infoIcon {
+      fill: var(--catppuccin-quit-dialog-accent) !important;
+    }
+
+    dialog::part(dialog-button) {
+      appearance: none !important;
+      -moz-appearance: none !important;
+      background: var(--catppuccin-quit-dialog-button-bg) !important;
+      background-image: none !important;
+      color: var(--catppuccin-quit-dialog-fg) !important;
+      border: 1px solid var(--catppuccin-quit-dialog-button-border) !important;
+      border-radius: 10px !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+      outline: none !important;
+    }
+
+    dialog::part(dialog-button):hover {
+      background: var(--catppuccin-quit-dialog-button-bg-hover) !important;
+      border-color: var(--catppuccin-quit-dialog-accent) !important;
+    }
+
+    dialog::part(dialog-button):hover:active {
+      background: var(--catppuccin-quit-dialog-button-bg-active) !important;
+      border-color: var(--catppuccin-quit-dialog-accent) !important;
+    }
+
+    dialog::part(dialog-button):focus-visible {
+      outline: 2px solid var(--catppuccin-quit-dialog-accent) !important;
+      outline-offset: 2px !important;
     }
   }
 }
