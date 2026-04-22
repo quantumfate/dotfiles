@@ -87,6 +87,7 @@ commonPackages:
       - proton-drive-sync-bin
       - proton-vpn-gtk-app
 
+      - dms-shell-hyprland
       # Hyprland ecosystem
       - hyprland
       - hyprutils

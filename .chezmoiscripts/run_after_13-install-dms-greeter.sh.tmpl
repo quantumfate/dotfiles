@@ -1,0 +1,77 @@
+#!/bin/bash
+# chezmoi: run_once
+# Sets up greetd + dms-greeter (Hyprland) as display manager.
+# Enables dms.service for the user session.
+
+echo ""
+echo "[INFO] Installing dms-greeter ..."
+
+sudo -v
+set -euo pipefail
+
+GREETD_CONFIG="/etc/greetd/config.toml"
+HYPR_CONFIG="/etc/greetd/dms-hypr.conf"
+GREETER_USER="greeter"
+CACHE_DIR="/var/cache/dms-greeter"
+CHEZMOI_DIR="$HOME/.config/dms-greeter-chezmoi"
+
+for pkg in greetd dms-shell dms-shell-hyprland greetd-dms-greeter-git hyprland quickshell; do
+  if ! pacman -Qi "$pkg" &>/dev/null; then
+    echo "  ! missing package: $pkg"
+  fi
+done
+
+AUTOLOGIN_OVERRIDE="/etc/systemd/system/getty@tty1.service.d/autologin.conf"
+if [ -f "$AUTOLOGIN_OVERRIDE" ]; then
+  sudo rm "$AUTOLOGIN_OVERRIDE"
+  sudo systemctl daemon-reload
+  sudo systemctl disable getty@tty1
+  echo "  ✓ systemd autologin removed"
+fi
+
+if ! id "$GREETER_USER" &>/dev/null; then
+  sudo groupadd -rf "$GREETER_USER"
+  sudo useradd -r -g "$GREETER_USER" -d /var/lib/greeter -s /bin/bash -c "System Greeter" "$GREETER_USER"
+  sudo mkdir -p /var/lib/greeter
+  sudo chown "$GREETER_USER:$GREETER_USER" /var/lib/greeter
+  echo "  ✓ greeter user created"
+fi
+
+sudo usermod -aG video "$GREETER_USER" 2>/dev/null || true
+
+sudo mkdir -p "$CACHE_DIR"
+sudo chown "$GREETER_USER:$GREETER_USER" "$CACHE_DIR"
+sudo chmod 0770 "$CACHE_DIR"
+echo "  ✓ dms-greeter cache directory ready"
+
+sudo mkdir -p /etc/greetd
+sudo cp "$CHEZMOI_DIR/greetd.toml" "$GREETD_CONFIG"
+sudo cp "$CHEZMOI_DIR/dms-hypr.conf" "$HYPR_CONFIG"
+echo "  ✓ greetd + dms-hypr configs written"
+
+sudo mkdir -p /etc/systemd/system/greetd.service.d/
+sudo tee /etc/systemd/system/greetd.service.d/sleep.conf >/dev/null <<'EOF'
+[Unit]
+StopWhenUnneeded=no
+IgnoreOnIsolate=yes
+
+[Service]
+Restart=always
+RestartSec=1
+EOF
+
+sudo systemctl daemon-reload
+
+for dm in sddm gdm lightdm lxdm tuigreet; do
+  if systemctl is-enabled "$dm" &>/dev/null; then
+    sudo systemctl disable "$dm"
+    echo "  ✓ $dm disabled"
+  fi
+done
+
+sudo systemctl enable greetd
+echo "  ✓ greetd enabled"
+
+systemctl --user daemon-reload || true
+systemctl --user enable dms.service
+echo "  ✓ dms.service enabled (user)"
