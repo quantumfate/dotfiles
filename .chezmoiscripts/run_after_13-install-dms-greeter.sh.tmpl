@@ -62,15 +62,32 @@ EOF
 
 sudo systemctl daemon-reload
 
-for dm in sddm gdm lightdm lxdm tuigreet; do
+for dm in sddm gdm lightdm lxdm tuigreet ly; do
   if systemctl is-enabled "$dm" &>/dev/null; then
-    sudo systemctl disable "$dm"
+    sudo systemctl disable "$dm" || true
     echo "  ✓ $dm disabled"
   fi
 done
 
 sudo systemctl enable greetd
 echo "  ✓ greetd enabled"
+
+PAM_GREETD="/etc/pam.d/greetd"
+if [ -f /usr/lib/security/pam_gnome_keyring.so ] || [ -f /usr/lib64/security/pam_gnome_keyring.so ]; then
+  sudo tee "$PAM_GREETD" >/dev/null <<'EOF'
+#%PAM-1.0
+auth       include      system-login
+auth       optional     pam_gnome_keyring.so
+account    include      system-login
+password   include      system-login
+password   optional     pam_gnome_keyring.so
+session    include      system-login
+session    optional     pam_gnome_keyring.so auto_start
+EOF
+  echo "  ✓ pam_gnome_keyring wired into greetd"
+else
+  echo "  ! gnome-keyring PAM module missing — skipping keyring unlock"
+fi
 
 systemctl --user daemon-reload || true
 systemctl --user enable dms.service

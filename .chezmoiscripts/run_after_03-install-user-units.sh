@@ -15,7 +15,7 @@ units=(
   foot-server.service
   cliphist-text.service
   cliphist-image.service
-  waybar.service
+  # waybar.service
   hyprpaper.service
   hypridle.service
   hyprpolkitagent.service
