@@ -618,7 +618,98 @@
   "systemMonitorVariants": [],
   "desktopWidgetPositions": {},
   "desktopWidgetGridSettings": {},
-  "desktopWidgetInstances": [],
+  "desktopWidgetInstances": [
+    {
+      "id": "dw_1776891638769_wsfmki4l8",
+      "widgetType": "systemMonitor",
+      "name": "System Monitor",
+      "enabled": true,
+      "config": {
+        "showHeader": true,
+        "transparency": 0.72,
+        "colorMode": "primary",
+        "customColor": "#ffffff",
+        "showCpu": true,
+        "showCpuGraph": true,
+        "showCpuTemp": true,
+        "showGpuTemp": true,
+        "gpuPciId": "10de:2705",
+        "showMemory": true,
+        "showMemoryGraph": true,
+        "showNetwork": true,
+        "showNetworkGraph": true,
+        "showDisk": true,
+        "showTopProcesses": true,
+        "topProcessCount": 3,
+        "topProcessSortBy": "cpu",
+        "layoutMode": "list",
+        "graphInterval": 300,
+        "displayPreferences": [
+          {
+            "name": "HDMI-A-1",
+            "model": "L01N8A"
+          }
+        ],
+        "syncPositionAcrossScreens": false,
+        "showOnOverlay": false
+      },
+      "positions": {
+        "HDMI-A-1": {
+          "x": 26.84765625,
+          "y": 16.76171875,
+          "width": 705.7578125,
+          "height": 593.6484375
+        },
+        "_synced": {
+          "x": 0.01148681640625,
+          "y": 0.0160302734375,
+          "width": 746.38671875,
+          "height": 628.43359375
+        }
+      }
+    },
+    {
+      "id": "dw_1776891897406_j9os1ho09",
+      "widgetType": "cavaVisualizer",
+      "name": "Cava Visualizer",
+      "enabled": true,
+      "config": {
+        "displayPreferences": [
+          {
+            "name": "HDMI-A-1",
+            "model": "L01N8A"
+          }
+        ],
+        "barCount": 32,
+        "barSpacing": 6,
+        "vizMode": "bars",
+        "bgOpacity": 0,
+        "silenceTimeout": 6,
+        "opacity": 100,
+        "orientation": "bottom"
+      },
+      "positions": {
+        "HDMI-A-1": {
+          "width": 519.08984375,
+          "height": 382.38671875,
+          "x": 760.91015625,
+          "y": 417.61328125
+        },
+        "DP-1": {
+          "width": 200,
+          "height": 200,
+          "x": 2460,
+          "y": 620
+        },
+        "DP-2": {
+          "width": 200,
+          "height": 200,
+          "x": 1180,
+          "y": 620
+        }
+      }
+    }
+  ],
   "desktopWidgetGroups": [],
   "builtInPluginSettings": {
     "dms_settings_search": {
