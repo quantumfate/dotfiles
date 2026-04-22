@@ -459,6 +459,10 @@
         {
           "id": "dankPomodoroTimer",
           "enabled": true
+        },
+        {
+          "id": "claudeCodeUsage",
+          "enabled": true
         }
       ],
       "centerWidgets": [
@@ -475,6 +479,10 @@
         },
         {
           "id": "systemUpdate",
+          "enabled": true
+        },
+        {
+          "id": "hyprlandSubmap",
           "enabled": true
         }
       ],
