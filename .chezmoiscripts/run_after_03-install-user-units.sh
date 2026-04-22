@@ -15,13 +15,11 @@ units=(
   foot-server.service
   cliphist-text.service
   cliphist-image.service
-  # waybar.service
   hyprpaper.service
-  hypridle.service
+  clight.service
   hyprpolkitagent.service
   udiskie.service
   shikane.service
-  hyprsunset.service
   obsidian.service
   hypr-ipc-wrapper.service
   # graphical session + network

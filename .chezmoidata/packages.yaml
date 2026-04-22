@@ -24,6 +24,9 @@ commonPackages:
       - tree
       - cmatrix
       - fzf
+      - cava
+      - kimageformats
+      - cups-pk-helper
       - wf-recorder
       - slurp
       - zoxide
@@ -88,6 +91,8 @@ commonPackages:
       - proton-vpn-gtk-app
 
       - dms-shell-hyprland
+      - clight
+      - clightd
       # Hyprland ecosystem
       - hyprland
       - hyprutils
@@ -96,14 +101,11 @@ commonPackages:
       - hyprcursor
       - hyprland-qt-support
       - hyprland-guiutils
-      - hypridle
-      - hyprlock
       - hyprpaper
       - hyprpicker
       - hyprpolkitagent
       - hyprshot
       - grim-hyprland-git
-      - hyprsunset
 
       # Sway
       - sway

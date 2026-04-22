@@ -1,0 +1,14 @@
+[Unit]
+Description=Clight
+Documentation=man:clight(1)
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=dbus
+BusName=org.clight.clight
+ExecStart=/usr/bin/clight
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

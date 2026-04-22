@@ -1,18 +1,25 @@
 {
-  "currentThemeName": "purple",
-  "currentThemeCategory": "generic",
-  "customThemeFile": "",
-  "registryThemeVariants": {},
+  "currentThemeName": "custom",
+  "currentThemeCategory": "registry",
+  "customThemeFile": "/home/quantum/.config/DankMaterialShell/themes/catppuccin/theme.json",
+  "registryThemeVariants": {
+    "catppuccin": {
+      "dark": {
+        "flavor": "macchiato",
+        "accent": "mauve"
+      }
+    }
+  },
   "matugenScheme": "scheme-tonal-spot",
-  "runUserMatugenTemplates": true,
+  "runUserMatugenTemplates": false,
   "matugenTargetMonitor": "",
   "popupTransparency": 1,
   "dockTransparency": 1,
-  "widgetBackgroundColor": "sch",
+  "widgetBackgroundColor": "s",
   "widgetColorMode": "colorful",
   "controlCenterTileColorMode": "primary",
   "buttonColorMode": "primary",
-  "cornerRadius": 12,
+  "cornerRadius": 6,
   "niriLayoutGapsOverride": -1,
   "niriLayoutRadiusOverride": -1,
   "niriLayoutBorderSize": -1,
@@ -259,9 +266,9 @@
   "soundNewNotification": true,
   "soundVolumeChanged": true,
   "soundPluggedIn": true,
-  "acMonitorTimeout": 0,
-  "acLockTimeout": 0,
-  "acSuspendTimeout": 0,
+  "acMonitorTimeout": 900,
+  "acLockTimeout": 600,
+  "acSuspendTimeout": 1800,
   "acSuspendBehavior": 0,
   "acProfileName": "",
   "batteryMonitorTimeout": 0,
@@ -270,7 +277,7 @@
   "batterySuspendBehavior": 0,
   "batteryProfileName": "",
   "batteryChargeLimit": 100,
-  "lockBeforeSuspend": false,
+  "lockBeforeSuspend": true,
   "loginctlLockIntegration": true,
   "fadeToLockEnabled": true,
   "fadeToLockGracePeriod": 5,
@@ -286,29 +293,29 @@
   "qtThemingEnabled": false,
   "syncModeWithPortal": true,
   "terminalsAlwaysDark": false,
-  "runDmsMatugenTemplates": true,
-  "matugenTemplateGtk": true,
-  "matugenTemplateNiri": true,
-  "matugenTemplateHyprland": true,
-  "matugenTemplateMangowc": true,
-  "matugenTemplateQt5ct": true,
-  "matugenTemplateQt6ct": true,
-  "matugenTemplateFirefox": true,
-  "matugenTemplatePywalfox": true,
-  "matugenTemplateZenBrowser": true,
-  "matugenTemplateVesktop": true,
-  "matugenTemplateEquibop": true,
-  "matugenTemplateGhostty": true,
-  "matugenTemplateKitty": true,
-  "matugenTemplateFoot": true,
-  "matugenTemplateAlacritty": true,
+  "runDmsMatugenTemplates": false,
+  "matugenTemplateGtk": false,
+  "matugenTemplateNiri": false,
+  "matugenTemplateHyprland": false,
+  "matugenTemplateMangowc": false,
+  "matugenTemplateQt5ct": false,
+  "matugenTemplateQt6ct": false,
+  "matugenTemplateFirefox": false,
+  "matugenTemplatePywalfox": false,
+  "matugenTemplateZenBrowser": false,
+  "matugenTemplateVesktop": false,
+  "matugenTemplateEquibop": false,
+  "matugenTemplateGhostty": false,
+  "matugenTemplateKitty": false,
+  "matugenTemplateFoot": false,
+  "matugenTemplateAlacritty": false,
   "matugenTemplateNeovim": false,
-  "matugenTemplateWezterm": true,
-  "matugenTemplateDgop": true,
-  "matugenTemplateKcolorscheme": true,
-  "matugenTemplateVscode": true,
-  "matugenTemplateEmacs": true,
-  "matugenTemplateZed": true,
+  "matugenTemplateWezterm": false,
+  "matugenTemplateDgop": false,
+  "matugenTemplateKcolorscheme": false,
+  "matugenTemplateVscode": false,
+  "matugenTemplateEmacs": false,
+  "matugenTemplateZed": false,
   "showDock": false,
   "dockAutoHide": false,
   "dockSmartAutoHide": false,
@@ -354,7 +361,7 @@
   "u2fMode": "or",
   "lockScreenActiveMonitor": "all",
   "lockScreenInactiveColor": "#000000",
-  "lockScreenNotificationMode": 0,
+  "lockScreenNotificationMode": 2,
   "hideBrightnessSlider": false,
   "notificationTimeoutLow": 5000,
   "notificationTimeoutNormal": 5000,
@@ -369,7 +376,16 @@
   "notificationHistorySaveLow": true,
   "notificationHistorySaveNormal": true,
   "notificationHistorySaveCritical": true,
-  "notificationRules": [],
+  "notificationRules": [
+    {
+      "enabled": true,
+      "field": "appName",
+      "pattern": "",
+      "matchType": "contains",
+      "action": "default",
+      "urgency": "default"
+    }
+  ],
   "osdAlwaysShowValue": false,
   "osdPosition": 5,
   "osdVolumeEnabled": true,
@@ -382,7 +398,7 @@
   "osdPowerProfileEnabled": false,
   "osdAudioOutputEnabled": true,
   "powerActionConfirm": true,
-  "powerActionHoldDuration": 0.5,
+  "powerActionHoldDuration": 0.25,
   "powerMenuActions": [
     "reboot",
     "logout",
@@ -391,10 +407,10 @@
     "suspend",
     "restart"
   ],
-  "powerMenuDefaultAction": "logout",
-  "powerMenuGridLayout": false,
+  "powerMenuDefaultAction": "poweroff",
+  "powerMenuGridLayout": true,
   "customPowerActionLock": "",
-  "customPowerActionLogout": "",
+  "customPowerActionLogout": "uwsm stop",
   "customPowerActionSuspend": "",
   "customPowerActionHibernate": "",
   "customPowerActionReboot": "",
@@ -404,7 +420,9 @@
   "updaterCustomCommand": "yay -Syu",
   "updaterTerminalAdditionalParams": "",
   "displayNameMode": "system",
-  "screenPreferences": {},
+  "screenPreferences": {
+    "wallpaper": []
+  },
   "showOnLastDisplay": {},
   "niriOutputSettings": {},
   "hyprlandOutputSettings": {},
@@ -433,35 +451,73 @@
       "leftWidgets": [
         "launcherButton",
         "workspaceSwitcher",
-        "focusedWindow"
+        {
+          "id": "focusedWindow",
+          "enabled": true,
+          "focusedWindowCompactMode": true
+        },
+        {
+          "id": "dankPomodoroTimer",
+          "enabled": true
+        }
       ],
       "centerWidgets": [
         "music",
         "clock",
-        "weather"
+        "weather",
+        {
+          "id": "privacyIndicator",
+          "enabled": true
+        },
+        {
+          "id": "dankClight",
+          "enabled": true
+        },
+        {
+          "id": "systemUpdate",
+          "enabled": true
+        }
       ],
       "rightWidgets": [
         "systemTray",
         "clipboard",
         "cpuUsage",
-        "memUsage",
+        {
+          "id": "memUsage",
+          "enabled": true,
+          "showSwap": false
+        },
         "notificationButton",
-        "battery",
-        "controlCenterButton"
+        {
+          "id": "battery",
+          "enabled": true
+        },
+        {
+          "id": "controlCenterButton",
+          "enabled": true
+        },
+        {
+          "id": "idleInhibitor",
+          "enabled": true
+        },
+        {
+          "id": "powerMenuButton",
+          "enabled": true
+        }
       ],
-      "spacing": 4,
+      "spacing": 0,
       "innerPadding": 4,
-      "bottomGap": 0,
-      "transparency": 1,
-      "widgetTransparency": 1,
+      "bottomGap": -5,
+      "transparency": 0,
+      "widgetTransparency": 0.7,
       "squareCorners": false,
       "noBackground": false,
       "gothCornersEnabled": false,
-      "gothCornerRadiusOverride": false,
-      "gothCornerRadiusValue": 12,
+      "gothCornerRadiusOverride": true,
+      "gothCornerRadiusValue": 30,
       "borderEnabled": false,
       "borderColor": "surfaceText",
-      "borderOpacity": 1,
+      "borderOpacity": 0.33,
       "borderThickness": 1,
       "fontScale": 1,
       "autoHide": false,
@@ -469,8 +525,20 @@
       "openOnOverview": false,
       "visible": true,
       "popupGapsAuto": true,
-      "popupGapsManual": 4,
-      "widgetOutlineEnabled": false
+      "popupGapsManual": 7,
+      "widgetOutlineEnabled": false,
+      "widgetPadding": 8,
+      "iconScale": 1.08,
+      "maximizeWidgetIcons": false,
+      "maximizeWidgetText": false,
+      "removeWidgetPadding": false,
+      "shadowIntensity": 21,
+      "shadowColorMode": "text",
+      "widgetOutlineOpacity": 0.53,
+      "widgetOutlineThickness": 1,
+      "widgetOutlineColor": "primary",
+      "maximizeDetection": false,
+      "clickThrough": false
     }
   ],
   "desktopClockEnabled": false,
