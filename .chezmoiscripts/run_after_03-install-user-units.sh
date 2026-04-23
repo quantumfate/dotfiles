@@ -17,6 +17,7 @@ units=(
   cliphist-image.service
   hyprpaper.service
   clight.service
+  geoclue-agent.service
   hyprpolkitagent.service
   udiskie.service
   shikane.service

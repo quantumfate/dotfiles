@@ -1,0 +1,24 @@
+#!/bin/bash
+# clight geoclue whitelist
+set -euo pipefail
+
+DST="/etc/geoclue/conf.d/50-clight.conf"
+UID_VAL="$(id -u)"
+
+CONTENT=$(cat <<EOF
+[clightc]
+allowed=true
+system=true
+users=${UID_VAL};
+EOF
+)
+
+if [ -f "$DST" ] && sudo test -r "$DST" && [ "$(sudo cat "$DST")" = "$CONTENT" ]; then
+  exit 0
+fi
+
+sudo install -d -m 0755 /etc/geoclue/conf.d
+printf '%s\n' "$CONTENT" | sudo tee "$DST" >/dev/null
+sudo chmod 0644 "$DST"
+sudo chown root:root "$DST"
+echo "  ✓ clight geoclue whitelist installed at $DST"

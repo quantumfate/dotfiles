@@ -1,0 +1,43 @@
+####################
+# Clight conf file #
+####################
+
+backlight:
+{
+    ## Smoothing — slower backlight transitions
+    trans_step = 0.02;
+    trans_timeout = 30;
+    trans_fixed = 0;
+
+    ## Capture timeouts: [day, night, event] seconds
+    ac_timeouts = [ 600, 2700, 300 ];
+    batt_timeouts = [ 1200, 5400, 600 ];
+
+    ## Ignore ambient delta below this
+    shutter_threshold = 0.10;
+};
+
+sensor:
+{
+    ## Regression curves: ambient brightness -> backlight level
+    ac_regression_points = [ 0.0, 0.15, 0.29, 0.45, 0.61, 0.74, 0.81, 0.88, 0.93, 0.97, 1.0 ];
+    batt_regression_points = [ 0.0, 0.15, 0.23, 0.36, 0.52, 0.59, 0.65, 0.71, 0.75, 0.78, 0.80 ];
+
+    # captures = [ 5, 5 ];
+};
+
+daytime:
+{
+{{- if and (hasKey . "latitude") (hasKey . "longitude") }}
+    ## Manual location — bypasses Geoclue
+    latitude = {{ .latitude }};
+    longitude = {{ .longitude }};
+{{- else }}
+    ## No manual coords — clight will query Geoclue
+    ## (whitelist installed by 13-install-clight-geoclue.sh)
+{{- end }}
+
+    # sunrise = "07:00";
+    # sunset = "19:00";
+    # event_duration = 1800;
+};

@@ -1,0 +1,11 @@
+#!/bin/bash
+# Restart clight when its config changes.
+# Hash below ties this script's mtime to the config content so chezmoi
+# re-runs it whenever the template output differs.
+# config hash: {{ include "dot_config/clight.conf.tmpl" | sha256sum }}
+set -euo pipefail
+
+if systemctl --user is-active clight.service >/dev/null 2>&1; then
+  systemctl --user restart clight.service
+  echo "  ✓ clight.service restarted (config changed)"
+fi
