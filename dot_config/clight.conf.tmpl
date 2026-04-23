@@ -10,7 +10,7 @@ backlight:
     trans_fixed = 0;
 
     ## Capture timeouts: [day, night, event] seconds
-    ac_timeouts = [ 600, 2700, 300 ];
+    ac_timeouts = [ 120, 2700, 300 ];
     batt_timeouts = [ 1200, 5400, 600 ];
 
     ## Ignore ambient delta below this
@@ -28,16 +28,18 @@ sensor:
 
 daytime:
 {
-{{- if and (hasKey . "latitude") (hasKey . "longitude") }}
-    ## Manual location — bypasses Geoclue
-    latitude = {{ .latitude }};
-    longitude = {{ .longitude }};
-{{- else }}
     ## No manual coords — clight will query Geoclue
     ## (whitelist installed by 13-install-clight-geoclue.sh)
-{{- end }}
 
     # sunrise = "07:00";
     # sunset = "19:00";
     # event_duration = 1800;
+};
+
+screen:
+{
+    ## Disable content-aware backlight compensation.
+    ## Default contrib=0.2 was dragging backlight to ~20% on dark content,
+    ## overriding the ambient curve every 5s.
+    disabled = true;
 };
