@@ -1,0 +1,25 @@
+// Auto-rendered from chezmoi template.
+// Edit the .tmpl at dot_config/niri-chezmoi/workspaces.kdl.tmpl
+//
+// Mapping mirrors dot_config/hypr-chezmoi/workspaces.conf.tmpl:
+//   1–5  → primary_monitor
+//   6–10 → secondary_monitor (fallback to primary if unset)
+
+{{- $primary   := .primary_monitor }}
+{{- $secondary := (or (and (hasKey . "secondary_monitor") .secondary_monitor) .primary_monitor) }}
+
+workspace "1"  { open-on-output "{{ $primary }}"; }
+workspace "2"  { open-on-output "{{ $primary }}"; }
+workspace "3"  { open-on-output "{{ $primary }}"; }
+workspace "4"  { open-on-output "{{ $primary }}"; }
+workspace "5"  { open-on-output "{{ $primary }}"; }
+workspace "6"  { open-on-output "{{ $secondary }}"; }
+workspace "7"  { open-on-output "{{ $secondary }}"; }
+workspace "8"  { open-on-output "{{ $secondary }}"; }
+workspace "9"  { open-on-output "{{ $secondary }}"; }
+workspace "10" { open-on-output "{{ $secondary }}"; }
+
+// Named app workspaces
+workspace "feh"     { open-on-output "{{ $primary }}"; }
+workspace "spotify" { open-on-output "{{ $secondary }}"; }
+workspace "vesktop" { open-on-output "{{ $secondary }}"; }

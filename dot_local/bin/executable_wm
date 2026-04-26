@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# wm — thin shim dispatching compositor-specific ops.
+# Detect via env vars set by the compositor itself (no XDG_CURRENT_DESKTOP parsing).
+
+set -euo pipefail
+
+detect() {
+    [ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ] && { echo hyprland; return; }
+    [ -n "${NIRI_SOCKET:-}" ]                 && { echo niri;     return; }
+    [ -n "${SWAYSOCK:-}" ]                    && { echo sway;     return; }
+    echo "wm: no known compositor (HYPRLAND_INSTANCE_SIGNATURE / NIRI_SOCKET / SWAYSOCK unset)" >&2
+    exit 1
+}
+
+usage() {
+    cat <<'EOF' >&2
+usage: wm <verb> [args...]
+
+verbs:
+  ws-to-monitor <ws> <monitor>   move workspace <ws> to <monitor> (hyprland, sway)
+  dpms on|off                    power monitors on/off (hyprland, niri, sway)
+
+niri handles ws-to-monitor statically via `workspace { open-on-output ... }` in
+its config, so no runtime dispatch is needed there — the verb is a no-op on niri.
+EOF
+    exit 2
+}
+
+[ $# -lt 1 ] && usage
+
+verb=$1; shift
+WM=$(detect)
+
+case "$verb" in
+  ws-to-monitor)
+    [ $# -eq 2 ] || usage
+    ws=$1; mon=$2
+    case "$WM" in
+      hyprland) exec hyprctl dispatch moveworkspacetomonitor "$ws $mon" ;;
+      sway)     exec swaymsg "workspace number $ws; move workspace to output $mon" ;;
+      niri)     : ;;  # static placement via open-on-output — nothing to do
+    esac ;;
+
+  dpms)
+    [ $# -eq 1 ] || usage
+    state=$1
+    case "$state" in on|off) ;; *) usage ;; esac
+    case "$WM" in
+      hyprland) exec hyprctl dispatch dpms "$state" ;;
+      niri)     exec niri msg action "power-${state}-monitors" ;;
+      sway)     exec swaymsg "output * dpms $state" ;;
+    esac ;;
+
+  *) usage ;;
+esac

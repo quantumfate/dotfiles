@@ -9,13 +9,25 @@ sudo tee /usr/share/wayland-sessions/sway-uwsm.desktop >/dev/null <<'SWAY_UWSM'
 [Desktop Entry]
 Name=Sway (uwsm-managed)
 Comment=An i3-compatible Wayland compositor managed by UWSM
-Exec=uwsm start -e -D Sway sway.desktop
-TryExec=uwsm
-DesktopNames=sway
+Exec=uwsm start -e -D sway:wlroots sway.desktop
+TryExec=sway
+DesktopNames=sway;wlroots
 Type=Application
 SWAY_UWSM
 
 echo "  ✓ Sway uwsm desktop file installed"
+
+sudo tee /usr/share/wayland-sessions/niri-uwsm.desktop >/dev/null <<'NIRI_UWSM'
+[Desktop Entry]
+Name=Niri (uwsm-managed)
+Comment=A scrollable-tiling Wayland compositor managed by UWSM
+Exec=uwsm start -e -D niri -N Niri -C "Scrollable-tiling Wayland compositor" niri
+TryExec=niri
+DesktopNames=niri
+Type=Application
+NIRI_UWSM
+
+echo "  ✓ Niri uwsm desktop file installed"
 
 SRC="$HOME/.local/share/own-scripts/gitlab/quantumfate/security-and-privacy/zen-dispatcher.desktop"
 DEST="/usr/share/applications/zen-dispatcher.desktop"

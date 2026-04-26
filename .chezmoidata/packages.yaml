@@ -93,6 +93,8 @@ commonPackages:
       - dms-shell-hyprland
       - clight
       - clightd
+      - niri
+      - sway
       # Hyprland ecosystem
       - hyprland
       - hyprutils
@@ -293,6 +295,8 @@ devPackages:
       - codebook-lsp
 
       # Runtimes & build tools
+      - just
+      - pnpm
       - base-devel
       - npm
       - go
