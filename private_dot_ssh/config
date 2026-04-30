@@ -13,7 +13,7 @@ Host *
 Host codeberg.org
   HostName codeberg.org
   User git
-  IdentityFile ~/.ssh/gitlab
+  IdentityFile ~/.ssh/codeberg
   IdentitiesOnly yes
   AddKeysToAgent yes
 
