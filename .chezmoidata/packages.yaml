@@ -90,6 +90,7 @@ commonPackages:
       - proton-drive-sync-bin
       - proton-vpn-gtk-app
 
+      - greetd-dms-greeter-git
       - dms-shell-hyprland
       - clight
       - clightd
