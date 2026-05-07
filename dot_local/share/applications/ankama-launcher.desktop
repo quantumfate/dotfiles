@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Ankama Launcher
+Exec=gamemoderun ankama-launcher
+Terminal=false
+Type=Application
+Icon=ankama-launcher
+StartupWMClass=Ankama Launcher
+X-AppImage-Version=3.14.9.20391
+Comment=Ankama portal and game launcher
+MimeType=x-scheme-handler/zaap;
+Categories=Game;

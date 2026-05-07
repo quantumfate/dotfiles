@@ -22,7 +22,6 @@ units=(
   udiskie.service
   shikane.service
   obsidian.service
-  hypr-ipc-wrapper.service
   # graphical session + network
   hypridle.service
   elecwhat.service

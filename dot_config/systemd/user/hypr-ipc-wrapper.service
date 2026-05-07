@@ -6,7 +6,7 @@ ConditionEnvironment=HYPRLAND_INSTANCE_SIGNATURE
 
 [Service]
 Type=simple
-ExecStart=%h/.config/hypr/scripts/ipc_wrapper.sh
+ExecStart=%h/.config/hypr/scripts/IPC/ipc_wrapper.sh
 Restart=on-failure
 RestartSec=2
 Slice=session.slice

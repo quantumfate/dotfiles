@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+{{ if .gaming }}
+set -euo pipefail
+
+echo ""
+echo "[INFO] Installing EPP performance unit ..."
+
+driver="$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_driver 2>/dev/null || echo none)"
+if [ "$driver" != "amd-pstate-epp" ] && [ "$driver" != "intel_pstate" ]; then
+  echo "  ⚠ scaling_driver=$driver, EPP not supported — skipping"
+  exit 0
+fi
+
+unit_path="/etc/systemd/system/epp-performance.service"
+tmp="$(mktemp)"
+cat >"$tmp" <<'EOF'
+[Unit]
+Description=Set CPU EPP to performance
+After=multi-user.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh -c 'for f in /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference; do echo performance > "$f"; done'
+ExecStop=/bin/sh -c 'for f in /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference; do echo balance_performance > "$f"; done'
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+if ! sudo cmp -s "$tmp" "$unit_path" 2>/dev/null; then
+  sudo install -m 0644 "$tmp" "$unit_path"
+  sudo systemctl daemon-reload
+  echo "  ✓ Unit written"
+else
+  echo "  ✓ Unit already up-to-date"
+fi
+rm -f "$tmp"
+
+sudo systemctl enable --now epp-performance.service >/dev/null
+echo "  ✓ epp-performance.service enabled and active"
+
+cur="$(cat /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference)"
+echo "  • EPP now: $cur"
+{{ end }}
