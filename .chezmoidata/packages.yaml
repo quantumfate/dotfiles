@@ -329,6 +329,7 @@ devPackages:
       - github-cli
       - scdoc
       - uv
+      - commitlint
 
 desktopPackages:
   linux:
