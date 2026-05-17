@@ -6,6 +6,7 @@ bookmarks = [
   "/home/quantum",
   "/home/quantum/Documents/Obsidian/Main",
   "/home/quantum/.config/nvim",
+  "/home/quantum/.config/hypr",
 ]
 
 [popup]
