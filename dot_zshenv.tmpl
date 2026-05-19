@@ -1,0 +1,9 @@
+typeset -U path
+path=( "$HOME/Projects/github/quantumfate/scripts/bin" $path )
+path=( "$HOME/.local/bin" $path )
+{{- if .devenv }}
+path=( "$HOME/go/bin" $path )
+path=( "$HOME/.local/share/nvim/mason/bin" $path )
+path=( "$HOME/.luarocks/bin" $path )
+path=( "$HOME/.cargo/bin" $path )
+{{- end }}

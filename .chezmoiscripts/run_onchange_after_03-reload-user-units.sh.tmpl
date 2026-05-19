@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# run_onchange: re-runs whenever any systemd user unit, .wants symlink, or
+# user.conf.d file managed by chezmoi changes. Reloads the systemd user
+# manager so new/updated units and enable symlinks are picked up.
+#
+# units digest: {{ output "bash" "-c" (printf "find %q -type f -exec sha256sum {} + 2>/dev/null | sort | sha256sum" (joinPath .chezmoi.sourceDir "dot_config" "systemd")) }}
+set -euo pipefail
+
+echo ""
+echo "[INFO] Reloading systemd user daemon..."
+
+if systemctl --user show-environment >/dev/null 2>&1; then
+  systemctl --user daemon-reload
+  echo "  ✓ systemd user daemon reloaded"
+else
+  echo "  ! no systemd user session reachable; skipping daemon-reload"
+fi
