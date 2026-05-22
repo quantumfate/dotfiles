@@ -90,8 +90,6 @@ commonPackages:
       - proton-drive-sync-bin
       - proton-vpn-gtk-app
 
-      - greetd-dms-greeter-git
-      - dms-shell-hyprland
       - clight
       - clightd
       - niri
@@ -190,7 +188,6 @@ commonPackages:
       - juno-palenight-standard-buttons-gtk-theme-git
       - catppuccin-plasma-colorscheme-macchiato
       - catppuccin-plasma-colorscheme-latte
-      - ly
       - quickshell
       - qt5-svg
       - qt6-svg
