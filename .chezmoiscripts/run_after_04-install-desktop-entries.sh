@@ -29,21 +29,7 @@ NIRI_UWSM
 
 echo "  ✓ Niri uwsm desktop file installed"
 
-SRC="$HOME/.local/share/own-scripts/gitlab/quantumfate/security-and-privacy/zen-dispatcher.desktop"
-DEST="/usr/share/applications/zen-dispatcher.desktop"
-
-if ! [ -f "$SRC" ]; then
-  echo "Error: Source file not found: $SRC"
-  exit 1
-fi
-
-if cmp -s "$SRC" "$DEST" 2>/dev/null; then
-  echo "  ✓ Zen Dispatcher already installed"
-  exit 0
-fi
-
-sudo cp "$SRC" "$DEST"
-sudo chmod 644 "$DEST"
+# TODO: hook this somewhere else
 sudo update-desktop-database /usr/share/applications
 
 echo "  ✓ Zen Dispatcher Desktop File"

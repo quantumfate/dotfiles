@@ -330,6 +330,7 @@ devPackages:
       - scdoc
       - uv
       - commitlint
+      - firefox-developer-edition
 
 desktopPackages:
   linux:
