@@ -7,3 +7,4 @@ export XDG_CONFIG_HOME=$HOME/.config
 export BROWSER=zen-twilight
 export GDK_BACKEND=wayland,x11,*
 export MOZ_ENABLE_WAYLAND=1
+export PATH="$HOME/Projects/gitlab/quantumfate/security-and-privacy/bin:$PATH"
