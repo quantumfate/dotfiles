@@ -2,11 +2,11 @@
     "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
-          "1": " ",
-          "2": " ",
-          "3": "󰩦 ",
-          "4": "󰿘 ",
-          "5": " "
+          "code": " ",
+          "study": "󰉺 ",
+          "proton": " ",
+          "media": " ",
+          "gaming": "󰐝 "
         },
         "format-window-separator": "\n",
         "window-rewrite-default": "",
