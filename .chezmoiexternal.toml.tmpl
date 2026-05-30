@@ -203,8 +203,16 @@ url = "git@gitlab.com:quantumfate/security-and-privacy.git"
 refreshPeriod = "168h"
 ["Projects/gitlab/quantumfate/security-and-privacy".pull]
 args = ["--ff-only"]
-{{- if eq .profile "desktop" }}
 
+{{- if .gaming }}
+["Projects/gitlab/quantumfate/dofus-scripts"]
+type = "git-repo"
+url = "git@gitlab.com:quantumfate/dofus-scripts.git"
+refreshPeriod = "168h"
+["Projects/gitlab/quantumfate/dofus-scripts".pull]
+args = ["--ff-only"]
+{{- end }}
+{{- if eq .profile "desktop" }}
 ["Projects/github/quantumfate/kbd75-rev2"]
 type = "git-repo"
 url = "git@github.com:quantumfate/kbd75-rev2.git"
