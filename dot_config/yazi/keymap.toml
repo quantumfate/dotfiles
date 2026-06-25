@@ -21,28 +21,132 @@
 
 [mgr]
 prepend_keymap = [
-  # ---- Safety override: yazi's default `D` deletes PERMANENTLY. Make both
-  #      d and D move to trash instead (matches your lf `D trash`). ----
-  { on = "d", run = "remove", desc = "Trash" },
-  { on = "D", run = "remove", desc = "Trash" },
-
   # ---- Jump around (zoxide + fzf ship inside yazi) ----
   { on = "z", run = "plugin zoxide", desc = "Jump to a frecent dir (zoxide)" },
-  { on = "Z", run = "plugin fzf",    desc = "Find file/dir (fzf)" },
+  { on = "Z", run = "plugin fzf", desc = "Find file/dir (fzf)" },
 
   # ---- Quick locations (your lf g-jumps) ----
-  { on = [ "g", "h" ], run = "cd ~",           desc = "Go ~" },
-  { on = [ "g", "c" ], run = "cd ~/.config",   desc = "Go ~/.config" },
-  { on = [ "g", "d" ], run = "cd ~/Downloads", desc = "Go ~/Downloads" },
+  { on = [
+    "g",
+    "h",
+  ], run = "cd ~", desc = "Go ~" },
+  { on = [
+    "g",
+    "c",
+  ], run = "cd ~/.config", desc = "Go ~/.config" },
+  { on = [
+    "g",
+    "d",
+  ], run = "cd ~/Downloads", desc = "Go ~/Downloads" },
 
   # ---- Archives: `x` is cut (vim), so extract lives on `X` ----
   { on = "X", run = "shell '~/.config/yazi/scripts/extract \"$@\"' --block --confirm", desc = "Extract here" },
-]
 
-# ---- Optional: full neovim operator-style copy/cut --------------------------
-# Uncomment to make `yy` = copy and `dd` = cut (like yanking/deleting a line).
-# Trade-off: it turns y and d into two-key prefixes, so single-key copy/cut in
-# VISUAL mode (press v, then y) stops working. That's why it's off by default.
-#
-#   { on = [ "y", "y" ], run = "yank",       desc = "Copy" },
-#   { on = [ "d", "d" ], run = "yank --cut", desc = "Cut" },
+  # --- yet another FG
+  { on = [
+    "F",
+    "G",
+  ], run = "plugin yafg" },
+
+  # -- clipboard.yazi
+  { on = "y", run = [
+    "yank",
+    'plugin clipboard -- --action=copy',
+  ], desc = "Yank selection" },
+
+  { on = "p", run = [
+    'plugin clipboard -- --action=paste',
+  ], desc = "Paste from clipboard" },
+
+  # -- diff.yazi
+  { on = "<c-d>", run = "plugin diff", desc = "Diff the selected with the hovered file" },
+
+
+  # -- recycle-bin.yazi
+  { on = [
+    "R",
+    "b",
+  ], run = "plugin recycle-bin", desc = "Open Recycle Bin menu" },
+
+
+  # --- restor.yazi
+  { on = "u", run = "plugin restore", desc = "Restore last deleted files/folders" },
+  # or use "d + u" like me
+  { on = [
+    "d",
+    "u",
+  ], run = "plugin restore", desc = "Restore last deleted files/folders" },
+
+  # Select files/folders to restore. Input item index or range separated by comma:
+  # - Restore a trashed file:
+  #      What file to restore [0..4]: 4
+  # - Restore multiple trashed files separated by comma, also support range:
+  #      What file to restore [0..3]: 0-2, 3
+
+  # This will throw error when there is existed file/folder
+  { on = [
+    "d",
+    "U",
+  ], run = "plugin restore -- --interactive", desc = "Restore deleted files/folders (Interactive)" },
+  # Or auto overwrite existed file/folder
+  { on = [
+    "d",
+    "U",
+  ], run = "plugin restore -- --interactive --interactive-overwrite", desc = "Restore deleted files/folders (Interactive overwrite)" },
+
+  # ---- whoosh.yazi (bookmarks) ----
+  { on = "[", run = "plugin whoosh -- jump_by_key", desc = "Jump bookmark by key" },
+  { on = "}", run = "plugin whoosh -- jump_by_fzf", desc = "Direct fuzzy search for bookmarks" },
+
+  # Save
+  { on = [
+    "]",
+    "a",
+  ], run = "plugin whoosh -- save", desc = "Add bookmark (hovered file/directory)" },
+  { on = [
+    "]",
+    "A",
+  ], run = "plugin whoosh -- save_cwd", desc = "Add bookmark (current directory)" },
+
+  # Temporary bookmarks
+  { on = [
+    "]",
+    "t",
+  ], run = "plugin whoosh -- save_temp", desc = "Add temporary bookmark (hovered file/directory)" },
+  { on = [
+    "]",
+    "T",
+  ], run = "plugin whoosh -- save_cwd_temp", desc = "Add temporary bookmark (current directory)" },
+
+  # Jump
+  { on = "<A-k>", run = "plugin whoosh -- jump_key_k", desc = "Jump directly to bookmark with key k" },
+  { on = [
+    "]",
+    "f",
+  ], run = "plugin whoosh -- jump_by_fzf", desc = "Jump bookmark by fzf" },
+
+  # Delete
+  { on = [
+    "]",
+    "d",
+  ], run = "plugin whoosh -- delete_by_key", desc = "Delete bookmark by key" },
+  { on = [
+    "]",
+    "D",
+  ], run = "plugin whoosh -- delete_by_fzf", desc = "Delete bookmarks by fzf (use TAB to select multiple)" },
+  { on = [
+    "]",
+    "C",
+  ], run = "plugin whoosh -- delete_all", desc = "Delete all user bookmarks" },
+
+  # Rename
+  { on = [
+    "]",
+    "r",
+  ], run = "plugin whoosh -- rename_by_key", desc = "Rename bookmark by key" },
+  { on = [
+    "]",
+    "R",
+  ], run = "plugin whoosh -- rename_by_fzf", desc = "Rename bookmark by fzf" },
+
+]
