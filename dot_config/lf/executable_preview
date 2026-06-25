@@ -14,22 +14,25 @@ CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/lf"
 CACHE="$CACHE_DIR/$hash"
 mkdir -p "$CACHE_DIR"
 
-kitty_show() {
-  img_id=$(printf '%s' "$1" | cksum | awk '{print ($1 % 16777215) + 1}')
-  if [ -n "$TMUX" ]; then
-    kitten icat \
-      --silent \
-      --stdin no \
-      --transfer-mode memory \
-      --passthrough tmux \
-      --image-id "$img_id" \
-      --place "${w}x${h}@${x}x${y}" \
-      "$1" </dev/null >/dev/tty
+# Preview dispatcher.
+#   Inside tmux: kitty's graphics protocol drifts/stacks because tmux + the
+#     absolute --place position is unreliable. Render as chafa text blocks
+#     instead — plain colored text that lf draws into the pane and clears like
+#     any other preview. Bulletproof in tmux, lower resolution.
+#   Outside tmux: full-quality native kitty graphics via direct placement.
+show() {
+  if [ -n "${TMUX:-}" ]; then
+    chafa -f symbols --polite on --animate off -s "${w}x${h}" "$1" 2>/dev/null
   else
+    # Fixed image id (1111) + clear-before-draw so re-previews replace instead
+    # of stacking. The cleaner deletes image id 1111 — keep the two in sync.
+    img_id=1111
+    "$HOME/.config/lf/cleaner"
     kitten icat \
       --silent \
       --stdin no \
       --transfer-mode file \
+      --image-id "$img_id" \
       --place "${w}x${h}@${x}x${y}" \
       "$1" </dev/null >/dev/tty
   fi
@@ -38,25 +41,25 @@ kitty_show() {
 case "$(file -Lb --mime-type "$file")" in
 image/svg+xml)
   [ ! -f "$CACHE.png" ] && rsvg-convert -o "$CACHE.png" "$file" 2>/dev/null
-  kitty_show "$CACHE.png"
+  show "$CACHE.png"
   ;;
 image/*)
-  kitty_show "$file"
+  show "$file"
   ;;
 video/*)
   [ ! -f "$CACHE.jpg" ] &&
     ffmpegthumbnailer -i "$file" -o "$CACHE.jpg" -s 0 -q 5 2>/dev/null
-  kitty_show "$CACHE.jpg"
+  show "$CACHE.jpg"
   ;;
 application/pdf)
   [ ! -f "$CACHE.jpg" ] &&
     pdftoppm -jpeg -f 1 -singlefile "$file" "$CACHE" 2>/dev/null
-  kitty_show "$CACHE.jpg"
+  show "$CACHE.jpg"
   ;;
 application/epub+zip)
   [ ! -f "$CACHE.png" ] &&
     gnome-epub-thumbnailer "$file" "$CACHE.png" 2>/dev/null
-  kitty_show "$CACHE.png"
+  show "$CACHE.png"
   ;;
 application/zip) unzip -l "$file" ;;
 application/x-tar) tar tvf "$file" ;;

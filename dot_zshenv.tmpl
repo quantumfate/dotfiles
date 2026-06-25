@@ -2,6 +2,8 @@ typeset -U path
 path=( "$HOME/Projects/github/quantumfate/scripts/bin" $path )
 path=( "$HOME/Projects/gitlab/quantumfate/security-and-privacy/bin/" $path )
 path=( "$HOME/.local/bin" $path )
+
+export ESO_ADDONS_DIR="$HOME/Games/the-elder-scrolls-online/drive_c/users/quantum/My Documents/Elder Scrolls Online/live/AddOns"
 {{- if .devenv }}
 path=( "$HOME/go/bin" $path )
 path=( "$HOME/.local/share/nvim/mason/bin" $path )

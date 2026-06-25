@@ -8,3 +8,12 @@ export BROWSER=zen-twilight
 export GDK_BACKEND=wayland,x11,*
 export MOZ_ENABLE_WAYLAND=1
 export PATH="$HOME/Projects/gitlab/quantumfate/security-and-privacy/bin:$PATH"
+export XDG_DATA_DIRS="${XDG_DATA_DIRS}:/var/lib/flatpak/exports/share"
+
+PROTON_DLSS_UPGRADE=1
+PROTON_DLSS_INDICATOR=1
+PROTON_NVIDIA_LIBS=1
+PROTON_ENABLE_WAYLAND=1
+PROTON_NO_WM_DECORATION=1
+PROTON_NO_NTSYNC=1
+PROTON_LOCAL_SHADER_CACHE=1

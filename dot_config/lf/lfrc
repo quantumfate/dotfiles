@@ -8,12 +8,9 @@ set drawbox
 set hidden false
 set number
 set relativenumber
-set period 1
 set previewer ~/.config/lf/preview
-# no cleaner needed — we redraw instead
-set cleaner ""
+set cleaner ~/.config/lf/cleaner
 
-set promptfmt "\033[1;38;5;39m%u@%h \033[38;5;244m%w/\033[1;38;5;255m%f\033[0m"
 set preview true
 set ratios 1:2:3
 
@@ -25,7 +22,17 @@ cmd open &{{
                 lf -remote "send $id \$$EDITOR \"\$f\""
                 ;;
             image/svg+xml)         setsid -f inkscape   "$f" >/dev/null 2>&1 ;;
-            image/*)               setsid -f imv        "$f" >/dev/null 2>&1 ;;
+            image/*)
+                # feh scaled to 80% of the focused hyprland monitor (your
+                # feh_scaled zsh fn, inlined — lf runs sh, not zsh).
+                fw=$(hyprctl -j monitors 2>/dev/null | jq -r '.[]|select(.focused)|.width'  2>/dev/null || true)
+                fh=$(hyprctl -j monitors 2>/dev/null | jq -r '.[]|select(.focused)|.height' 2>/dev/null || true)
+                if [ -n "${fw:-}" ] && [ -n "${fh:-}" ] && [ "$fw" -gt 0 ] 2>/dev/null; then
+                    setsid -f feh --geometry $((fw*80/100))x$((fh*80/100)) --scale-down "$f" >/dev/null 2>&1
+                else
+                    setsid -f feh --scale-down "$f" >/dev/null 2>&1
+                fi
+                ;;
             audio/*)               setsid -f mpv --no-audio-display "$f" >/dev/null 2>&1 ;;
             video/*)               setsid -f mpv        "$f" >/dev/null 2>&1 ;;
             application/pdf|application/epub+zip|application/x-mobipocket-ebook)
@@ -120,27 +127,9 @@ map R bulk-rename
 map . set hidden!
 
 
-# Force lf to redraw when selection changes. This wipes kitty's image
-# from the preview pane when moving to a non-image file.
-cmd on-select &{{
-    # Only force a redraw if the previous preview was an image.
-    # Track state in a tmpfile.
-    state="${XDG_RUNTIME_DIR:-/tmp}/lf-preview-state.$id"
-    prev=$(cat "$state" 2>/dev/null || echo "none")
-    mime=$(file -Lb --mime-type -- "$f" 2>/dev/null)
-    case "$mime" in
-        image/*|application/pdf|video/*) echo "image" > "$state" ;;
-        *)
-            echo "text" > "$state"
-            [ "$prev" = "image" ] && lf -remote "send $id redraw"
-            ;;
-    esac
-}}
-
-# Also redraw when the pane/window geometry changes
-cmd on-redraw &{{
-    lf -remote "send $id redraw"
-}}
+# Image clearing is handled by `set cleaner` (~/.config/lf/cleaner), which lf
+# runs before each new preview. No manual on-select/on-redraw redraw hacks —
+# those re-fired the no-cache previewer and caused the flicker.
 
 # Catppuccin Macchiato ANSI styling for lf chrome
 # Palette:

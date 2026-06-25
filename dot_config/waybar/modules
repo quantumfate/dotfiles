@@ -151,5 +151,9 @@
         "tooltip": true,
         "tooltip-format": "Open the wlogout menu.",
         "interval": 2
+    },
+    "custom/hyprlayout": {
+      "exec": "hyprctl -j activeworkspace | jq -r '.tiledLayout'",
+      "interval": 1
     }
 }

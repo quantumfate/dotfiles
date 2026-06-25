@@ -117,6 +117,10 @@ window#waybar.empty #window {
   padding-right: 14px;
   padding-left: 10px;
 }
+
+#custom-hyprlayout {
+  color: @peach;
+}
 tooltip {
   margin-top: 2px;
   background: rgba(30, 30, 46, 0.8);
