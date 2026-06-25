@@ -31,6 +31,9 @@ commonPackages:
       - slurp
       - zoxide
       - thefuck
+      - trash-cli
+      - qtkeychain-qt6
+      - copyq
 
       # Cryptsetup
       - fwupd
@@ -38,6 +41,7 @@ commonPackages:
       - sbctl
 
       # TUIs
+      - yazi
       - wiremix
       - lf
       - ranger
