@@ -9,6 +9,7 @@ export GDK_BACKEND=wayland,x11,*
 export MOZ_ENABLE_WAYLAND=1
 export PATH="$HOME/Projects/gitlab/quantumfate/security-and-privacy/bin:$PATH"
 export XDG_DATA_DIRS="${XDG_DATA_DIRS}:/var/lib/flatpak/exports/share"
+export BAT_THEME="Catppuccin Macchiato"
 
 PROTON_DLSS_UPGRADE=1
 PROTON_DLSS_INDICATOR=1

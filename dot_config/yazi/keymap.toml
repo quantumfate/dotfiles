@@ -1,0 +1,48 @@
+# ~/.config/yazi/keymap.toml
+#
+# These bindings are PREPENDED to yazi's built-in keymap, so every vim-like
+# default still works. The defaults already give you neovim-style navigation:
+#
+#   h j k l      leave / down / up / enter-or-open
+#   gg  G        top / bottom
+#   <C-u> <C-d>  half-page up / down
+#   <C-b> <C-f>  page up / down            (vim-correct; fzf is on Z below)
+#   v  V         visual select / unselect
+#   <Space>      toggle selection
+#   y  x  p  P   copy / cut / paste / paste-overwrite
+#   a  r  ;  :   create / rename / shell / shell(block)
+#   /  n  N      find / next / prev
+#   ,            sort menu
+#   c{c,d,f,n}   copy path / dir / filename / name-no-ext
+#   t [ ] 1-9    new tab / prev / next / switch
+#   .            toggle hidden        q  quit
+#
+# Only the keys below are added or overridden.
+
+[mgr]
+prepend_keymap = [
+  # ---- Safety override: yazi's default `D` deletes PERMANENTLY. Make both
+  #      d and D move to trash instead (matches your lf `D trash`). ----
+  { on = "d", run = "remove", desc = "Trash" },
+  { on = "D", run = "remove", desc = "Trash" },
+
+  # ---- Jump around (zoxide + fzf ship inside yazi) ----
+  { on = "z", run = "plugin zoxide", desc = "Jump to a frecent dir (zoxide)" },
+  { on = "Z", run = "plugin fzf",    desc = "Find file/dir (fzf)" },
+
+  # ---- Quick locations (your lf g-jumps) ----
+  { on = [ "g", "h" ], run = "cd ~",           desc = "Go ~" },
+  { on = [ "g", "c" ], run = "cd ~/.config",   desc = "Go ~/.config" },
+  { on = [ "g", "d" ], run = "cd ~/Downloads", desc = "Go ~/Downloads" },
+
+  # ---- Archives: `x` is cut (vim), so extract lives on `X` ----
+  { on = "X", run = "shell '~/.config/yazi/scripts/extract \"$@\"' --block --confirm", desc = "Extract here" },
+]
+
+# ---- Optional: full neovim operator-style copy/cut --------------------------
+# Uncomment to make `yy` = copy and `dd` = cut (like yanking/deleting a line).
+# Trade-off: it turns y and d into two-key prefixes, so single-key copy/cut in
+# VISUAL mode (press v, then y) stops working. That's why it's off by default.
+#
+#   { on = [ "y", "y" ], run = "yank",       desc = "Copy" },
+#   { on = [ "d", "d" ], run = "yank --cut", desc = "Cut" },

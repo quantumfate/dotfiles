@@ -1,0 +1,24 @@
+#!/bin/sh
+# lf cleaner — remove the kitty preview image before the next preview draws.
+#
+# In tmux, "delete all visible placements" (a=d,d=a) does NOT match images sent
+# through tmux passthrough — kitten's own --clear failed the same way — so the
+# old image lingered. Delete the preview by its FIXED image id (1111, set in
+# ~/.config/lf/preview) instead: d=i,i=1111 targets our image directly. A
+# "delete visible" sweep stays as a fallback. Escapes are wrapped in tmux
+# passthrough (\ePtmux;..\e\\ with inner ESCs doubled) when $TMUX is set.
+if [ -n "${TMUX:-}" ]; then
+    printf '\033Ptmux;\033\033_Ga=d,d=i,i=1111\033\033\\\033\\' >/dev/tty
+    printf '\033Ptmux;\033\033_Ga=d,d=a\033\033\\\033\\'        >/dev/tty
+else
+    printf '\033_Ga=d,d=i,i=1111\033\\' >/dev/tty
+    printf '\033_Ga=d,d=a\033\\'        >/dev/tty
+fi
+
+# Reset the previewer's "already drawn" state so returning to a file redraws.
+# lf runs this cleaner on every file change; the previewer skips redrawing only
+# when this state still matches (same file+geometry), which prevents same-file
+# stacking in tmux. Must match STATE in ~/.config/lf/preview.
+rm -f "${XDG_RUNTIME_DIR:-/tmp}/lf-kitty-preview"
+
+exit 0

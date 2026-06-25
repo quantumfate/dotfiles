@@ -14,25 +14,38 @@ CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/lf"
 CACHE="$CACHE_DIR/$hash"
 mkdir -p "$CACHE_DIR"
 
-# Preview dispatcher.
-#   Inside tmux: kitty's graphics protocol drifts/stacks because tmux + the
-#     absolute --place position is unreliable. Render as chafa text blocks
-#     instead — plain colored text that lf draws into the pane and clears like
-#     any other preview. Bulletproof in tmux, lower resolution.
-#   Outside tmux: full-quality native kitty graphics via direct placement.
+# Preview dispatcher — full-quality native kitty graphics in and out of tmux.
+#
+# In tmux, --passthrough tmux implies unicode placeholders, whose cells are
+# written to /dev/tty (outside lf's control). lf re-runs the previewer on the
+# SAME file (resize, returning from an opened app, redraws), and each run lays
+# down a fresh block of cells that STACKS on the previous one. Guard against it:
+# only (re)draw when the file path OR the pane geometry actually changed. A
+# state file records the last draw; the cleaner deletes it on every file change
+# (see ~/.config/lf/cleaner), so returning to a file always redraws.
+STATE="${XDG_RUNTIME_DIR:-/tmp}/lf-kitty-preview"
 show() {
+  sig="$1|$w|$h|$x|$y"
   if [ -n "${TMUX:-}" ]; then
-    chafa -f symbols --polite on --animate off -s "${w}x${h}" "$1" 2>/dev/null
+    [ "$(cat "$STATE" 2>/dev/null)" = "$sig" ] && return 0   # already on screen
+    printf '%s' "$sig" >"$STATE"
+    kitten icat \
+      --silent \
+      --stdin no \
+      --transfer-mode memory \
+      --passthrough tmux \
+      --image-id 1111 \
+      --place "${w}x${h}@${x}x${y}" \
+      "$1" </dev/null >/dev/tty
   else
-    # Fixed image id (1111) + clear-before-draw so re-previews replace instead
-    # of stacking. The cleaner deletes image id 1111 — keep the two in sync.
-    img_id=1111
+    # Outside tmux: direct placement. Fixed image id + clear-before-draw so
+    # re-previews replace instead of stacking. Cleaner deletes image id 1111.
     "$HOME/.config/lf/cleaner"
     kitten icat \
       --silent \
       --stdin no \
       --transfer-mode file \
-      --image-id "$img_id" \
+      --image-id 1111 \
       --place "${w}x${h}@${x}x${y}" \
       "$1" </dev/null >/dev/tty
   fi
@@ -72,7 +85,7 @@ text/* | application/json | application/javascript | application/xml | applicati
   ;;
 esac
 
-# Exit 1 tells lf NOT to cache the preview output in memory — critical for
-# image previews because the escape codes are positioned absolutely and
-# can't be replayed.
+# Exit 1 tells lf NOT to cache the preview output in memory — required for the
+# non-tmux kitty path (absolutely-positioned escapes can't be replayed). Harmless
+# for the chafa/text paths: lf just re-renders them, which clears cleanly.
 exit 1

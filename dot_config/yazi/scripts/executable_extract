@@ -1,0 +1,17 @@
+#!/bin/sh
+# Extract one or more archives into the current directory, using whatever is
+# installed (tar / unrar / 7z). 7z is the catch-all. Mirrors the old lf cmd.
+status=0
+for f in "$@"; do
+    case "$f" in
+        *.tar.bz2 | *.tbz2) tar xjvf  "$f" ;;
+        *.tar.gz  | *.tgz)  tar xzvf  "$f" ;;
+        *.tar.xz  | *.txz)  tar xJvf  "$f" ;;
+        *.tar.zst | *.tzst) tar xvf   "$f" ;;
+        *.tar)              tar xvf   "$f" ;;
+        *.rar)              unrar x   "$f" ;;
+        *.gz)               gunzip -k "$f" ;;
+        *.zip | *.7z | *)   7z x      "$f" || { echo "Cannot extract: $f"; status=1; } ;;
+    esac
+done
+exit "$status"

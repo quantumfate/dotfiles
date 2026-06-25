@@ -1,0 +1,66 @@
+# ~/.config/yazi/yazi.toml
+# Converted from the old lf config. Image previews use kitty's graphics
+# protocol natively and work correctly inside tmux (the reason for the switch).
+
+[mgr]
+ratio          = [1, 2, 4]   # parent : current : preview  (was lf ratios 1:2:3)
+sort_by        = "natural"
+sort_sensitive = false
+sort_dir_first = true
+sort_reverse   = false
+linemode       = "size"      # show file size in the right gutter
+show_hidden    = false       # toggle with `.`  (was lf `set hidden false`)
+show_symlink   = true
+scrolloff      = 10          # was lf `set scrolloff 10`
+title_format   = "Yazi: {cwd}"
+
+[preview]
+wrap          = "no"
+tab_size      = 2
+max_width     = 1200         # render previews at high res (you have a wide monitor)
+max_height    = 1200
+image_delay   = 30
+image_filter  = "lanczos3"   # sharpest downscaler
+image_quality = 90
+sixel_fraction = 15
+
+# ---------------------------------------------------------------------------
+# Openers — what runs when you open a file. mpv/zathura aren't installed, so
+# audio/video/pdf fall back to xdg-open (your desktop's default app).
+# ---------------------------------------------------------------------------
+[opener]
+edit = [
+  { run = '${EDITOR:-nvim} "$@"', block = true, desc = "Edit", for = "unix" },
+]
+open = [
+  { run = 'xdg-open "$@"', orphan = true, desc = "Open (xdg)", for = "unix" },
+]
+image = [
+  # feh sized to 80% of the focused Hyprland monitor (your feh_scaled fn).
+  { run = '~/.config/yazi/scripts/feh-scaled "$@"', orphan = true, desc = "feh", for = "unix" },
+]
+extract = [
+  { run = '~/.config/yazi/scripts/extract "$@"', block = true, desc = "Extract here", for = "unix" },
+]
+reveal = [
+  { run = 'xdg-open "$(dirname -- "$1")"', orphan = true, desc = "Reveal in file manager", for = "unix" },
+]
+
+[open]
+rules = [
+  { url = "*/", use = [ "edit", "open", "reveal" ] },
+
+  { mime = "text/*",                   use = [ "edit", "reveal" ] },
+  { mime = "image/*",                  use = [ "image", "reveal" ] },
+  { mime = "{audio,video}/*",          use = [ "open", "reveal" ] },
+  { mime = "application/pdf",          use = [ "open", "reveal" ] },
+  { mime = "application/{json,ndjson,xml,javascript,x-shellscript}", use = [ "edit", "reveal" ] },
+  { mime = "inode/x-empty",            use = [ "edit", "reveal" ] },
+
+  # Archives -> extract
+  { mime = "application/zip",                       use = [ "extract", "reveal" ] },
+  { mime = "application/gzip",                       use = [ "extract", "reveal" ] },
+  { mime = "application/x-{tar,bzip2,7z-compressed,rar,xz,zstd}", use = [ "extract", "reveal" ] },
+
+  { url = "*", use = [ "open", "edit", "reveal" ] },
+]

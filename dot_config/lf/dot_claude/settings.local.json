@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(lf -version)",
+      "Bash(echo \"=== EXIT $? ===\")",
+      "Bash(command -v lf feh feh_scaled lfcd)",
+      "Read(//home/quantum/**)",
+      "Bash(timeout 30 ya pkg add yazi-rs/plugins:zoxide)",
+      "Bash(timeout 30 ya pkg add yazi-rs/plugins:fzf)",
+      "Read(//home/quantum/.config/yazi/**)",
+      "Read(//home/quantum/.config/yazi/flavors/**)"
+    ]
+  }
+}
