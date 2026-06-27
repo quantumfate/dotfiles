@@ -79,7 +79,6 @@ commonPackages:
 
       # Applications
       - zen-twilight-bin
-      - elecwhat-bin
       - brave-bin
       - obsidian
       - spotify

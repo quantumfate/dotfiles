@@ -25,8 +25,11 @@
 #language,
 #pulseaudio,
 #clock,
+#custom-hyprlayout
+#custom-wlogout
 #tray,
 #custom-mako,
+#submap
 #battery {
   background-color: transparent;
   color: @teal;
