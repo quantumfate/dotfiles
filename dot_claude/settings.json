@@ -22,5 +22,20 @@
         "repo": "kepano/obsidian-skills"
       }
     }
+  },
+  "effortLevel": "low",
+  "tui": "fullscreen",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // empty' | { read -r f; case \"$f\" in *.lua|*.py|*.js|*.jsx|*.ts|*.tsx|*.rs|*.go|*.c|*.h|*.cc|*.cpp|*.hpp|*.sh|*.bash|*.vim|*.nix) printf '{\"hookSpecificOutput\":{\"hookEventName\":\"PostToolUse\",\"additionalContext\":\"code-clarity reminder: keep comments small and explicit. Introduce every function/block in one concise line; flag external or non-local state at its use site (hoverable); prefer renaming/extracting/splitting over prose. Module/class/library scopes get a short first-impression overview. See the code-clarity skill.\"}}' ;; esac; }"
+          }
+        ]
+      }
+    ]
   }
 }
