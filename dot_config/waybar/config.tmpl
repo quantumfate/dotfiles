@@ -12,7 +12,8 @@
     "modules-center": [
       "hyprland/window",
       "hyprland/submap",
-      "custom/hyprlayout"
+      "custom/hyprlayout",
+      "custom/language"
     ],
     "modules-left": [
       "hyprland/workspaces",
@@ -22,14 +23,14 @@
       "network"
     ],
     "modules-right": [
+      "tray",
       "custom/brightness",
       "pulseaudio",
-      "clock",
-      "tray",
       "custom/mako",
 {{- if eq .profile "laptop" }}
       "battery",
 {{- end }}
+      "clock",
       "custom/wlogout"
     ],
     "position": "top",
@@ -47,17 +48,19 @@
     "margin-top": 0,
     "modules-center": [
       "hyprland/window",
-      "hyprland/submap"
+      "hyprland/submap",
+      "custom/hyprlayout",
+      "custom/language"
     ],
     "modules-left": [
       "hyprland/workspaces",
     ],
     "modules-right": [
+      "tray",
       "custom/brightness",
       "pulseaudio",
-      "clock",
-      "tray",
       "custom/mako",
+      "clock",
       "custom/wlogout"
     ],
     "position": "top",

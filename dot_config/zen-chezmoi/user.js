@@ -310,7 +310,7 @@ user_pref("zen.workspaces.force-container-workspace", true);
 
 // === Sync exclusions ===
 user_pref("services.sync.engine.passwords", false);
-user_pref("services.sync.declinedEngines", "workspaces,passwords,creditcards,addresses");
+user_pref("services.sync.declinedEngines", "workspaces");
 
 // === Sidebar ===
 user_pref("sidebar.visibility", "hide-sidebar");

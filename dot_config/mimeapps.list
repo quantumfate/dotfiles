@@ -1,14 +1,22 @@
 [Added Associations]
-x-scheme-handler/http=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop;
-x-scheme-handler/https=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop;
-x-scheme-handler/chrome=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop;
-text/html=zen-dispatcher.desktop;zen-twilight.desktop;
 application/x-extension-htm=zen-dispatcher.desktop;zen-twilight.desktop;
 application/x-extension-html=zen-dispatcher.desktop;zen-twilight.desktop;
 application/x-extension-shtml=zen-dispatcher.desktop;zen-twilight.desktop;
-application/xhtml+xml=zen-dispatcher.desktop;zen-twilight.desktop;
-application/x-extension-xhtml=zen-dispatcher.desktop;zen-twilight.desktop;
 application/x-extension-xht=zen-dispatcher.desktop;zen-twilight.desktop;
+application/x-extension-xhtml=zen-dispatcher.desktop;zen-twilight.desktop;
+application/xhtml+xml=zen-dispatcher.desktop;zen-twilight.desktop;
+image/bmp=feh.desktop;
+image/heif=feh.desktop;
+image/jpeg=feh.desktop;
+image/png=feh.desktop;
+image/webp=feh.desktop;
+inode/directory=yazi.desktop;
+text/html=zen-dispatcher.desktop;zen-twilight.desktop;
+x-scheme-handler/chrome=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop;
+x-scheme-handler/geo=openstreetmap-geo-handler.desktop;
+x-scheme-handler/http=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop;
+x-scheme-handler/https=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop;
+x-scheme-handler/mailto=proton-mail.desktop;
 
 [Default Applications]
 application/pdf=zathura.desktop;zen-beta.desktop
@@ -18,14 +26,21 @@ application/x-extension-shtml=zen-dispatcher.desktop;zen-twilight.desktop;firefo
 application/x-extension-xht=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop
 application/x-extension-xhtml=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop
 application/xhtml+xml=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop
-inode/directory=ranger.desktop
+devpod=dev-pod-desktop-handler.desktop
+image/bmp=feh.desktop;
+image/heif=feh.desktop;
+image/jpeg=feh.desktop;
+image/png=feh.desktop;
+image/webp=feh.desktop;
+inode/directory=yazi.desktop;
 text/html=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop
 text/x-lua=nvim.desktop
+x-scheme-handler/chrome=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+x-scheme-handler/discord=vesktop.desktop
+x-scheme-handler/geo=openstreetmap-geo-handler.desktop;
 x-scheme-handler/http=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop
 x-scheme-handler/https=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop
-x-scheme-handler/chrome=zen-dispatcher.desktop;zen-twilight.desktop;firefox.desktop
-x-scheme-handler/discord=vesktop.desktop
-devpod=dev-pod-desktop-handler.desktop
-x-scheme-handler/claude-cli=claude-code-url-handler.desktop
-
-[Removed Associations]
+x-scheme-handler/mailto=proton-mail.desktop;
+x-scheme-handler/proton-inbox=Proton Mail.desktop
+x-scheme-handler/zaap=zaap-handler.desktop

@@ -1,25 +1,54 @@
-@import url("/home/quantum/.config/wlogout/catppuccin/themes/macchiato/mauve.css");
+/* ──────────────────────────────────────────────────────────────
+   wlogout — minimal Macchiato, matched to the waybar redesign.
+   Neutral surface0 cards; @mauve is reserved for the focused/hovered
+   button (border + label + icon all shift to mauve together).
+   ────────────────────────────────────────────────────────────── */
 
-#lock {
-    background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/lock.svg");
+* {
+  font-family: "JetBrainsMono Nerd Font", "JetBrainsMono Nerd Font Mono";
+  font-weight: 600;
+  font-size: 15px;
+  background-image: none;
+  box-shadow: none;
+  transition: all 0.2s ease;
 }
 
-#logout {
-    background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/logout.svg");
+window {
+  background-color: rgba(24, 25, 38, 0.55); /* crust @ 55%, lets blur through */
 }
 
-#suspend {
-    background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/suspend.svg");
+button {
+  color: #b8c0e0;                 /* subtext1 */
+  background-color: #363a4f;      /* surface0 */
+  border: 2px solid transparent;
+  border-radius: 22px;
+  margin: 0;                      /* spacing handled by launcher -c/-r */
+  background-repeat: no-repeat;
+  background-position: center 30%; /* icon sits above the centered label */
+  background-size: 26%;
+  outline: none;
 }
 
-#hibernate {
-    background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/hibernate.svg");
+/* hover only — wlogout focuses the first button on open, so styling
+   :focus would leave the lock button permanently highlighted */
+button:hover {
+  color: #c6a0f6;                 /* mauve */
+  background-color: #494d64;      /* surface1 */
+  border-color: #c6a0f6;          /* mauve */
 }
 
-#shutdown {
-    background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/shutdown.svg");
-}
+/* default (neutral) icons */
+#lock      { background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/text/lock.svg"); }
+#logout    { background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/text/logout.svg"); }
+#suspend   { background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/text/suspend.svg"); }
+#hibernate { background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/text/hibernate.svg"); }
+#shutdown  { background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/text/shutdown.svg"); }
+#reboot    { background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/text/reboot.svg"); }
 
-#reboot {
-    background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/reboot.svg");
-}
+/* accent (mauve) icons on hover */
+#lock:hover      { background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/lock.svg"); }
+#logout:hover    { background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/logout.svg"); }
+#suspend:hover   { background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/suspend.svg"); }
+#hibernate:hover { background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/hibernate.svg"); }
+#shutdown:hover  { background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/shutdown.svg"); }
+#reboot:hover    { background-image: url("/home/quantum/.config/wlogout/catppuccin/icons/wlogout/macchiato/mauve/reboot.svg"); }

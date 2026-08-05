@@ -16,7 +16,7 @@
   llms = {{ $llms }}
   devenv = {{ $devenv }}
 
-[hooks.read-source-state.pre]
-    command = ".local/share/chezmoi/.install-password-manager.sh"
+# pass-cli is installed by the workstation playbook (roles/password_manager)
+# before chezmoi ever runs, so no read-source-state hook is needed here.
 [secret]
     command = "pass-cli"

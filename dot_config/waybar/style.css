@@ -1,133 +1,159 @@
 @import "themes/catppuccin-macchiato.css";
 
+/* ──────────────────────────────────────────────────────────────
+   Minimal Macchiato bar.
+   Arrangement: cool tones left (info) · neutral center · warm
+   tones right (controls). @mauve is reserved for active/transient
+   state. surface0 pills anchor workspaces + clock.
+   ────────────────────────────────────────────────────────────── */
+
 * {
   font-family: "JetBrainsMono Nerd Font", "JetBrainsMono Nerd Font Mono";
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  min-height: 0;
 }
 
-#waybar {
-  background-color: #24273a;
+window#waybar {
+  background-color: @base;
+  color: @subtext1;
 }
 
+/* even breathing room at the bar edges */
 .modules-left {
-  margin: 0 0 0 11px;
+  margin-left: 8px;
 }
-
 .modules-right {
-  margin: 0 11px 0 0;
+  margin-right: 8px;
 }
 
+/* shared flat module baseline */
 #cpu,
-#disk,
 #memory,
+#disk,
 #network,
-#language,
-#pulseaudio,
-#clock,
-#custom-hyprlayout
-#custom-wlogout
+#window,
+#submap,
+#custom-hyprlayout,
+#custom-language,
 #tray,
+#custom-brightness,
+#pulseaudio,
 #custom-mako,
-#submap
-#battery {
+#battery,
+#custom-wlogout {
   background-color: transparent;
-  color: @teal;
-  /* border: 2px solid rgba(17,17,27,0.600000) */
-  padding: 0 15px;
-  margin-right: 10px;
+  color: @subtext1;
+  padding: 0 10px;
 }
 
-#cpu {
-  color: @mauve;
-}
-
-#disk {
-  color: @maroon;
-}
-
-#memory {
-  color: @pink;
-}
-
-#network {
-  color: @peach;
-}
-
-#custom-brightness {
-  color: @red;
-}
-
-#pulseaudio {
-  color: @mauve;
-}
-
-#clock {
-  color: @maroon;
-}
-
-#battery {
-  color: @pink;
-}
-
-#custom-mako {
-  color: @peach;
-}
+/* ── workspaces (pill) ───────────────────────────────────────── */
 #workspaces {
-  background-color: transparent;
-  border: transparent;
-  padding: 0 5px;
-  margin-right: 10px;
+  background-color: @surface0;
+  border-radius: 10px;
+  margin: 5px 10px 5px 0;
+  padding: 0 4px;
 }
 
 #workspaces button {
+  color: @overlay0;
+  padding: 0 7px;
+  border-radius: 8px;
   box-shadow: none;
   text-shadow: none;
-  padding: 0 4px;
-  color: @maroon;
-  animation: gradient_f 20s ease-in infinite;
-  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+  transition: color 0.25s ease, background-color 0.25s ease;
 }
 
-#workspaces button.active,
-#workspaces button:hover {
-  color: @green;
-}
-
-#workspaces button:hover {
-  background: transparent;
-  border-color: @base;
-}
-
-#window {
-  background-color: transparent;
-  padding: 0 10px;
+#workspaces button.active {
   color: @mauve;
 }
 
+#workspaces button:hover {
+  color: @text;
+  background-color: transparent;
+}
+
+/* ── left: system info (cool family) ─────────────────────────── */
+#cpu {
+  color: @lavender;
+}
+#memory {
+  color: @blue;
+}
+#disk {
+  color: @sapphire;
+}
+#network {
+  color: @sky;
+}
+
+/* ── center: neutral, mauve for transient state ──────────────── */
+#window {
+  color: @subtext0;
+  padding: 0 12px;
+}
 window#waybar.empty #window {
-  border: none;
   background-color: transparent;
 }
 
 #submap {
-  color: @teal;
+  color: @mauve;
+  font-weight: 700;
 }
 
-#custom-wlogout {
-  /*border-right: 2px solid rgba(17,17,27,0.600000);*/
-  color: @teal;
-  padding-right: 14px;
-  padding-left: 10px;
+#custom-hyprlayout,
+#custom-language {
+  color: @overlay1;
 }
 
-#custom-hyprlayout {
+/* ── right: controls (warm family) ───────────────────────────── */
+#custom-brightness {
+  color: @yellow;
+}
+#pulseaudio {
   color: @peach;
 }
+#custom-mako {
+  color: @overlay1;
+}
+#tray {
+  color: @subtext1;
+}
+
+/* clock (pill) — quiet info accent */
+#clock {
+  background-color: @surface0;
+  color: @teal;
+  font-weight: 700;
+  border-radius: 10px;
+  margin: 5px 0 5px 10px;
+  padding: 0 14px;
+}
+
+/* power button — the one strong accent on the bar */
+#custom-wlogout {
+  color: @red;
+  padding: 0 14px;
+  transition: color 0.25s ease;
+}
+#custom-wlogout:hover {
+  color: @maroon;
+}
+
+/* battery states */
+#battery.warning {
+  color: @yellow;
+}
+#battery.critical {
+  color: @red;
+}
+
+/* ── tooltips ────────────────────────────────────────────────── */
 tooltip {
   margin-top: 2px;
-  background: rgba(30, 30, 46, 0.8);
-  border: 2px solid rgba(17, 17, 27, 0.6);
+  background-color: @mantle;
+  border: 2px solid @surface0;
+  border-radius: 10px;
 }
 tooltip label {
   color: @text;

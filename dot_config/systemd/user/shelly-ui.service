@@ -1,12 +1,12 @@
 [Unit]
-Description=Waybar status bar
+Description=Shelly UI Service (unified arch package manager)
 After=graphical-session.target
 BindsTo=graphical-session.target
-PartOf=theme-reload.target monitors-changed.target
-ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
-ExecStart=/usr/bin/waybar
+ExecStart=/usr/bin/shelly-ui
+
+
 Restart=on-failure
 
 [Install]

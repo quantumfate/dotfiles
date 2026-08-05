@@ -14,7 +14,7 @@ I'm ready to go on a new machine with one simple command.
 - Colorscheme: [Catppuccin](https://catppuccin.com/) Macchiato Mauve
 - qt5ct
 - GTK automated with nwg-look
-- Grub/Limine + TTY with [this script](./.chezmoiscripts/run_after_09-configure-tty.sh.tmpl)
+- Grub/Limine + TTY with the `console` role of the [workstation playbook](https://codeberg.org/quantumfate/workstation)
 
 ### Desktop Experience
 
@@ -40,7 +40,7 @@ I'm ready to go on a new machine with one simple command.
 
 ### Sysadmin
 
-- Bootstrap my environment with [Cockpit](https://cockpit-project.org/) and [libvrt](https://libvirt.org/), see [here](./.chezmoiscripts/run_after_07-install-cockpit-vm-kvm.sh.tmpl)
+- Bootstrap my environment with [Cockpit](https://cockpit-project.org/) and [libvrt](https://libvirt.org/), see the `virtualization` role of the [workstation playbook](https://codeberg.org/quantumfate/workstation)
 
 ### Office
 
@@ -54,7 +54,7 @@ I'm ready to go on a new machine with one simple command.
 #### Hardening
 
 - [yokoffing/betterfox](https://github.com/yokoffing/BetterFox),
-- [user.js](./user.js) injected with [this script](./.chezmoiscripts/run_after_05-install-userjs-for-browser.sh.tmpl)
+- [user.js](./user.js) injected with the `browser_profiles` role of the [workstation playbook](https://codeberg.org/quantumfate/workstation)
 - [uBlock Origin](https://ublockorigin.com/)
 - [yokoffing/filterlits](https://github.com/yokoffing/filterlists)
 - [Clear URLs](https://github.com/ClearURLs/Addon)
@@ -66,7 +66,7 @@ I'm ready to go on a new machine with one simple command.
 ### Custom Dvorak layout
 
 [My layout](./dot_local/share/xkb/symbols/dvorak-custom) is inspired by [ThePrimeagen/keyboards](https://github.com/ThePrimeagen/keyboards/tree/master)
-and installed via [this script](./.chezmoiscripts/run_after_15-install-layout.sh). Works in Wayland/X11 Sessions as well as TTY.
+and installed via the `keyboard` role of the [workstation playbook](https://codeberg.org/quantumfate/workstation). Works in Wayland/X11 Sessions as well as TTY.
 
 #### Base Layer
 

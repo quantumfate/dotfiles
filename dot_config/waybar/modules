@@ -6,7 +6,8 @@
           "study": "󰉺 ",
           "proton": " ",
           "media": " ",
-          "gaming": "󰐝 "
+          "gaming": "󰐝 ",
+          "misc": " "
         },
         "format-window-separator": "\n",
         "window-rewrite-default": "",
@@ -57,10 +58,10 @@
         },
     "separate-outputs": true
     },
-    "hyprland/language": {
-        "format": "Lang: {}",
-        "format-en": "EN",
-        "keyboard-name": "kbdfans-kbd75-rev2"
+    "custom/language": {
+        "exec": "$HOME/.config/waybar/scripts/language.sh",
+        "format": "{}",
+        "on-click": "hyprctl switchxkblayout all next"
     },
     "custom/brightness": {
         "exec": ",brightness.sh --get-with-icon",
@@ -147,7 +148,7 @@
     },
     "custom/wlogout": {
         "format": " 󰣇 ",
-        "on-click": "uwsm app -- wlogout",
+        "on-click": "uwsm app -- $HOME/.config/waybar/scripts/wlogout.sh",
         "tooltip": true,
         "tooltip-format": "Open the wlogout menu.",
         "interval": 2
