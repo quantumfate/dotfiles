@@ -2,6 +2,12 @@
 
 I'm ready to go on a new machine with one simple command.
 
+External repos and themes (oh-my-zsh plugins, nvim/hypr configs, dev checkouts,
+catppuccin themes) are no longer chezmoi externals — the
+[system-config playbook](https://codeberg.org/quantumfate/system-config)
+(`roles/externals`) clones and refreshes them. See
+`group_vars/all/externals.yml` there.
+
 ## Features
 
 - Monitor Management: [Shikane](https://gitlab.com/w0lff/shikane#configuration)
