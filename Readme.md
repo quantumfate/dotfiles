@@ -30,7 +30,7 @@ catppuccin themes) are no longer chezmoi externals — the
 
 #### Desktop Environments
 
-- [Hyprland](https://hypr.land/) with my [config](https://github.com/quantumfate/hypr)
+- [Hyprland](https://hypr.land/) with my [config](https://codeberg.org/quantumfate/hypr)
 
 ##### Planned
 
@@ -41,7 +41,7 @@ catppuccin themes) are no longer chezmoi externals — the
 ### Development
 
 - Terminal Emulator: [Kitty](https://sw.kovidgoyal.net/kitty/)
-- Editor: [Neovim](https://github.com/neovim/neovim) with [my config](https://github.com/quantumfate/nvim)
+- Editor: [Neovim](https://github.com/neovim/neovim) with [my config](https://codeberg.org/quantumfate/nvim)
 - Tmux
 
 ### Sysadmin
