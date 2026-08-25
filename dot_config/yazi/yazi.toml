@@ -33,7 +33,7 @@ edit = [
   { run = '${EDITOR:-nvim} "$@"', block = true, desc = "Edit", for = "unix" },
 ]
 open = [
-  { run = 'xdg-open "$@"', orphan = true, desc = "Open (xdg)", for = "unix" },
+  { run = 'vlc %s', orphan = true, desc = "Open (VLC)", for = "unix" },
 ]
 image = [
   # feh sized to 80% of the focused Hyprland monitor (your feh_scaled fn).
