@@ -46,13 +46,8 @@ plugins=(
   extract
   colorize
   colored-man-pages
-  alias-finder
 )
 source $ZSH/oh-my-zsh.sh
-
-# Alias finder
-zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
-zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
 
 
 # https://github.com/zsh-users/zsh-autosuggestions
@@ -311,9 +306,3 @@ bindkey '^Xl' clear-keep-buffer
 
 ## Hotkey Insertion
 bindkey -s '^Xgc' 'git commit -m ""\C-b'
-
-_my_alias_finder() {
-  alias-finder "$2"
-}
-add-zsh-hook -d preexec preexec_alias-finder
-add-zsh-hook preexec _my_alias_finder
