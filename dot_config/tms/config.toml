@@ -5,8 +5,6 @@ excluded_dirs = ["node_modules", "target", ".git"]
 bookmarks = [
   "/home/quantum",
   "/home/quantum/Documents/Obsidian/Main",
-  "/home/quantum/.config/nvim",
-  "/home/quantum/.config/hypr",
   "/home/quantum/.config/yazi",
 ]
 
