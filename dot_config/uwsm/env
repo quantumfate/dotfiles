@@ -2,7 +2,9 @@ export XDG_SESSION_TYPE=wayland
 export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=qt6ct
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-export QT_STYLE_OVERRIDE=kvantum
+# QT_STYLE_OVERRIDE is deliberately NOT set: ~/.config/qt6ct/qt6ct.conf already
+# selects Kvantum, and this variable overrides whatever qt6ct decides — with
+# both in place the config file silently stops mattering. See roles/theming.
 export XDG_CONFIG_HOME=$HOME/.config
 export BROWSER=zen-twilight
 export GDK_BACKEND=wayland,x11,*
