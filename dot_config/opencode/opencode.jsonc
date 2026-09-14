@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "google/gemini-3.7-flash",
+  "provider": { "openrouter": { "models": {
+    "google/gemini-3.7-flash": { "name": "grunt",
+      "options": { "provider": { "require_parameters": true, "allow_fallbacks": true } } },
+    "google/gemini-3.6-flash": { "name": "mid",
+      "options": { "provider": { "require_parameters": true, "allow_fallbacks": true } } },
+    "anthropic/claude-sonnet-5": { "name": "frontier" }
+  } } }
+}
